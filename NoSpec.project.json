@@ -1,0 +1,16 @@
+{
+	"name": "DataStructures",
+	"globIgnorePaths": ["**/*.spec.lua"],
+
+	"tree": {
+		"$className": "DataModel",
+		"ReplicatedStorage": {
+			"$className": "ReplicatedStorage",
+			"$ignoreUnknownInstances": true,
+			"DataStructures": {
+				"$path": "src/DataStructures",
+				"$ignoreUnknownInstances": true
+			}
+		}
+	}
+}

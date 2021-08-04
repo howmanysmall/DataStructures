@@ -1,12 +1,18 @@
---!strict
+local Types = require(script.Parent.Parent.Types)
+local _ = Types
+
 local MinPriorityQueue = {}
 MinPriorityQueue.ClassName = "MinPriorityQueue"
 MinPriorityQueue.__index = MinPriorityQueue
 
-type Array<Value> = {Value}
+type Array<Value> = Types.Array<Value>
+type NonNil = Types.NonNil
+type int = Types.int
+
 export type HeapEntry = {
+	-- No format
 	Priority: number,
-	Value: any,
+	Value: NonNil,
 }
 
 --[[**
@@ -23,6 +29,15 @@ end
 export type MinPriorityQueue = typeof(MinPriorityQueue.new())
 
 --[[**
+	Determines whether the passed value is a MinPriorityQueue.
+	@param [t:any] Value The value to check.
+	@returns [t:boolean] Whether or not the passed value is a MinPriorityQueue.
+**--]]
+function MinPriorityQueue.Is(Value)
+	return type(Value) == "table" and getmetatable(Value) == MinPriorityQueue
+end
+
+--[[**
 	Check whether the `MinPriorityQueue` has no elements.
 	@returns [t:boolean] This will be true iff the queue is empty.
 **--]]
@@ -30,7 +45,8 @@ function MinPriorityQueue:IsEmpty(): boolean
 	return self.Length == 0
 end
 
-local function FindClosestIndex(self: MinPriorityQueue, Priority: number, Low: number, High: number): number
+local function FindClosestIndex(This: MinPriorityQueue, Priority: number, Low: int, High: int): int
+	local self = This
 	local Middle
 
 	do
@@ -67,11 +83,15 @@ end
 
 --[[**
 	Add an element to the `MinPriorityQueue` with an associated priority.
-	@param [t:any] Value The value of the element.
+	@param [t:NonNil] Value The value of the element.
 	@param [t:number] Priority The priority of the element.
-	@returns [t:number] The inserted position.
+	@returns [t:int] The inserted position.
 **--]]
-function MinPriorityQueue:InsertWithPriority(Value: any, Priority: number): number
+function MinPriorityQueue:InsertWithPriority(Value: NonNil, Priority: number): int
+	if Value == nil then
+		error("Argument #2 to 'MinPriorityQueue:InsertWithPriority' missing or nil", 2)
+	end
+
 	local Heap: Array<HeapEntry> = self.Heap
 	local Position = FindClosestIndex(self, Priority, 1, self.Length)
 	local Element1: HeapEntry = {Value = Value, Priority = Priority}
@@ -92,16 +112,19 @@ MinPriorityQueue.Insert = MinPriorityQueue.InsertWithPriority
 
 --[[**
 	Changes the priority of the given value in the `MinPriorityQueue`.
-	@param [t:any] Value The value you are updating the priority of.
+	@param [t:NonNil] Value The value you are updating the priority of.
 	@param [t:number] NewPriority The new priority of the value.
-	@returns [t:number?] The new position of the HeapEntry if it was found. This function will error if it couldn't find the value.
+	@returns [t:int?] The new position of the HeapEntry if it was found. This function will error if it couldn't find the value.
 **--]]
-function MinPriorityQueue:ChangePriority(Value: any, NewPriority: number): number?
-	self = self :: MinPriorityQueue
+function MinPriorityQueue:ChangePriority(Value: NonNil, NewPriority: number): int?
+	if Value == nil then
+		error("Argument #2 to 'MinPriorityQueue:ChangePriority' missing or nil", 2)
+	end
+
 	local Heap: Array<HeapEntry> = self.Heap
 	for Index, HeapEntry in ipairs(Heap) do
 		if HeapEntry.Value == Value then
-			table.remove(self.Heap, Index)
+			table.remove(Heap, Index)
 			self.Length -= 1
 			return self:InsertWithPriority(Value, NewPriority)
 		end
@@ -142,7 +165,7 @@ end
 **--]]
 function MinPriorityQueue:PopElement(OnlyValue: boolean?): any | HeapEntry
 	local Heap: Array<HeapEntry> = self.Heap
-	local Length : number = self.Length
+	local Length: number = self.Length
 	self.Length = Length - 1
 
 	local Element: HeapEntry = Heap[Length]
@@ -180,9 +203,9 @@ end
 --[[**
 	Returns an iterator function for iterating over the `MinPriorityQueue`.
 	@param [t:boolean?] OnlyValues Whether or not the iterator returns just the values or the priorities as well.
-	@returns [t:IteratorFunction] The iterator function. Usage is `for Index, Value in MinPriorityQueue:Iterate(OnlyValues) do`.
+	@returns [t:IteratorFunction] The iterator function. Usage is `for Index, Value in MinPriorityQueue:Iterator(OnlyValues) do`.
 **--]]
-function MinPriorityQueue:Iterate(OnlyValues: boolean?)
+function MinPriorityQueue:Iterator(OnlyValues: boolean?)
 	if OnlyValues then
 		local Array = table.create(self.Length)
 		for Index, HeapEntry in ipairs(self.Heap) do
@@ -198,9 +221,9 @@ end
 --[[**
 	Returns an iterator function for iterating over the `MinPriorityQueue` in reverse.
 	@param [t:boolean?] OnlyValues Whether or not the iterator returns just the values or the priorities as well.
-	@returns [t:IteratorFunction] The iterator function. Usage is `for Index, Value in MinPriorityQueue:ReverseIterate(OnlyValues) do`.
+	@returns [t:IteratorFunction] The iterator function. Usage is `for Index, Value in MinPriorityQueue:ReverseIterator(OnlyValues) do`.
 **--]]
-function MinPriorityQueue:ReverseIterate(OnlyValues: boolean?)
+function MinPriorityQueue:ReverseIterator(OnlyValues: boolean?)
 	local Length: number = self.Length
 	local Top = Length + 1
 
@@ -221,6 +244,9 @@ function MinPriorityQueue:ReverseIterate(OnlyValues: boolean?)
 	end
 end
 
+MinPriorityQueue.Iterate = MinPriorityQueue.Iterator
+MinPriorityQueue.ReverseIterate = MinPriorityQueue.ReverseIterator
+
 --[[**
 	Clears the entire `MinPriorityQueue`.
 	@returns [t:MinPriorityQueue] The same `MinPriorityQueue`.
@@ -233,10 +259,14 @@ end
 
 --[[**
 	Determines if the `MinPriorityQueue` contains the given value.
-	@param [t:any] Value The value you are searching for.
+	@param [t:NonNil] Value The value you are searching for.
 	@returns [t:boolean] Whether or not the value was found.
 **--]]
-function MinPriorityQueue:Contains(Value: any): boolean
+function MinPriorityQueue:Contains(Value: NonNil): boolean
+	if Value == nil then
+		error("Argument #2 to 'MinPriorityQueue:Contains' missing or nil", 2)
+	end
+
 	for _, HeapEntry in ipairs(self.Heap) do
 		if HeapEntry.Value == Value then
 			return true
@@ -249,10 +279,9 @@ end
 --[[**
 	Removes the `HeapEntry` with the given priority, if it exists.
 	@param [t:number] Priority The priority you are removing from the `MinPriorityQueue`.
-	@returns [t:nil]
+	@returns [t:void]
 **--]]
 function MinPriorityQueue:RemovePriority(Priority: number)
-	self = self :: MinPriorityQueue
 	for Index, HeapEntry in ipairs(self.Heap) do
 		if HeapEntry.Priority == Priority then
 			table.remove(self.Heap, Index)
@@ -264,11 +293,14 @@ end
 
 --[[**
 	Removes the `HeapEntry` with the given value, if it exists.
-	@param [t:any] Value The value you are removing from the `MinPriorityQueue`.
-	@returns [t:nil]
+	@param [t:NonNil] Value The value you are removing from the `MinPriorityQueue`.
+	@returns [t:void]
 **--]]
-function MinPriorityQueue:RemoveValue(Value: any)
-	self = self :: MinPriorityQueue
+function MinPriorityQueue:RemoveValue(Value: NonNil)
+	if Value == nil then
+		error("Argument #2 to 'MinPriorityQueue:RemoveValue' missing or nil", 2)
+	end
+
 	for Index, HeapEntry in ipairs(self.Heap) do
 		if HeapEntry.Value == Value then
 			table.remove(self.Heap, Index)
@@ -280,7 +312,7 @@ end
 
 function MinPriorityQueue:__tostring()
 	local Array = table.create(self.Length)
-	for Index, Value in self:Iterate(false) do
+	for Index, Value in self:Iterator(false) do
 		Array[Index] = string.format("\t{Priority = %s, Value = %s};", tostring(Value.Priority), tostring(Value.Value))
 	end
 

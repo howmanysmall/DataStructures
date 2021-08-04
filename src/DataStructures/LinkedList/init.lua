@@ -1,44 +1,29 @@
-local TypeOf = require(script.Parent.TypeOf)
+local Types = require(script.Parent.Types)
 
-local LinkedList = {ClassName = "LinkedList"}
+local LinkedList = {}
+LinkedList.ClassName = "LinkedList"
 LinkedList.__index = LinkedList
 
-local ListNode = {ClassName = "ListNode"}
+local ListNode = {}
+ListNode.ClassName = "ListNode"
 ListNode.__index = ListNode
 
-type Map<Index, Value> = {[Index]: Value}
-type Array<Value> = Map<number, Value>
-type Dictionary<Value> = Map<string, Value>
+type Array<Value> = Types.Array<Value>
+type Dictionary<Value> = Types.Dictionary<Value>
+type int = Types.int
 
-local null = nil
-
-do
-	local List = setmetatable({
-		First = null;
-		Last = null;
-		Length = 0;
-	}, LinkedList)
-
-	export type LinkedList = typeof(List)
-	export type LinkedListIterator = typeof(List:Iterator())
-	export type ListNode = typeof(setmetatable({
-		Previous = null;
-		Next = null;
-		List = List;
-		Value = 1;
-	}, ListNode))
-end
+local INVALID_ARGUMENT_ERROR = "Invalid argument #%d to '%s' (%s expected, got %s)"
 
 --[[**
 	Creates an empty `LinkedList`.
-	@param [Array<any>?] Values An optional array that contains the values you want to add.
-	@returns [LinkedList]
+	@param [t:Array<any>?] Values An optional array that contains the values you want to add.
+	@returns [t:LinkedList]
 **--]]
-function LinkedList.new(Values: Array<any>?): LinkedList
+function LinkedList.new(Values: Array<any>?)
 	if Values then
 		local self = setmetatable({
-			First = null;
-			Last = null;
+			First = nil;
+			Last = nil;
 			Length = 0;
 		}, LinkedList)
 
@@ -49,31 +34,61 @@ function LinkedList.new(Values: Array<any>?): LinkedList
 		return self
 	else
 		return setmetatable({
-			First = null;
-			Last = null;
+			First = nil;
+			Last = nil;
 			Length = 0;
 		}, LinkedList)
 	end
 end
 
+export type LinkedList = typeof(LinkedList.new())
+
+--[[**
+	Determines whether the passed value is a LinkedList.
+	@param [t:any] Value The value to check.
+	@returns [t:boolean] Whether or not the passed value is a LinkedList.
+**--]]
+function LinkedList.Is(Value)
+	return type(Value) == "table" and getmetatable(Value) == LinkedList
+end
+
+--- Private function
+function ListNode.new()
+	return setmetatable({
+		List = nil;
+		Next = nil;
+		Previous = nil;
+		Value = nil;
+	}, ListNode)
+end
+
+export type ListNode = typeof(ListNode.new())
+
+--[[**
+	Determines whether the passed value is a ListNode.
+	@param [t:any] Value The value to check.
+	@returns [t:boolean] Whether or not the passed value is a ListNode.
+**--]]
+function ListNode.Is(Value)
+	return type(Value) == "table" and getmetatable(Value) == ListNode
+end
+
 --[[**
 	Adds the element `Value` to the end of the list. This operation should compute in O(1) time and O(1) memory.
-	@param [any] Value The value you are appending.
-	@returns [ListNode?] The appended node.
+	@param [t:any] Value The value you are appending.
+	@returns [t:ListNode] The appended node.
 **--]]
-function LinkedList:Push(Value: any): ListNode?
-	if Value == null then
+function LinkedList:Push(Value: any): ListNode
+	if Value == nil then
 		error("Value passed to LinkedList:Push was nil!", 2)
 	end
 
 	self.Length += 1
 	local Previous: ListNode? = self.Last
-	local Node: ListNode = setmetatable({
-		Previous = Previous;
-		Next = nil;
-		Value = Value;
-		List = self;
-	}, ListNode)
+	local Node = ListNode.new()
+	Node.List = self
+	Node.Previous = Previous
+	Node.Value = Value
 
 	if Previous then
 		Previous.Next = Node
@@ -87,11 +102,14 @@ end
 
 --[[**
 	Adds the elements from `List` to the end of the list. This operation should compute in O(1) time and O(1) memory.
-	@param [LinkedList] List The `LinkedList` you are appending from.
-	@returns [nil]
+	@param [t:LinkedList] List The `LinkedList` you are appending from.
+	@returns [t:void]
 **--]]
 function LinkedList:Append(List: LinkedList)
-	assert(TypeOf(List) == "LinkedList", string.format("Invalid type for LinkedList:Append (LinkedList expected, got %s)", TypeOf(List)))
+	if not LinkedList.Is(List) then
+		error(string.format(INVALID_ARGUMENT_ERROR, 2, "LinkedList:Append", "LinkedList", Types.TypeOf(List)), 2)
+	end
+
 	for _, NodeValue in List:Iterator() do
 		self:Push(NodeValue)
 	end
@@ -99,22 +117,21 @@ end
 
 --[[**
 	Adds the element `Value` to the start of the list. This operation should compute in O(1) time and O(1) memory.
-	@param [any] Value The value you are prepending.
-	@returns [ListNode?] The prepended node.
+	@param [t:any] Value The value you are prepending.
+	@returns [t:ListNode] The prepended node.
 **--]]
-function LinkedList:PushFront(Value: any): ListNode?
+function LinkedList:PushFront(Value: any)
 	if Value == nil then
 		error("Value passed to LinkedList:PushFront was nil!", 2)
 	end
 
 	self.Length += 1
 	local Next: ListNode? = self.First
-	local Node: ListNode = setmetatable({
-		Previous = nil;
-		Next = Next;
-		Value = Value;
-		List = self;
-	}, ListNode)
+	local Node = ListNode.new()
+	Node.List = self
+	Node.Next = Next
+	Node.Previous = nil
+	Node.Value = Value
 
 	if Next then
 		Next.Previous = Node
@@ -128,11 +145,14 @@ end
 
 --[[**
 	Adds the elements from `List` to the start of the list. This operation should compute in O(1) time and O(1) memory.
-	@param [LinkedList] List The `LinkedList` you are prepending from.
-	@returns [nil]
+	@param [t:LinkedList] List The `LinkedList` you are prepending from.
+	@returns [t:void]
 **--]]
 function LinkedList:Prepend(List: LinkedList)
-	assert(TypeOf(List) == "LinkedList", string.format("Invalid type for LinkedList:Prepend (LinkedList expected, got %s)", TypeOf(List)))
+	if not LinkedList.Is(List) then
+		error(string.format(INVALID_ARGUMENT_ERROR, 2, "LinkedList:Prepend", "LinkedList", Types.TypeOf(List)), 2)
+	end
+
 	for _, NodeValue in List:ReverseIterator() do
 		self:PushFront(NodeValue)
 	end
@@ -140,43 +160,43 @@ end
 
 --[[**
 	Removes the first element and returns it, or `nil` if the list is empty. This operation should compute in O(1) time.
-	@returns [ListNode?] The popped node, if there was one.
+	@returns [t:ListNode?] The popped node, if there was one.
 **--]]
 function LinkedList:Pop(): ListNode?
 	if self.Length == 0 then
-		return null
+		return nil
 	else
 		local Node: ListNode? = self.First
 		if Node then
 			Node:Destroy()
 			return Node
 		else
-			return null
+			return nil
 		end
 	end
 end
 
 --[[**
-	Removes the last element and returns it, or `null` if the list is empty. This operation should compute in O(1) time.
-	@returns [ListNode?] The popped node, if there was one.
+	Removes the last element and returns it, or `nil` if the list is empty. This operation should compute in O(1) time.
+	@returns [t:ListNode?] The popped node, if there was one.
 **--]]
 function LinkedList:PopBack(): ListNode?
 	if self.Length == 0 then
-		return null
+		return nil
 	else
 		local Node: ListNode? = self.Last
 		if Node then
 			Node:Destroy()
 			return Node
 		else
-			return null
+			return nil
 		end
 	end
 end
 
 --[[**
 	Returns `true` if the `LinkedList` is empty. This operation should compute in O(1) time.
-	@returns [boolean]
+	@returns [t:boolean]
 **--]]
 function LinkedList:IsEmpty(): boolean
 	return self.Length <= 0
@@ -184,7 +204,7 @@ end
 
 --[[**
 	Removes all elements from the `LinkedList`. This operation should compute in O(n) time.
-	@returns [LinkedList]
+	@returns [t:LinkedList]
 **--]]
 function LinkedList:Clear(): LinkedList
 	while self.Length > 0 do
@@ -199,11 +219,11 @@ end
 
 --[[**
 	Returns `true` if the `LinkedList` contains an element equal to the given value.
-	@param [ListNode | any] Value The value you are searching for.
-	@returns [boolean]
+	@param [t:ListNode|any] Value The value you are searching for.
+	@returns [t:boolean]
 **--]]
 function LinkedList:Contains(Value: ListNode | any): boolean
-	if TypeOf(Value) == "ListNode" then
+	if ListNode.Is(Value) then
 		for Node in self:Iterator() do
 			if Node == Value then
 				return true
@@ -223,7 +243,7 @@ end
 function LinkedList:_Iterator(Node: ListNode?): (ListNode?, any?)
 	Node = not Node and self.First or Node and Node.Next
 	if not Node then
-		return null, null
+		return nil, nil
 	else
 		return Node, Node.Value
 	end
@@ -232,7 +252,7 @@ end
 function LinkedList:_ReverseIterator(Node: ListNode?): (ListNode?, any?)
 	Node = not Node and self.Last or Node and Node.Previous
 	if not Node then
-		return null, null
+		return nil, nil
 	else
 		return Node, Node.Value
 	end
@@ -240,27 +260,27 @@ end
 
 --[[**
 	Provides a forward iterator.
-	@returns [LinkedListIterator]
+	@returns [t:ListIterator]
 **--]]
-function LinkedList:Iterator(): LinkedListIterator
+function LinkedList:Iterator()
 	return LinkedList._Iterator, self
 end
 
 --[[**
 	Provides a reverse iterator.
-	@returns [LinkedListIterator]
+	@returns [t:ListIterator]
 **--]]
-function LinkedList:ReverseIterator(): LinkedListIterator
+function LinkedList:ReverseIterator()
 	return LinkedList._ReverseIterator, self
 end
 
 --[[**
 	Returns an array containing all of the elements in this list in proper sequence (from first to last element).
-	@returns [Array<any>] An array with every element in the `LinkedList`.
+	@returns [t:Array<any>] An array with every element in the `LinkedList`.
 **--]]
 function LinkedList:ToArray(): Array<any>
-	local Array: Array<any> = {}
-	local Length: number = 0
+	local Array = table.create(self.Length)
+	local Length = 0
 	for _, Value in self:Iterator() do
 		Length += 1
 		Array[Length] = Value
@@ -271,16 +291,17 @@ end
 
 --[[**
 	Removes the element at the given index from the `LinkedList`. This operation should compute in O(n) time.
-	@param [number] Index The index of the node you want to remove.
-	@returns [LinkedList]
+	@param [t:int] Index The index of the node you want to remove.
+	@returns [t:LinkedList]
 **--]]
-function LinkedList:Remove(Index: number): LinkedList
-	if Index > self.Length or Index < 1 then
-		error(string.format("Index %d is out of the range of [1, %d]", Index, self.Length), 2)
+function LinkedList:Remove(Index: int): LinkedList
+	local Length = self.Length
+	if Index > Length or Index < 1 then
+		error(string.format("Index %d is out of the range of [1, %d]", Index, Length), 2)
 	end
 
 	local CurrentNode: ListNode? = self.First
-	local CurrentIndex: number = 0
+	local CurrentIndex = 0
 
 	while CurrentNode do
 		CurrentIndex += 1
@@ -294,7 +315,7 @@ function LinkedList:Remove(Index: number): LinkedList
 				CurrentNode.Next.Previous = CurrentNode.Previous
 			end
 
-			self.Length -= 1
+			self.Length = Length - 1
 			break
 		end
 
@@ -306,11 +327,13 @@ end
 
 --[[**
 	Removes any element with the given value from the `LinkedList`. This operation should compute in O(n) time.
-	@param [any] Value The value you want to remove from the `LinkedList`.
-	@returns [LinkedList]
+	@param [t:any] Value The value you want to remove from the `LinkedList`.
+	@returns [t:LinkedList]
 **--]]
 function LinkedList:RemoveValue(Value: any): LinkedList
 	local CurrentNode: ListNode? = self.First
+	local Length = self.Length
+
 	while CurrentNode do
 		if CurrentNode.Value == Value then
 			if CurrentNode == self.First then
@@ -322,22 +345,25 @@ function LinkedList:RemoveValue(Value: any): LinkedList
 				CurrentNode.Next.Previous = CurrentNode.Previous
 			end
 
-			self.Length -= 1
+			Length -= 1
 		end
 
 		CurrentNode = CurrentNode.Next
 	end
 
+	self.Length = Length
 	return self
 end
 
 --[[**
 	Removes the given `ListNode` from the `LinkedList`. This operation should compute in O(n) time.
-	@param [ListNode] Node The node you want to remove from the `LinkedList`.
-	@returns [LinkedList]
+	@param [t:ListNode] Node The node you want to remove from the `LinkedList`.
+	@returns [t:LinkedList]
 **--]]
 function LinkedList:RemoveNode(Node: ListNode): LinkedList
 	local CurrentNode: ListNode? = self.First
+	local Length = self.Length
+
 	while CurrentNode do
 		if CurrentNode == Node then
 			if CurrentNode == self.First then
@@ -349,12 +375,13 @@ function LinkedList:RemoveNode(Node: ListNode): LinkedList
 				CurrentNode.Next.Previous = CurrentNode.Previous
 			end
 
-			self.Length -= 1
+			Length -= 1
 		end
 
 		CurrentNode = CurrentNode.Next
 	end
 
+	self.Length = Length
 	return self
 end
 
@@ -362,11 +389,10 @@ function ListNode:After(Value: any): ListNode?
 	local List: LinkedList? = self.List
 	if List then
 		List.Length += 1
-		local Node: ListNode = setmetatable({
-			Previous = self;
-			Next = self.Next;
-			Value = Value;
-		}, ListNode)
+		local Node = ListNode.new()
+		Node.Previous = self
+		Node.Next = self.Next
+		Node.Value = Value
 
 		if List.Last == self then
 			List.Last = Node
@@ -377,17 +403,18 @@ function ListNode:After(Value: any): ListNode?
 		self.Next = Node
 		return Node
 	end
+
+	return nil
 end
 
 function ListNode:Before(Value: any): ListNode?
 	local List: LinkedList? = self.List
 	if List then
 		List.Length += 1
-		local Node: ListNode = setmetatable({
-			Previous = self.Previous;
-			Next = self;
-			Value = Value;
-		}, ListNode)
+		local Node = ListNode.new()
+		Node.Previous = self.Previous
+		Node.Next = self
+		Node.Value = Value
 
 		if List.First == self then
 			List.First = Node
@@ -398,6 +425,8 @@ function ListNode:Before(Value: any): ListNode?
 		self.Previous = Node
 		return Node
 	end
+
+	return nil
 end
 
 function ListNode:Destroy(): boolean
@@ -426,9 +455,9 @@ function ListNode:Destroy(): boolean
 		end
 
 		return true
-	else
-		return false
 	end
+
+	return false
 end
 
 function ListNode:Iterator()
@@ -446,15 +475,12 @@ function ListNode:ReverseIterator()
 end
 
 function LinkedList:__tostring(): string
-	local ListArray: Array<string> = table.create(self.Length)
-	local Length: number = 0
-
+	local ListArray = table.create(self.Length)
 	for _, Value in self:Iterator() do
-		Length += 1
-		ListArray[Length] = tostring(Value)
+		table.insert(ListArray, tostring(Value))
 	end
 
-	return "[" .. table.concat(ListArray, ", ") .. "]"
+	return "LinkedList<[" .. table.concat(ListArray, ", ") .. "]>"
 end
 
 function ListNode:__tostring(): string
