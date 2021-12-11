@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="generator" content="Docusaurus v2.0.0-beta.9">
+<title data-react-helmet="true">Queue | DataStructures</title><meta data-react-helmet="true" property="og:title" content="Queue | DataStructures"><meta data-react-helmet="true" name="twitter:card" content="summary_large_image"><meta data-react-helmet="true" name="description" content="A Queue is a data structure that follows the first-in, first-out (FIFO)."><meta data-react-helmet="true" property="og:description" content="A Queue is a data structure that follows the first-in, first-out (FIFO)."><meta data-react-helmet="true" property="og:url" content="https://howmanysmall.github.io/DataStructures/api/Queue"><meta data-react-helmet="true" name="docusaurus_locale" content="en"><meta data-react-helmet="true" name="docusaurus_tag" content="default"><link data-react-helmet="true" rel="canonical" href="https://howmanysmall.github.io/DataStructures/api/Queue"><link data-react-helmet="true" rel="alternate" href="https://howmanysmall.github.io/DataStructures/api/Queue" hreflang="en"><link data-react-helmet="true" rel="alternate" href="https://howmanysmall.github.io/DataStructures/api/Queue" hreflang="x-default"><link rel="stylesheet" href="/DataStructures/assets/css/styles.af7d0217.css">
+<link rel="preload" href="/DataStructures/assets/js/runtime~main.2bde900d.js" as="script">
+<link rel="preload" href="/DataStructures/assets/js/main.b2c13686.js" as="script">
+</head>
+<body>
+<script>!function(){function e(e){document.documentElement.setAttribute("data-theme",e)}var t=function(){var e=null;try{e=localStorage.getItem("theme")}catch(e){}return e}();null!==t?e(t):window.matchMedia("(prefers-color-scheme: dark)").matches?e("dark"):(window.matchMedia("(prefers-color-scheme: light)").matches,e("light"))}()</script><div id="__docusaurus">
+<div><a href="#" class="skipToContent_1oUP">Skip to main content</a></div><nav class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Navigation bar toggle" class="navbar__toggle clean-btn" type="button" tabindex="0"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/DataStructures/"><b class="navbar__title">DataStructures</b></a><a class="navbar__item navbar__link" href="/DataStructures/docs/intro">Docs</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/DataStructures/api/">API</a></div><div class="navbar__items navbar__items--right"><a href="https://discord.gg/mhtGUS8" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link"><span>Discord<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_3J9K"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></span></a><a href="https://github.com/howmanysmall/DataStructures" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link"><span>GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_3J9K"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></span></a><div class="toggle_71bT toggle_3Zt9 toggleDisabled_3cF-"><div class="toggleTrack_32Fl" role="button" tabindex="-1"><div class="toggleTrackCheck_3lV7"><span class="toggleIcon_O4iE">🌜</span></div><div class="toggleTrackX_S2yS"><span class="toggleIcon_O4iE">🌞</span></div><div class="toggleTrackThumb_xI_Z"></div></div><input type="checkbox" class="toggleScreenReader_28Tw" aria-label="Switch between dark and light mode"></div><div class="navbar__search"><span aria-label="expand searchbar" role="button" class="search-icon" tabindex="0"></span><input type="search" id="search_input_react" placeholder="Press S to Search..." aria-label="Search" class="navbar__search-input search-bar"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div class="main-wrapper docPageContainer_2Kz0"><div class="docPage_1bdk"><div class="docSidebarContainer_1ykS"><div class="sidebar_15mo"><nav class="menu thin-scrollbar menu_Bmed"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/DataStructures/api/ArrayList">​Array​List</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/DataStructures/api/BinaryHeap">​Binary​Heap</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/DataStructures/api/CircularBuffer">​Circular​Buffer</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/DataStructures/api/LinkedList">​Linked​List</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/DataStructures/api/ListNode">​List​Node</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/DataStructures/api/MaxPriorityQueue">​Max​Priority​Queue</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/DataStructures/api/MinPriorityQueue">​Min​Priority​Queue</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/DataStructures/api/Queue">​Queue</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/DataStructures/api/Stack">​Stack</a></li></ul></nav><button type="button" title="Collapse sidebar" aria-label="Collapse sidebar" class="button button--secondary button--outline collapseSidebarButton_1CGd"><svg width="20" height="20" aria-hidden="true" class="collapseSidebarButtonIcon_3E-R"><g fill="#7a7a7a"><path d="M9.992 10.023c0 .2-.062.399-.172.547l-4.996 7.492a.982.982 0 01-.828.454H1c-.55 0-1-.453-1-1 0-.2.059-.403.168-.551l4.629-6.942L.168 3.078A.939.939 0 010 2.528c0-.548.45-.997 1-.997h2.996c.352 0 .649.18.828.45L9.82 9.472c.11.148.172.347.172.55zm0 0"></path><path d="M19.98 10.023c0 .2-.058.399-.168.547l-4.996 7.492a.987.987 0 01-.828.454h-3c-.547 0-.996-.453-.996-1 0-.2.059-.403.168-.551l4.625-6.942-4.625-6.945a.939.939 0 01-.168-.55 1 1 0 01.996-.997h3c.348 0 .649.18.828.45l4.996 7.492c.11.148.168.347.168.55zm0 0"></path></g></svg></button></div></div><main class="docMainContainer_28N5"><div class="container padding-vert--lg"><div class="row"><div class="col docItemCol_3WPG"><div class="docItemContainer_3XDu"><article><div class="member_qHIL markdown"><div class="tocCollapsible_1PrD theme-doc-toc-mobile tocMobile_3ryM"><button type="button" class="clean-btn tocCollapsibleButton_2O1e">On this page</button></div><header><h1 class="docTitle_1ddc" style="text-decoration:none"><span style="display:inline-block">Queue</span></h1><div class="luaClassTags_2Zrs"></div><div>
+<p>A Queue is a data structure that follows the first-in, first-out (FIFO).</p>
+</div></header><h2 class="anchor anchorWithStickyNavbar_31ik" id="properties">Properties<a aria-hidden="true" class="hash-link" href="#properties" title="Direct link to heading">​</a></h2><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="First"><code style="text-decoration:none">First</code><a aria-hidden="true" class="hash-link" href="#First" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/Queue/init.lua#L21"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>Queue<!-- -->.<!-- -->First<!-- -->:<!-- --> </code> <code class="blue_2Afy">int</code></div><div>
+<p>The index of the first element in the queue.</p>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="Length"><code style="text-decoration:none">Length</code><a aria-hidden="true" class="hash-link" href="#Length" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/Queue/init.lua#L27"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>Queue<!-- -->.<!-- -->Length<!-- -->:<!-- --> </code> <code class="blue_2Afy">int</code></div><div>
+<p>The length of the queue.</p>
+</div><h2 class="anchor anchorWithStickyNavbar_31ik" id="functions">Functions<a aria-hidden="true" class="hash-link" href="#functions" title="Direct link to heading">​</a></h2><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="new"><code style="text-decoration:none">new</code><a aria-hidden="true" class="hash-link" href="#new" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/Queue/init.lua#L32"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>Queue<!-- -->.</code><code class="green_3LnD">new</code><code>(</code><code>) → </code><code class="blue_2Afy"><a style="text-decoration:underline;color:inherit" href="/DataStructures/api/Queue">Queue</a></code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code></div><div>
+<p>Creates an empty <code>Queue</code>.</p>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="Is"><code style="text-decoration:none">Is</code><a aria-hidden="true" class="hash-link" href="#Is" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/Queue/init.lua#L44"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>Queue<!-- -->.</code><code class="green_3LnD">Is</code><code>(</code><div class="inset_2cJr"><div><code>Value<!-- -->: </code><code class="blue_2Afy">any</code><span class="inlineDescription_17uy">-- <span>
+<p>The value to check.</p>
+</span></span></div></div><code>) → </code><code class="blue_2Afy">boolean</code><span class="inlineDescription_17uy">-- <span>
+<p>Whether or not the passed value is a Queue.</p>
+</span></span></div><div>
+<p>Determines whether the passed value is a Queue.</p>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="Push"><code style="text-decoration:none">Push</code><a aria-hidden="true" class="hash-link" href="#Push" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/Queue/init.lua#L55"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>Queue<!-- -->:</code><code class="green_3LnD">Push</code><code>(</code><div class="inset_2cJr"><div><code>Value<!-- -->: </code><code class="blue_2Afy">T</code><span class="inlineDescription_17uy">-- <span>
+<p>The value you are pushing.</p>
+</span></span></div></div><code>) → </code><code class="blue_2Afy">int</code><span class="inlineDescription_17uy">-- <span>
+<p>The passed value's location.</p>
+</span></span></div><div>
+<p>Pushes the passed value to the end of the Queue.</p>
+</div><h3>Errors</h3><table class="errorTable_25fH"><thead><tr><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>InvalidValue</td><td>Thrown when the value is nil.</td></tr></tbody></table><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="Pop"><code style="text-decoration:none">Pop</code><a aria-hidden="true" class="hash-link" href="#Pop" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/Queue/init.lua#L72"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>Queue<!-- -->:</code><code class="green_3LnD">Pop</code><code>(</code><code>) → </code><code class="blue_2Afy">T?</code><span class="inlineDescription_17uy">-- <span>
+<p>The first value from the Queue, if it exists.</p>
+</span></span></div><div>
+<p>Removes the first value from the Queue.</p>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="GetFront"><code style="text-decoration:none">GetFront</code><a aria-hidden="true" class="hash-link" href="#GetFront" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/Queue/init.lua#L92"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>Queue<!-- -->:</code><code class="green_3LnD">GetFront</code><code>(</code><code>) → </code><code class="blue_2Afy">T</code><span class="inlineDescription_17uy">-- <span>
+<p>The first value.</p>
+</span></span></div><div>
+<p>Gets the front value of the Queue.</p>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="GetBack"><code style="text-decoration:none">GetBack</code><a aria-hidden="true" class="hash-link" href="#GetBack" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/Queue/init.lua#L100"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>Queue<!-- -->:</code><code class="green_3LnD">GetBack</code><code>(</code><code>) → </code><code class="blue_2Afy">T</code><span class="inlineDescription_17uy">-- <span>
+<p>The last value.</p>
+</span></span></div><div>
+<p>Gets the last value of the Queue.</p>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="IsEmpty"><code style="text-decoration:none">IsEmpty</code><a aria-hidden="true" class="hash-link" href="#IsEmpty" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/Queue/init.lua#L111"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>Queue<!-- -->:</code><code class="green_3LnD">IsEmpty</code><code>(</code><code>) → </code><code class="blue_2Afy">boolean</code><span class="inlineDescription_17uy">-- <span>
+<p>Whether or not the Queue is empty.</p>
+</span></span></div><div>
+<p>Determines if the Queue is empty.</p>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="Iterator"><code style="text-decoration:none">Iterator</code><a aria-hidden="true" class="hash-link" href="#Iterator" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/Queue/init.lua#L132"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>Queue<!-- -->:</code><code class="green_3LnD">Iterator</code><code>(</code><code>) → </code><code class="blue_2Afy">QueueIterator</code><span class="inlineDescription_17uy">-- <span>
+<p>The iterator, which is used in a for loop.</p>
+</span></span></div><div>
+<p>Returns an iterator that can be used to iterate through the Queue.</p>
+</div></div></article></div><details><summary>Show raw api</summary><pre style="max-width:100%;white-space:pre-wrap">{
+    &quot;functions&quot;: [
+        {
+            &quot;name&quot;: &quot;new&quot;,
+            &quot;desc&quot;: &quot;Creates an empty `Queue`.&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Queue&lt;T&gt;&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 32,
+                &quot;path&quot;: &quot;src/DataStructures/Queue/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Is&quot;,
+            &quot;desc&quot;: &quot;Determines whether the passed value is a Queue.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Value&quot;,
+                    &quot;desc&quot;: &quot;The value to check.&quot;,
+                    &quot;lua_type&quot;: &quot;any&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;Whether or not the passed value is a Queue.&quot;,
+                    &quot;lua_type&quot;: &quot;boolean&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 44,
+                &quot;path&quot;: &quot;src/DataStructures/Queue/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Push&quot;,
+            &quot;desc&quot;: &quot;Pushes the passed value to the end of the Queue.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Value&quot;,
+                    &quot;desc&quot;: &quot;The value you are pushing.&quot;,
+                    &quot;lua_type&quot;: &quot;T&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The passed value&#x27;s location.&quot;,
+                    &quot;lua_type&quot;: &quot;int&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;errors&quot;: [
+                {
+                    &quot;lua_type&quot;: &quot;InvalidValue&quot;,
+                    &quot;desc&quot;: &quot;Thrown when the value is nil.&quot;
+                }
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 55,
+                &quot;path&quot;: &quot;src/DataStructures/Queue/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Pop&quot;,
+            &quot;desc&quot;: &quot;Removes the first value from the Queue.&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The first value from the Queue, if it exists.&quot;,
+                    &quot;lua_type&quot;: &quot;T?&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 72,
+                &quot;path&quot;: &quot;src/DataStructures/Queue/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;GetFront&quot;,
+            &quot;desc&quot;: &quot;Gets the front value of the Queue.&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The first value.&quot;,
+                    &quot;lua_type&quot;: &quot;T&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 92,
+                &quot;path&quot;: &quot;src/DataStructures/Queue/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;GetBack&quot;,
+            &quot;desc&quot;: &quot;Gets the last value of the Queue.&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The last value.&quot;,
+                    &quot;lua_type&quot;: &quot;T&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 100,
+                &quot;path&quot;: &quot;src/DataStructures/Queue/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;IsEmpty&quot;,
+            &quot;desc&quot;: &quot;Determines if the Queue is empty.&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;Whether or not the Queue is empty.&quot;,
+                    &quot;lua_type&quot;: &quot;boolean&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 111,
+                &quot;path&quot;: &quot;src/DataStructures/Queue/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Iterator&quot;,
+            &quot;desc&quot;: &quot;Returns an iterator that can be used to iterate through the Queue.&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The iterator, which is used in a for loop.&quot;,
+                    &quot;lua_type&quot;: &quot;QueueIterator&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 132,
+                &quot;path&quot;: &quot;src/DataStructures/Queue/init.lua&quot;
+            }
+        }
+    ],
+    &quot;properties&quot;: [
+        {
+            &quot;name&quot;: &quot;First&quot;,
+            &quot;desc&quot;: &quot;The index of the first element in the queue.&quot;,
+            &quot;lua_type&quot;: &quot;int&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 21,
+                &quot;path&quot;: &quot;src/DataStructures/Queue/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Length&quot;,
+            &quot;desc&quot;: &quot;The length of the queue.&quot;,
+            &quot;lua_type&quot;: &quot;int&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 27,
+                &quot;path&quot;: &quot;src/DataStructures/Queue/init.lua&quot;
+            }
+        }
+    ],
+    &quot;types&quot;: [],
+    &quot;name&quot;: &quot;Queue&quot;,
+    &quot;desc&quot;: &quot;A Queue is a data structure that follows the first-in, first-out (FIFO).&quot;,
+    &quot;source&quot;: {
+        &quot;line&quot;: 8,
+        &quot;path&quot;: &quot;src/DataStructures/Queue/init.lua&quot;
+    }
+}</pre></details></div><div class="col col--3"><div class="tableOfContents_35-E thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#types" class="table-of-contents__link toc-highlight">Types</a></li><li><a href="#properties" class="table-of-contents__link toc-highlight">Properties</a><ul><li><a href="#First" class="table-of-contents__link toc-highlight">First</a></li><li><a href="#Length" class="table-of-contents__link toc-highlight">Length</a></li></ul></li><li><a href="#functions" class="table-of-contents__link toc-highlight">Functions</a><ul><li><a href="#GetBack" class="table-of-contents__link toc-highlight">:GetBack</a></li><li><a href="#GetFront" class="table-of-contents__link toc-highlight">:GetFront</a></li><li><a href="#IsEmpty" class="table-of-contents__link toc-highlight">:IsEmpty</a></li><li><a href="#Iterator" class="table-of-contents__link toc-highlight">:Iterator</a></li><li><a href="#Pop" class="table-of-contents__link toc-highlight">:Pop</a></li><li><a href="#Push" class="table-of-contents__link toc-highlight">:Push</a></li><li><a href="#Is" class="table-of-contents__link toc-highlight">.Is</a></li><li><a href="#new" class="table-of-contents__link toc-highlight">.new</a></li></ul></li></ul></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2021 howmanysmall. Built with Moonwave and Docusaurus.</div></div></div></footer></div>
+<script src="/DataStructures/assets/js/runtime~main.2bde900d.js"></script>
+<script src="/DataStructures/assets/js/main.b2c13686.js"></script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[20],{97868:function(s){s.exports=JSON.parse('{"sourceUrl":"https://github.com/howmanysmall/DataStructures/blob/main","baseUrl":"/DataStructures/","classOrder":[],"apiCategories":[]}')}}]);

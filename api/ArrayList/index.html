@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="generator" content="Docusaurus v2.0.0-beta.9">
+<title data-react-helmet="true">ArrayList | DataStructures</title><meta data-react-helmet="true" property="og:title" content="ArrayList | DataStructures"><meta data-react-helmet="true" name="twitter:card" content="summary_large_image"><meta data-react-helmet="true" name="description" content="An object to represent a list of values in an array."><meta data-react-helmet="true" property="og:description" content="An object to represent a list of values in an array."><meta data-react-helmet="true" property="og:url" content="https://howmanysmall.github.io/DataStructures/api/ArrayList"><meta data-react-helmet="true" name="docusaurus_locale" content="en"><meta data-react-helmet="true" name="docusaurus_tag" content="default"><link data-react-helmet="true" rel="canonical" href="https://howmanysmall.github.io/DataStructures/api/ArrayList"><link data-react-helmet="true" rel="alternate" href="https://howmanysmall.github.io/DataStructures/api/ArrayList" hreflang="en"><link data-react-helmet="true" rel="alternate" href="https://howmanysmall.github.io/DataStructures/api/ArrayList" hreflang="x-default"><link rel="stylesheet" href="/DataStructures/assets/css/styles.af7d0217.css">
+<link rel="preload" href="/DataStructures/assets/js/runtime~main.2bde900d.js" as="script">
+<link rel="preload" href="/DataStructures/assets/js/main.b2c13686.js" as="script">
+</head>
+<body>
+<script>!function(){function e(e){document.documentElement.setAttribute("data-theme",e)}var t=function(){var e=null;try{e=localStorage.getItem("theme")}catch(e){}return e}();null!==t?e(t):window.matchMedia("(prefers-color-scheme: dark)").matches?e("dark"):(window.matchMedia("(prefers-color-scheme: light)").matches,e("light"))}()</script><div id="__docusaurus">
+<div><a href="#" class="skipToContent_1oUP">Skip to main content</a></div><nav class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Navigation bar toggle" class="navbar__toggle clean-btn" type="button" tabindex="0"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/DataStructures/"><b class="navbar__title">DataStructures</b></a><a class="navbar__item navbar__link" href="/DataStructures/docs/intro">Docs</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/DataStructures/api/">API</a></div><div class="navbar__items navbar__items--right"><a href="https://discord.gg/mhtGUS8" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link"><span>Discord<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_3J9K"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></span></a><a href="https://github.com/howmanysmall/DataStructures" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link"><span>GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_3J9K"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></span></a><div class="toggle_71bT toggle_3Zt9 toggleDisabled_3cF-"><div class="toggleTrack_32Fl" role="button" tabindex="-1"><div class="toggleTrackCheck_3lV7"><span class="toggleIcon_O4iE">🌜</span></div><div class="toggleTrackX_S2yS"><span class="toggleIcon_O4iE">🌞</span></div><div class="toggleTrackThumb_xI_Z"></div></div><input type="checkbox" class="toggleScreenReader_28Tw" aria-label="Switch between dark and light mode"></div><div class="navbar__search"><span aria-label="expand searchbar" role="button" class="search-icon" tabindex="0"></span><input type="search" id="search_input_react" placeholder="Press S to Search..." aria-label="Search" class="navbar__search-input search-bar"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div class="main-wrapper docPageContainer_2Kz0"><div class="docPage_1bdk"><div class="docSidebarContainer_1ykS"><div class="sidebar_15mo"><nav class="menu thin-scrollbar menu_Bmed"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/DataStructures/api/ArrayList">​Array​List</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/DataStructures/api/BinaryHeap">​Binary​Heap</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/DataStructures/api/CircularBuffer">​Circular​Buffer</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/DataStructures/api/LinkedList">​Linked​List</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/DataStructures/api/ListNode">​List​Node</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/DataStructures/api/MaxPriorityQueue">​Max​Priority​Queue</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/DataStructures/api/MinPriorityQueue">​Min​Priority​Queue</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/DataStructures/api/Queue">​Queue</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/DataStructures/api/Stack">​Stack</a></li></ul></nav><button type="button" title="Collapse sidebar" aria-label="Collapse sidebar" class="button button--secondary button--outline collapseSidebarButton_1CGd"><svg width="20" height="20" aria-hidden="true" class="collapseSidebarButtonIcon_3E-R"><g fill="#7a7a7a"><path d="M9.992 10.023c0 .2-.062.399-.172.547l-4.996 7.492a.982.982 0 01-.828.454H1c-.55 0-1-.453-1-1 0-.2.059-.403.168-.551l4.629-6.942L.168 3.078A.939.939 0 010 2.528c0-.548.45-.997 1-.997h2.996c.352 0 .649.18.828.45L9.82 9.472c.11.148.172.347.172.55zm0 0"></path><path d="M19.98 10.023c0 .2-.058.399-.168.547l-4.996 7.492a.987.987 0 01-.828.454h-3c-.547 0-.996-.453-.996-1 0-.2.059-.403.168-.551l4.625-6.942-4.625-6.945a.939.939 0 01-.168-.55 1 1 0 01.996-.997h3c.348 0 .649.18.828.45l4.996 7.492c.11.148.168.347.168.55zm0 0"></path></g></svg></button></div></div><main class="docMainContainer_28N5"><div class="container padding-vert--lg"><div class="row"><div class="col docItemCol_3WPG"><div class="docItemContainer_3XDu"><article><div class="member_qHIL markdown"><div class="tocCollapsible_1PrD theme-doc-toc-mobile tocMobile_3ryM"><button type="button" class="clean-btn tocCollapsibleButton_2O1e">On this page</button></div><header><h1 class="docTitle_1ddc" style="text-decoration:none"><span style="display:inline-block">Array</span><span style="display:inline-block">List</span></h1><div class="luaClassTags_2Zrs"></div><div>
+<p>An object to represent a list of values in an array.</p>
+</div></header><h2 class="anchor anchorWithStickyNavbar_31ik" id="properties">Properties<a aria-hidden="true" class="hash-link" href="#properties" title="Direct link to heading">​</a></h2><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="IsFixedSize"><code style="text-decoration:none">IsFixedSize</code><a aria-hidden="true" class="hash-link" href="#IsFixedSize" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/ArrayList/init.lua#L22"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>ArrayList<!-- -->.<!-- -->IsFixedSize<!-- -->:<!-- --> </code> <code class="blue_2Afy">boolean</code></div><div>
+<p>Whether or not the ArrayList is fixed size. Defaults to <code>false</code>.</p>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="IsReadOnly"><code style="text-decoration:none">IsReadOnly</code><a aria-hidden="true" class="hash-link" href="#IsReadOnly" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/ArrayList/init.lua#L28"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>ArrayList<!-- -->.<!-- -->IsReadOnly<!-- -->:<!-- --> </code> <code class="blue_2Afy">boolean</code></div><div>
+<p>Whether or not the ArrayList is read-only. Defaults to <code>false</code>.</p>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="Length"><code style="text-decoration:none">Length</code><a aria-hidden="true" class="hash-link" href="#Length" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/ArrayList/init.lua#L34"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>ArrayList<!-- -->.<!-- -->Length<!-- -->:<!-- --> </code> <code class="blue_2Afy">number</code></div><div>
+<p>The length of the ArrayList.</p>
+</div><h2 class="anchor anchorWithStickyNavbar_31ik" id="functions">Functions<a aria-hidden="true" class="hash-link" href="#functions" title="Direct link to heading">​</a></h2><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="new"><code style="text-decoration:none">new</code><a aria-hidden="true" class="hash-link" href="#new" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/ArrayList/init.lua#L39"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>ArrayList<!-- -->.</code><code class="green_3LnD">new</code><code>(</code><code>) → </code><code class="blue_2Afy"><a style="text-decoration:underline;color:inherit" href="/DataStructures/api/ArrayList">ArrayList</a></code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code></div><div>
+<p>Creates a new ArrayList.</p>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="FromCapacity"><code style="text-decoration:none">FromCapacity</code><a aria-hidden="true" class="hash-link" href="#FromCapacity" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/ArrayList/init.lua#L52"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>ArrayList<!-- -->.</code><code class="green_3LnD">FromCapacity</code><code>(</code><div class="inset_2cJr"><div><code>Capacity<!-- -->: </code><code class="blue_2Afy">int</code><span class="inlineDescription_17uy">-- <span>
+<p>The capacity of the ArrayList.</p>
+</span></span></div></div><code>) → </code><code class="blue_2Afy"><a style="text-decoration:underline;color:inherit" href="/DataStructures/api/ArrayList">ArrayList</a></code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code></div><div>
+<p>Creates a new ArrayList with the given capacity.</p>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="FromArray"><code style="text-decoration:none">FromArray</code><a aria-hidden="true" class="hash-link" href="#FromArray" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/ArrayList/init.lua#L65"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>ArrayList<!-- -->.</code><code class="green_3LnD">FromArray</code><code>(</code><div class="inset_2cJr"><div><code>Array<!-- -->: </code><code class="blue_2Afy">Array</code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><span class="inlineDescription_17uy">-- <span>
+<p>The array to use as the source. This makes a shallow copy.</p>
+</span></span></div></div><code>) → </code><code class="blue_2Afy"><a style="text-decoration:underline;color:inherit" href="/DataStructures/api/ArrayList">ArrayList</a></code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code></div><div>
+<p>Creates a new ArrayList from the given array. Will not mutate the original array.</p>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="Is"><code style="text-decoration:none">Is</code><a aria-hidden="true" class="hash-link" href="#Is" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/ArrayList/init.lua#L81"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>ArrayList<!-- -->.</code><code class="green_3LnD">Is</code><code>(</code><div class="inset_2cJr"><div><code>Value<!-- -->: </code><code class="blue_2Afy">any</code><span class="inlineDescription_17uy">-- <span>
+<p>The value to check.</p>
+</span></span></div></div><code>) → </code><code class="blue_2Afy">boolean</code></div><div>
+<p>Determines if the passed Value is an ArrayList.</p>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="MarkReadOnly"><code style="text-decoration:none">MarkReadOnly</code><a aria-hidden="true" class="hash-link" href="#MarkReadOnly" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/ArrayList/init.lua#L93"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>ArrayList<!-- -->.</code><code class="green_3LnD">MarkReadOnly</code><code>(</code><div class="inset_2cJr"><div><code>List<!-- -->: </code><code class="blue_2Afy"><a style="text-decoration:underline;color:inherit" href="/DataStructures/api/ArrayList">ArrayList</a></code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><span class="inlineDescription_17uy">-- <span>
+<p>The ArrayList to make read-only.</p>
+</span></span></div></div><code>) → </code><code class="blue_2Afy"><a style="text-decoration:underline;color:inherit" href="/DataStructures/api/ArrayList">ArrayList</a></code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code></div><div>
+<p>Marks the ArrayList as read-only. Returns a clone of the ArrayList.</p>
+</div><h3>Errors</h3><table class="errorTable_25fH"><thead><tr><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>InvalidArgument</td><td>Thrown when the List is nil.</td></tr><tr><td>NotArrayList</td><td>Thrown when the List isn&#x27;t an ArrayList.</td></tr></tbody></table><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="MarkFixedSize"><code style="text-decoration:none">MarkFixedSize</code><a aria-hidden="true" class="hash-link" href="#MarkFixedSize" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/ArrayList/init.lua#L115"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>ArrayList<!-- -->.</code><code class="green_3LnD">MarkFixedSize</code><code>(</code><div class="inset_2cJr"><div><code>List<!-- -->: </code><code class="blue_2Afy"><a style="text-decoration:underline;color:inherit" href="/DataStructures/api/ArrayList">ArrayList</a></code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><span class="inlineDescription_17uy">-- <span>
+<p>The ArrayList to mark as fixed size.</p>
+</span></span></div></div><code>) → </code><code class="blue_2Afy"><a style="text-decoration:underline;color:inherit" href="/DataStructures/api/ArrayList">ArrayList</a></code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code></div><div>
+<p>Marks the ArrayList as a fixed size. Returns a clone of the ArrayList.</p>
+</div><h3>Errors</h3><table class="errorTable_25fH"><thead><tr><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>InvalidArgument</td><td>Thrown when the List is nil.</td></tr><tr><td>NotArrayList</td><td>Thrown when the List isn&#x27;t an ArrayList.</td></tr></tbody></table><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="Add"><code style="text-decoration:none">Add</code><a aria-hidden="true" class="hash-link" href="#Add" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/ArrayList/init.lua#L138"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>ArrayList<!-- -->:</code><code class="green_3LnD">Add</code><code>(</code><div class="inset_2cJr"><div><code>Value<!-- -->: </code><code class="blue_2Afy">NonNil</code><span class="inlineDescription_17uy">-- <span>
+<p>The value to be added to the end of the ArrayList. The value cannot be nil.</p>
+</span></span></div></div><code>) → </code><code class="blue_2Afy">int</code><span class="inlineDescription_17uy">-- <span>
+<p>The ArrayList index at which the value has been added.</p>
+</span></span></div><div>
+<p>Adds an object to the end of the ArrayList.</p>
+</div><h3>Errors</h3><table class="errorTable_25fH"><thead><tr><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>IsFixedSize</td><td>Thrown when the ArrayList is fixed size.</td></tr><tr><td>IsReadOnly</td><td>Thrown when the ArrayList is read-only.</td></tr><tr><td>InvalidArgument</td><td>Thrown when the value is nil.</td></tr></tbody></table><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="Clone"><code style="text-decoration:none">Clone</code><a aria-hidden="true" class="hash-link" href="#Clone" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/ArrayList/init.lua#L161"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>ArrayList<!-- -->:</code><code class="green_3LnD">Clone</code><code>(</code><code>) → </code><code class="blue_2Afy"><a style="text-decoration:underline;color:inherit" href="/DataStructures/api/ArrayList">ArrayList</a></code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><span class="inlineDescription_17uy">-- <span>
+<p>A shallow copy of the ArrayList.</p>
+</span></span></div><div>
+<p>Creates a shallow copy of the ArrayList.</p>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="Clear"><code style="text-decoration:none">Clear</code><a aria-hidden="true" class="hash-link" href="#Clear" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/ArrayList/init.lua#L174"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>ArrayList<!-- -->:</code><code class="green_3LnD">Clear</code><code>(</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Clears the ArrayList.</p>
+</div><h3>Errors</h3><table class="errorTable_25fH"><thead><tr><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>IsFixedSize</td><td>Thrown when the ArrayList is fixed size.</td></tr><tr><td>IsReadOnly</td><td>Thrown when the ArrayList is read-only.</td></tr></tbody></table><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="Contains"><code style="text-decoration:none">Contains</code><a aria-hidden="true" class="hash-link" href="#Contains" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/ArrayList/init.lua#L196"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>ArrayList<!-- -->:</code><code class="green_3LnD">Contains</code><code>(</code><div class="inset_2cJr"><div><code>Value<!-- -->: </code><code class="blue_2Afy">NonNil</code><span class="inlineDescription_17uy">-- <span>
+<p>The value to check.</p>
+</span></span></div></div><code>) → </code><code class="blue_2Afy">boolean</code></div><div>
+<p>Determines if the ArrayList contains the given value.</p>
+</div><h3>Errors</h3><table class="errorTable_25fH"><thead><tr><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>InvalidArgument</td><td>Thrown when the value is nil.</td></tr></tbody></table><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="IndexOf"><code style="text-decoration:none">IndexOf</code><a aria-hidden="true" class="hash-link" href="#IndexOf" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/ArrayList/init.lua#L211"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>ArrayList<!-- -->:</code><code class="green_3LnD">IndexOf</code><code>(</code><div class="inset_2cJr"><div><code>Value<!-- -->: </code><code class="blue_2Afy">NonNil</code><span class="inlineDescription_17uy">-- <span>
+<p>The value to search for.</p>
+</span></span></div></div><code>) → </code><code class="blue_2Afy">int?</code><span class="inlineDescription_17uy">-- <span>
+<p>The index of the value.</p>
+</span></span></div><div>
+<p>Locates the index of the given value in the ArrayList.</p>
+</div><h3>Errors</h3><table class="errorTable_25fH"><thead><tr><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>InvalidArgument</td><td>Thrown when the value is nil.</td></tr></tbody></table><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="Insert"><code style="text-decoration:none">Insert</code><a aria-hidden="true" class="hash-link" href="#Insert" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/ArrayList/init.lua#L228"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>ArrayList<!-- -->:</code><code class="green_3LnD">Insert</code><code>(</code><div class="inset_2cJr"><div><code>Index<!-- -->: </code><code class="blue_2Afy">int</code><code>,</code><span class="inlineDescription_17uy">-- <span>
+<p>The index to insert at.</p>
+</span></span></div><div><code>Value<!-- -->: </code><code class="blue_2Afy">NonNil</code><span class="inlineDescription_17uy">-- <span>
+<p>The value to be added to the end of the ArrayList. The value cannot be nil.</p>
+</span></span></div></div><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Inserts the given value into the ArrayList at the given index.</p>
+</div><h3>Errors</h3><table class="errorTable_25fH"><thead><tr><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>IsFixedSize</td><td>Thrown when the ArrayList is fixed size.</td></tr><tr><td>IsReadOnly</td><td>Thrown when the ArrayList is read-only.</td></tr><tr><td>InvalidArgument</td><td>Thrown when either the value or the index is incorrect.</td></tr></tbody></table></div></article></div><details><summary>Show raw api</summary><pre style="max-width:100%;white-space:pre-wrap">{
+    &quot;functions&quot;: [
+        {
+            &quot;name&quot;: &quot;new&quot;,
+            &quot;desc&quot;: &quot;Creates a new ArrayList.&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;ArrayList&lt;T&gt;&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 39,
+                &quot;path&quot;: &quot;src/DataStructures/ArrayList/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;FromCapacity&quot;,
+            &quot;desc&quot;: &quot;Creates a new ArrayList with the given capacity.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Capacity&quot;,
+                    &quot;desc&quot;: &quot;The capacity of the ArrayList.&quot;,
+                    &quot;lua_type&quot;: &quot;int&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;ArrayList&lt;T&gt;&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 52,
+                &quot;path&quot;: &quot;src/DataStructures/ArrayList/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;FromArray&quot;,
+            &quot;desc&quot;: &quot;Creates a new ArrayList from the given array. Will not mutate the original array.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Array&quot;,
+                    &quot;desc&quot;: &quot;The array to use as the source. This makes a shallow copy.&quot;,
+                    &quot;lua_type&quot;: &quot;Array&lt;T&gt;&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;ArrayList&lt;T&gt;&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 65,
+                &quot;path&quot;: &quot;src/DataStructures/ArrayList/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Is&quot;,
+            &quot;desc&quot;: &quot;Determines if the passed Value is an ArrayList.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Value&quot;,
+                    &quot;desc&quot;: &quot;The value to check.&quot;,
+                    &quot;lua_type&quot;: &quot;any&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;boolean&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 81,
+                &quot;path&quot;: &quot;src/DataStructures/ArrayList/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;MarkReadOnly&quot;,
+            &quot;desc&quot;: &quot;Marks the ArrayList as read-only. Returns a clone of the ArrayList.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;List&quot;,
+                    &quot;desc&quot;: &quot;The ArrayList to make read-only.&quot;,
+                    &quot;lua_type&quot;: &quot;ArrayList&lt;T&gt;&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;ArrayList&lt;T&gt;&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;errors&quot;: [
+                {
+                    &quot;lua_type&quot;: &quot;InvalidArgument&quot;,
+                    &quot;desc&quot;: &quot;Thrown when the List is nil.&quot;
+                },
+                {
+                    &quot;lua_type&quot;: &quot;NotArrayList&quot;,
+                    &quot;desc&quot;: &quot;Thrown when the List isn&#x27;t an ArrayList.&quot;
+                }
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 93,
+                &quot;path&quot;: &quot;src/DataStructures/ArrayList/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;MarkFixedSize&quot;,
+            &quot;desc&quot;: &quot;Marks the ArrayList as a fixed size. Returns a clone of the ArrayList.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;List&quot;,
+                    &quot;desc&quot;: &quot;The ArrayList to mark as fixed size.&quot;,
+                    &quot;lua_type&quot;: &quot;ArrayList&lt;T&gt;&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;ArrayList&lt;T&gt;&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;errors&quot;: [
+                {
+                    &quot;lua_type&quot;: &quot;InvalidArgument&quot;,
+                    &quot;desc&quot;: &quot;Thrown when the List is nil.&quot;
+                },
+                {
+                    &quot;lua_type&quot;: &quot;NotArrayList&quot;,
+                    &quot;desc&quot;: &quot;Thrown when the List isn&#x27;t an ArrayList.&quot;
+                }
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 115,
+                &quot;path&quot;: &quot;src/DataStructures/ArrayList/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Add&quot;,
+            &quot;desc&quot;: &quot;Adds an object to the end of the ArrayList.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Value&quot;,
+                    &quot;desc&quot;: &quot;The value to be added to the end of the ArrayList. The value cannot be nil.&quot;,
+                    &quot;lua_type&quot;: &quot;NonNil&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The ArrayList index at which the value has been added.&quot;,
+                    &quot;lua_type&quot;: &quot;int&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;errors&quot;: [
+                {
+                    &quot;lua_type&quot;: &quot;IsFixedSize&quot;,
+                    &quot;desc&quot;: &quot;Thrown when the ArrayList is fixed size.&quot;
+                },
+                {
+                    &quot;lua_type&quot;: &quot;IsReadOnly&quot;,
+                    &quot;desc&quot;: &quot;Thrown when the ArrayList is read-only.&quot;
+                },
+                {
+                    &quot;lua_type&quot;: &quot;InvalidArgument&quot;,
+                    &quot;desc&quot;: &quot;Thrown when the value is nil.&quot;
+                }
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 138,
+                &quot;path&quot;: &quot;src/DataStructures/ArrayList/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Clone&quot;,
+            &quot;desc&quot;: &quot;Creates a shallow copy of the ArrayList.&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;A shallow copy of the ArrayList.&quot;,
+                    &quot;lua_type&quot;: &quot;ArrayList&lt;T&gt;&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 161,
+                &quot;path&quot;: &quot;src/DataStructures/ArrayList/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Clear&quot;,
+            &quot;desc&quot;: &quot;Clears the ArrayList.&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;errors&quot;: [
+                {
+                    &quot;lua_type&quot;: &quot;IsFixedSize&quot;,
+                    &quot;desc&quot;: &quot;Thrown when the ArrayList is fixed size.&quot;
+                },
+                {
+                    &quot;lua_type&quot;: &quot;IsReadOnly&quot;,
+                    &quot;desc&quot;: &quot;Thrown when the ArrayList is read-only.&quot;
+                }
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 174,
+                &quot;path&quot;: &quot;src/DataStructures/ArrayList/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Contains&quot;,
+            &quot;desc&quot;: &quot;Determines if the ArrayList contains the given value.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Value&quot;,
+                    &quot;desc&quot;: &quot;The value to check.&quot;,
+                    &quot;lua_type&quot;: &quot;NonNil&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;boolean&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;errors&quot;: [
+                {
+                    &quot;lua_type&quot;: &quot;InvalidArgument&quot;,
+                    &quot;desc&quot;: &quot;Thrown when the value is nil.&quot;
+                }
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 196,
+                &quot;path&quot;: &quot;src/DataStructures/ArrayList/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;IndexOf&quot;,
+            &quot;desc&quot;: &quot;Locates the index of the given value in the ArrayList.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Value&quot;,
+                    &quot;desc&quot;: &quot;The value to search for.&quot;,
+                    &quot;lua_type&quot;: &quot;NonNil&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The index of the value.&quot;,
+                    &quot;lua_type&quot;: &quot;int?&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;errors&quot;: [
+                {
+                    &quot;lua_type&quot;: &quot;InvalidArgument&quot;,
+                    &quot;desc&quot;: &quot;Thrown when the value is nil.&quot;
+                }
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 211,
+                &quot;path&quot;: &quot;src/DataStructures/ArrayList/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Insert&quot;,
+            &quot;desc&quot;: &quot;Inserts the given value into the ArrayList at the given index.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Index&quot;,
+                    &quot;desc&quot;: &quot;The index to insert at.&quot;,
+                    &quot;lua_type&quot;: &quot;int&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;Value&quot;,
+                    &quot;desc&quot;: &quot;The value to be added to the end of the ArrayList. The value cannot be nil.&quot;,
+                    &quot;lua_type&quot;: &quot;NonNil&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;errors&quot;: [
+                {
+                    &quot;lua_type&quot;: &quot;IsFixedSize&quot;,
+                    &quot;desc&quot;: &quot;Thrown when the ArrayList is fixed size.&quot;
+                },
+                {
+                    &quot;lua_type&quot;: &quot;IsReadOnly&quot;,
+                    &quot;desc&quot;: &quot;Thrown when the ArrayList is read-only.&quot;
+                },
+                {
+                    &quot;lua_type&quot;: &quot;InvalidArgument&quot;,
+                    &quot;desc&quot;: &quot;Thrown when either the value or the index is incorrect.&quot;
+                }
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 228,
+                &quot;path&quot;: &quot;src/DataStructures/ArrayList/init.lua&quot;
+            }
+        }
+    ],
+    &quot;properties&quot;: [
+        {
+            &quot;name&quot;: &quot;IsFixedSize&quot;,
+            &quot;desc&quot;: &quot;Whether or not the ArrayList is fixed size. Defaults to `false`.&quot;,
+            &quot;lua_type&quot;: &quot;boolean&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 22,
+                &quot;path&quot;: &quot;src/DataStructures/ArrayList/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;IsReadOnly&quot;,
+            &quot;desc&quot;: &quot;Whether or not the ArrayList is read-only. Defaults to `false`.&quot;,
+            &quot;lua_type&quot;: &quot;boolean&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 28,
+                &quot;path&quot;: &quot;src/DataStructures/ArrayList/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Length&quot;,
+            &quot;desc&quot;: &quot;The length of the ArrayList.&quot;,
+            &quot;lua_type&quot;: &quot;number&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 34,
+                &quot;path&quot;: &quot;src/DataStructures/ArrayList/init.lua&quot;
+            }
+        }
+    ],
+    &quot;types&quot;: [],
+    &quot;name&quot;: &quot;ArrayList&quot;,
+    &quot;desc&quot;: &quot;An object to represent a list of values in an array.&quot;,
+    &quot;source&quot;: {
+        &quot;line&quot;: 8,
+        &quot;path&quot;: &quot;src/DataStructures/ArrayList/init.lua&quot;
+    }
+}</pre></details></div><div class="col col--3"><div class="tableOfContents_35-E thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#types" class="table-of-contents__link toc-highlight">Types</a></li><li><a href="#properties" class="table-of-contents__link toc-highlight">Properties</a><ul><li><a href="#IsFixedSize" class="table-of-contents__link toc-highlight">IsFixedSize</a></li><li><a href="#IsReadOnly" class="table-of-contents__link toc-highlight">IsReadOnly</a></li><li><a href="#Length" class="table-of-contents__link toc-highlight">Length</a></li></ul></li><li><a href="#functions" class="table-of-contents__link toc-highlight">Functions</a><ul><li><a href="#Add" class="table-of-contents__link toc-highlight">:Add</a></li><li><a href="#Clear" class="table-of-contents__link toc-highlight">:Clear</a></li><li><a href="#Clone" class="table-of-contents__link toc-highlight">:Clone</a></li><li><a href="#Contains" class="table-of-contents__link toc-highlight">:Contains</a></li><li><a href="#IndexOf" class="table-of-contents__link toc-highlight">:IndexOf</a></li><li><a href="#Insert" class="table-of-contents__link toc-highlight">:Insert</a></li><li><a href="#FromArray" class="table-of-contents__link toc-highlight">.FromArray</a></li><li><a href="#FromCapacity" class="table-of-contents__link toc-highlight">.FromCapacity</a></li><li><a href="#Is" class="table-of-contents__link toc-highlight">.Is</a></li><li><a href="#MarkFixedSize" class="table-of-contents__link toc-highlight">.MarkFixedSize</a></li><li><a href="#MarkReadOnly" class="table-of-contents__link toc-highlight">.MarkReadOnly</a></li><li><a href="#new" class="table-of-contents__link toc-highlight">.new</a></li></ul></li></ul></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2021 howmanysmall. Built with Moonwave and Docusaurus.</div></div></div></footer></div>
+<script src="/DataStructures/assets/js/runtime~main.2bde900d.js"></script>
+<script src="/DataStructures/assets/js/main.b2c13686.js"></script>
+</body>
+</html>
