@@ -1,5 +1,4 @@
 local Types = require(script.Parent.Types)
-local _ = Types -- shut up
 
 local Stack = {}
 Stack.ClassName = "Stack"
@@ -16,8 +15,6 @@ type NonNil = Types.NonNil
 function Stack.new()
 	return setmetatable({Length = 0}, Stack)
 end
-
-export type Stack = typeof(Stack.new())
 
 --[[**
 	Determines whether the passed value is a Stack.
@@ -91,9 +88,7 @@ end
 	Returns an iterator that can be used to iterate through the Stack. This is just an alias for `ipairs`, which you can use instead. This only exists for consistency reasons.
 	@returns [t:StackIterator] The iterator, which is used in a for loop.
 **--]]
-function Stack:Iterator()
-	return ipairs(self)
-end
+Stack.Iterator = ipairs
 
 function Stack:__tostring(): string
 	local StackArray = table.create(self.Length)
@@ -104,4 +99,6 @@ function Stack:__tostring(): string
 	return "Stack<[" .. table.concat(StackArray, ", ") .. "]>"
 end
 
+export type Stack = typeof(Stack.new())
+table.freeze(Stack)
 return Stack

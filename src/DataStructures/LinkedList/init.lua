@@ -41,8 +41,6 @@ function LinkedList.new(Values: Array<any>?)
 	end
 end
 
-export type LinkedList = typeof(LinkedList.new())
-
 --[[**
 	Determines whether the passed value is a LinkedList.
 	@param [t:any] Value The value to check.
@@ -61,8 +59,6 @@ function ListNode.new()
 		Value = nil;
 	}, ListNode)
 end
-
-export type ListNode = typeof(ListNode.new())
 
 --[[**
 	Determines whether the passed value is a ListNode.
@@ -206,7 +202,7 @@ end
 	Removes all elements from the `LinkedList`. This operation should compute in O(n) time.
 	@returns [t:LinkedList]
 **--]]
-function LinkedList:Clear(): LinkedList
+function LinkedList:Clear()
 	while self.Length > 0 do
 		local Node: ListNode? = self.First
 		if Node then
@@ -294,7 +290,7 @@ end
 	@param [t:int] Index The index of the node you want to remove.
 	@returns [t:LinkedList]
 **--]]
-function LinkedList:Remove(Index: int): LinkedList
+function LinkedList:Remove(Index: int)
 	local Length = self.Length
 	if Index > Length or Index < 1 then
 		error(string.format("Index %d is out of the range of [1, %d]", Index, Length), 2)
@@ -330,7 +326,7 @@ end
 	@param [t:any] Value The value you want to remove from the `LinkedList`.
 	@returns [t:LinkedList]
 **--]]
-function LinkedList:RemoveValue(Value: any): LinkedList
+function LinkedList:RemoveValue(Value: any)
 	local CurrentNode: ListNode? = self.First
 	local Length = self.Length
 
@@ -360,7 +356,7 @@ end
 	@param [t:ListNode] Node The node you want to remove from the `LinkedList`.
 	@returns [t:LinkedList]
 **--]]
-function LinkedList:RemoveNode(Node: ListNode): LinkedList
+function LinkedList:RemoveNode(Node: ListNode)
 	local CurrentNode: ListNode? = self.First
 	local Length = self.Length
 
@@ -385,7 +381,7 @@ function LinkedList:RemoveNode(Node: ListNode): LinkedList
 	return self
 end
 
-function ListNode:After(Value: any): ListNode?
+function ListNode:After(Value: any)
 	local List: LinkedList? = self.List
 	if List then
 		List.Length += 1
@@ -407,7 +403,7 @@ function ListNode:After(Value: any): ListNode?
 	return nil
 end
 
-function ListNode:Before(Value: any): ListNode?
+function ListNode:Before(Value: any)
 	local List: LinkedList? = self.List
 	if List then
 		List.Length += 1
@@ -487,4 +483,7 @@ function ListNode:__tostring(): string
 	return tostring(self.Value)
 end
 
+export type LinkedList = typeof(LinkedList.new())
+export type ListNode = typeof(ListNode.new())
+table.freeze(LinkedList)
 return LinkedList

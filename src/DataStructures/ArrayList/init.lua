@@ -1,5 +1,4 @@
 local Types = require(script.Parent.Types)
-local _ = Types
 
 local ArrayList = {}
 ArrayList.ClassName = "ArrayList"
@@ -17,9 +16,7 @@ function ArrayList.new()
 	}, ArrayList)
 end
 
-export type ArrayList = typeof(ArrayList.new())
-
-function ArrayList.FromCapacity(Capacity: int): ArrayList
+function ArrayList.FromCapacity(Capacity: int)
 	local self = table.create(Capacity)
 	self.IsFixedSize = false
 	self.IsReadOnly = false
@@ -27,11 +24,13 @@ function ArrayList.FromCapacity(Capacity: int): ArrayList
 	return setmetatable(self, ArrayList)
 end
 
-function ArrayList.FromArray(Array: Array<any>): ArrayList
-	Array.IsFixedSize = false
-	Array.IsReadOnly = false
-	Array.Length = #Array
-	return setmetatable(Array, ArrayList)
+function ArrayList.FromArray(Array: Array<any>)
+	local Length = #Array
+	local self = table.move(Array, 1, Length, 1, table.create(Length))
+	self.IsFixedSize = false
+	self.IsReadOnly = false
+	self.Length = Length
+	return setmetatable(self, ArrayList)
 end
 
 ArrayList.WithCapacity = ArrayList.FromCapacity
@@ -40,7 +39,7 @@ function ArrayList.Is(Value)
 	return type(Value) == "table" and getmetatable(Value) == ArrayList
 end
 
-function ArrayList.MarkReadOnly(List: ArrayList): ArrayList
+function ArrayList.MarkReadOnly(List: ArrayList)
 	if List == nil then
 		error("Argument #1 to 'ArrayList.MarkReadOnly' missing or nil", 2)
 	end
@@ -50,7 +49,7 @@ function ArrayList.MarkReadOnly(List: ArrayList): ArrayList
 	return self
 end
 
-function ArrayList.MarkFixedSize(List: ArrayList): ArrayList
+function ArrayList.MarkFixedSize(List: ArrayList)
 	if List == nil then
 		error("Argument #1 to 'ArrayList.MarkFixedSize' missing or nil", 2)
 	end
@@ -88,7 +87,7 @@ end
 	Creates a shallow copy of the ArrayList.
 	@returns [t:ArrayList] A shallow copy of the ArrayList.
 **--]]
-function ArrayList:Clone(): ArrayList
+function ArrayList:Clone()
 	local NewSelf = {
 		IsFixedSize = self.IsFixedSize;
 		IsReadOnly = self.IsReadOnly;
@@ -161,4 +160,6 @@ function ArrayList:__tostring()
 	return "ArrayList"
 end
 
+export type ArrayList = typeof(ArrayList.new())
+table.freeze(ArrayList)
 return ArrayList

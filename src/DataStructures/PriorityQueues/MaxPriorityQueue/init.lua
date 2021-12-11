@@ -1,5 +1,4 @@
 local Types = require(script.Parent.Parent.Types)
-local _ = Types
 
 local MaxPriorityQueue = {}
 MaxPriorityQueue.ClassName = "MaxPriorityQueue"
@@ -10,7 +9,6 @@ type NonNil = Types.NonNil
 type int = Types.int
 
 export type HeapEntry = {
-	-- No format
 	Priority: number,
 	Value: NonNil,
 }
@@ -25,8 +23,6 @@ function MaxPriorityQueue.new()
 		Length = 0;
 	}, MaxPriorityQueue)
 end
-
-export type MaxPriorityQueue = typeof(MaxPriorityQueue.new())
 
 --[[**
 	Determines whether the passed value is a MaxPriorityQueue.
@@ -45,8 +41,7 @@ function MaxPriorityQueue:IsEmpty(): boolean
 	return self.Length == 0
 end
 
-local function FindClosestIndex(This: MaxPriorityQueue, Priority: number, Low: int, High: int): int
-	local self = This
+local function FindClosestIndex(self: MaxPriorityQueue, Priority: number, Low: int, High: int): int
 	local Middle
 
 	do
@@ -251,7 +246,7 @@ MaxPriorityQueue.ReverseIterate = MaxPriorityQueue.ReverseIterator
 	Clears the entire `MaxPriorityQueue`.
 	@returns [t:MaxPriorityQueue] The same `MaxPriorityQueue`.
 **--]]
-function MaxPriorityQueue:Clear(): MaxPriorityQueue
+function MaxPriorityQueue:Clear()
 	table.clear(self.Heap)
 	self.Length = 0
 	return self
@@ -319,4 +314,6 @@ function MaxPriorityQueue:__tostring()
 	return string.format("MaxPriorityQueue<{\n%s\n}>", table.concat(Array, "\n"))
 end
 
+export type MaxPriorityQueue = typeof(MaxPriorityQueue.new())
+table.freeze(MaxPriorityQueue)
 return MaxPriorityQueue

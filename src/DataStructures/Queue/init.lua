@@ -1,5 +1,4 @@
 local Types = require(script.Parent.Types)
-local _ = Types -- shut up
 
 local Queue = {}
 Queue.ClassName = "Queue"
@@ -19,8 +18,6 @@ function Queue.new()
 		Length = 0;
 	}, Queue)
 end
-
-export type Queue = typeof(Queue.new())
 
 --[[**
 	Determines whether the passed value is a Queue.
@@ -96,8 +93,7 @@ function Queue:IsEmpty(): boolean
 	return self.Length == 0
 end
 
-local function QueueIterator(This: Queue, Position: number?)
-	local self = This
+local function QueueIterator(self: Queue, Position: number?)
 	local NewPosition = 1
 	if Position then
 		NewPosition = Position + 1
@@ -127,4 +123,6 @@ function Queue:__tostring(): string
 	return "Queue<[" .. table.concat(QueueArray, ", ") .. "]>"
 end
 
+export type Queue = typeof(Queue.new())
+table.freeze(Queue)
 return Queue

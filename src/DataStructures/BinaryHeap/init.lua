@@ -1,5 +1,4 @@
 local Types = require(script.Parent.Types)
-local _ = Types
 
 local BinaryHeap = {}
 BinaryHeap.ClassName = "BinaryHeap"
@@ -18,11 +17,11 @@ function BinaryHeap.new(ComparisonFunction: ComparisonFunction<Comparable>?)
 	}, BinaryHeap)
 end
 
-export type BinaryHeap = typeof(BinaryHeap.new())
-
 function BinaryHeap.FromArray(Array: Array<any>): BinaryHeap
-	Array.Length = #Array
-	return setmetatable(Array, BinaryHeap)
+	local Length = #Array
+	local self = table.move(Array, 1, Length, 1, table.create(Length))
+	self.Length = Length
+	return setmetatable(self, BinaryHeap)
 end
 
 function BinaryHeap.Is(Value)
@@ -180,7 +179,7 @@ end
 	@param [t:int] Index The index of the key you want to delete.
 	@returns [t:BinaryHeap] Returns the same heap.
 **--]]
-function BinaryHeap:Delete(Index: int): BinaryHeap
+function BinaryHeap:Delete(Index: int)
 	local Length = self.Length
 	if Length == 1 then
 		self[1] = nil
@@ -248,4 +247,6 @@ function BinaryHeap:__tostring()
 	return "BinaryHeap"
 end
 
+export type BinaryHeap = typeof(BinaryHeap.new())
+table.freeze(BinaryHeap)
 return BinaryHeap

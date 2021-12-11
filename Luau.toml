@@ -9574,8 +9574,16 @@ type = "string"
 [[string.unpack.args]]
 required = false
 type = "number"
+
+[[table.freeze.args]]
+type = "table"
+
+[[table.isfrozen.args]]
+type = "table"
+
 [[table.clear.args]]
 type = "table"
+
 [[table.create.args]]
 type = "number"
 

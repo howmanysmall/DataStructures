@@ -19,7 +19,6 @@
 	"Class": {
 		"body": [
 			"local Types = require(script.Parent.Types)",
-			"local _ = Types",
 			"",
 			"local ${0:$TM_FILENAME_BASE} = {}",
 			"${0:$TM_FILENAME_BASE}.ClassName = \"${0:$TM_FILENAME_BASE}\"",
@@ -34,8 +33,6 @@
 			"\treturn self",
 			"end",
 			"",
-			"export type ${0:$TM_FILENAME_BASE} = typeof(${0:$TM_FILENAME_BASE}.new())",
-			"",
 			"function ${0:$TM_FILENAME_BASE}.Is(Value)",
 			"\treturn type(Value) == \"table\" and getmetatable(Value) == ${0:$TM_FILENAME_BASE}",
 			"end",
@@ -44,6 +41,8 @@
 			"\treturn \"${0:$TM_FILENAME_BASE}\"",
 			"end",
 			"",
+			"export type ${0:$TM_FILENAME_BASE} = typeof(${0:$TM_FILENAME_BASE}.new())",
+			"table.freeze(${0:$TM_FILENAME_BASE})",
 			"return ${0:$TM_FILENAME_BASE}",
 			"",
 		],
