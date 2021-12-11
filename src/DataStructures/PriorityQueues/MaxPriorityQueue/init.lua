@@ -1,5 +1,10 @@
 local Types = require(script.Parent.Parent.Types)
 
+--[=[
+	In a max priority queue, elements are inserted in the order in which they arrive the queue and the maximum value is always removed first from the queue.
+
+	@class MaxPriorityQueue
+]=]
 local MaxPriorityQueue = {}
 MaxPriorityQueue.ClassName = "MaxPriorityQueue"
 MaxPriorityQueue.__index = MaxPriorityQueue
@@ -13,10 +18,16 @@ export type HeapEntry = {
 	Value: NonNil,
 }
 
---[[**
+--[=[
+	@within MaxPriorityQueue
+	@prop Length int
+	The length of the MaxPriorityQueue.
+]=]
+
+--[=[
 	Creates a new `MaxPriorityQueue`.
-	@returns [t:MaxPriorityQueue]
-**--]]
+	@return MaxPriorityQueue<T>
+]=]
 function MaxPriorityQueue.new()
 	return setmetatable({
 		Heap = {};
@@ -24,19 +35,19 @@ function MaxPriorityQueue.new()
 	}, MaxPriorityQueue)
 end
 
---[[**
+--[=[
 	Determines whether the passed value is a MaxPriorityQueue.
-	@param [t:any] Value The value to check.
-	@returns [t:boolean] Whether or not the passed value is a MaxPriorityQueue.
-**--]]
+	@param Value any -- The value to check.
+	@return boolean -- Whether or not the passed value is a MaxPriorityQueue.
+]=]
 function MaxPriorityQueue.Is(Value)
 	return type(Value) == "table" and getmetatable(Value) == MaxPriorityQueue
 end
 
---[[**
+--[=[
 	Check whether the `MaxPriorityQueue` has no elements.
-	@returns [t:boolean] This will be true iff the queue is empty.
-**--]]
+	@return boolean -- This will be true iff the queue is empty.
+]=]
 function MaxPriorityQueue:IsEmpty(): boolean
 	return self.Length == 0
 end
@@ -76,12 +87,14 @@ local function FindClosestIndex(self: MaxPriorityQueue, Priority: number, Low: i
 	return Middle
 end
 
---[[**
+--[=[
 	Add an element to the `MaxPriorityQueue` with an associated priority.
-	@param [t:NonNil] Value The value of the element.
-	@param [t:number] Priority The priority of the element.
-	@returns [t:int] The inserted position.
-**--]]
+	@error InvalidValue -- Thrown when the value is nil.
+
+	@param Value NonNil -- The value of the element.
+	@param Priority number -- The priority of the element.
+	@return int -- The inserted position.
+]=]
 function MaxPriorityQueue:InsertWithPriority(Value: NonNil, Priority: number): int
 	if Value == nil then
 		error("Argument #2 to 'MaxPriorityQueue:InsertWithPriority' missing or nil", 2)
@@ -105,12 +118,15 @@ end
 
 MaxPriorityQueue.Insert = MaxPriorityQueue.InsertWithPriority
 
---[[**
+--[=[
 	Changes the priority of the given value in the `MaxPriorityQueue`.
-	@param [t:NonNil] Value The value you are updating the priority of.
-	@param [t:number] NewPriority The new priority of the value.
-	@returns [t:number?] The new position of the HeapEntry if it was found. This function will error if it couldn't find the value.
-**--]]
+	@error InvalidValue -- Thrown when the value is nil.
+	@error CouldNotFind -- Thrown when the value couldn't be found.
+
+	@param Value NonNil -- The value you are updating the priority of.
+	@param NewPriority number -- The new priority of the value.
+	@return int? -- The new position of the HeapEntry if it was found. This function will error if it couldn't find the value.
+]=]
 function MaxPriorityQueue:ChangePriority(Value: NonNil, NewPriority: number): int?
 	if Value == nil then
 		error("Argument #2 to 'MaxPriorityQueue:ChangePriority' missing or nil", 2)
@@ -128,10 +144,10 @@ function MaxPriorityQueue:ChangePriority(Value: NonNil, NewPriority: number): in
 	error("Couldn't find value in queue?", 2)
 end
 
---[[**
+--[=[
 	Gets the priority of the first value in the `MaxPriorityQueue`. This is the value that will be removed last.
-	@returns [t:number?] The priority of the first value.
-**--]]
+	@return number? -- The priority of the first value.
+]=]
 function MaxPriorityQueue:GetFirstPriority(): number?
 	if self.Length == 0 then
 		return nil
@@ -140,10 +156,10 @@ function MaxPriorityQueue:GetFirstPriority(): number?
 	return self.Heap[1].Priority
 end
 
---[[**
+--[=[
 	Gets the priority of the last value in the `MaxPriorityQueue`. This is the value that will be removed first.
-	@returns [t:number?] The priority of the last value.
-**--]]
+	@return number? -- The priority of the last value.
+]=]
 function MaxPriorityQueue:GetLastPriority(): number?
 	local Length: number = self.Length
 	if Length == 0 then
@@ -153,11 +169,11 @@ function MaxPriorityQueue:GetLastPriority(): number?
 	return self.Heap[Length].Priority
 end
 
---[[**
+--[=[
 	Remove the element from the `MaxPriorityQueue` that has the highest priority, and return it.
-	@param [t:boolean?] OnlyValue Whether or not to return only the value or the entire entry.
-	@returns [t:any|HeapEntry] The removed element.
-**--]]
+	@param OnlyValue boolean? -- Whether or not to return only the value or the entire entry.
+	@return T | HeapEntry -- The removed element.
+]=]
 function MaxPriorityQueue:PopElement(OnlyValue: boolean?): any | HeapEntry
 	local Heap: Array<HeapEntry> = self.Heap
 	local Length: number = self.Length
@@ -171,11 +187,11 @@ end
 MaxPriorityQueue.PullHighestPriorityElement = MaxPriorityQueue.PopElement
 MaxPriorityQueue.GetMaximumElement = MaxPriorityQueue.PopElement
 
---[[**
+--[=[
 	Converts the entire `MaxPriorityQueue` to an array.
-	@param [t:boolean?] OnlyValues Whether or not the array is just the values or the priorities as well.
-	@returns [t:Array<any>|Array<HeapEntry>] The `MaxPriorityQueue`'s array.
-**--]]
+	@param OnlyValues boolean? -- Whether or not the array is just the values or the priorities as well.
+	@return Array<T> | Array<HeapEntry> -- The `MaxPriorityQueue`'s array.
+]=]
 function MaxPriorityQueue:ToArray(OnlyValues: boolean?): Array<any> | Array<HeapEntry>
 	if OnlyValues then
 		local Array = table.create(self.Length)
@@ -195,11 +211,11 @@ function MaxPriorityQueue:ToArray(OnlyValues: boolean?): Array<any> | Array<Heap
 	end
 end
 
---[[**
+--[=[
 	Returns an iterator function for iterating over the `MaxPriorityQueue`.
-	@param [t:boolean?] OnlyValues Whether or not the iterator returns just the values or the priorities as well.
-	@returns [t:IteratorFunction] The iterator function. Usage is `for Index, Value in MaxPriorityQueue:Iterator(OnlyValues) do`.
-**--]]
+	@param OnlyValues boolean? Whether or not the iterator returns just the values or the priorities as well.
+	@return IteratorFunction -- The iterator function. Usage is `for Index, Value in MaxPriorityQueue:Iterator(OnlyValues) do`.
+]=]
 function MaxPriorityQueue:Iterator(OnlyValues: boolean?)
 	if OnlyValues then
 		local Array = table.create(self.Length)
@@ -213,11 +229,11 @@ function MaxPriorityQueue:Iterator(OnlyValues: boolean?)
 	end
 end
 
---[[**
+--[=[
 	Returns an iterator function for iterating over the `MaxPriorityQueue` in reverse.
-	@param [t:boolean?] OnlyValues Whether or not the iterator returns just the values or the priorities as well.
-	@returns [t:IteratorFunction] The iterator function. Usage is `for Index, Value in MaxPriorityQueue:ReverseIterator(OnlyValues) do`.
-**--]]
+	@param OnlyValues boolean? -- Whether or not the iterator returns just the values or the priorities as well.
+	@return IteratorFunction -- The iterator function. Usage is `for Index, Value in MaxPriorityQueue:ReverseIterator(OnlyValues) do`.
+]=]
 function MaxPriorityQueue:ReverseIterator(OnlyValues: boolean?)
 	local Length: number = self.Length
 	local Top = Length + 1
@@ -242,21 +258,23 @@ end
 MaxPriorityQueue.Iterate = MaxPriorityQueue.Iterator
 MaxPriorityQueue.ReverseIterate = MaxPriorityQueue.ReverseIterator
 
---[[**
+--[=[
 	Clears the entire `MaxPriorityQueue`.
-	@returns [t:MaxPriorityQueue] The same `MaxPriorityQueue`.
-**--]]
+	@return MaxPriorityQueue<T> -- The same `MaxPriorityQueue`.
+]=]
 function MaxPriorityQueue:Clear()
 	table.clear(self.Heap)
 	self.Length = 0
 	return self
 end
 
---[[**
+--[=[
 	Determines if the `MaxPriorityQueue` contains the given value.
-	@param [t:NonNil] Value The value you are searching for.
-	@returns [t:boolean] Whether or not the value was found.
-**--]]
+	@error InvalidValue -- Thrown when the value is nil.
+
+	@param Value NonNil -- The value you are searching for.
+	@return boolean -- Whether or not the value was found.
+]=]
 function MaxPriorityQueue:Contains(Value: NonNil): boolean
 	if Value == nil then
 		error("Argument #2 to 'MaxPriorityQueue:Contains' missing or nil", 2)
@@ -271,11 +289,10 @@ function MaxPriorityQueue:Contains(Value: NonNil): boolean
 	return false
 end
 
---[[**
+--[=[
 	Removes the `HeapEntry` with the given priority, if it exists.
-	@param [t:number] Priority The priority you are removing from the `MaxPriorityQueue`.
-	@returns [t:void]
-**--]]
+	@param Priority number -- The priority you are removing from the `MaxPriorityQueue`.
+]=]
 function MaxPriorityQueue:RemovePriority(Priority: number)
 	for Index, HeapEntry in ipairs(self.Heap) do
 		if HeapEntry.Priority == Priority then
@@ -286,11 +303,12 @@ function MaxPriorityQueue:RemovePriority(Priority: number)
 	end
 end
 
---[[**
+--[=[
 	Removes the `HeapEntry` with the given value, if it exists.
-	@param [t:NonNil] Value The value you are removing from the `MaxPriorityQueue`.
-	@returns [t:void]
-**--]]
+	@error InvalidValue -- Thrown when the value is nil.
+
+	@param Value NonNil -- The value you are removing from the `MaxPriorityQueue`.
+]=]
 function MaxPriorityQueue:RemoveValue(Value: NonNil)
 	if Value == nil then
 		error("Argument #2 to 'MaxPriorityQueue:RemoveValue' missing or nil", 2)

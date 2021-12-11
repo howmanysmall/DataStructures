@@ -1,0 +1,26 @@
+changelog = false
+gitSourceBranch = "main"
+
+[docusaurus]
+tagline = "Luau Data Structures implementation"
+
+[[navbar.items]]
+href = "https://discord.gg/mhtGUS8"
+label = "Discord"
+position = "right"
+
+[home]
+enabled = true
+includeReadme = false
+
+[[home.features]]
+title = "Several already implemented data structures"
+description = "A lot of the data structures you'd likely use have already been implemented for you."
+
+[[home.features]]
+title = "Performance and safety"
+description = "All of the data structures have been designed to work with Luau performance in mind, while still having type protection."
+
+[[home.features]]
+title = "TypeScript Support"
+description = "All of the data structures have been ported to TypeScript already, so you don't have to make your own implementation or types."

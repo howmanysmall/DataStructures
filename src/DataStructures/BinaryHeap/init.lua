@@ -1,5 +1,9 @@
 local Types = require(script.Parent.Types)
 
+--[=[
+	This is a class I took from something Rust related. You can read its documentation info [here](https://doc.rust-lang.org/stable/std/collections/struct.BinaryHeap.html).
+	@class BinaryHeap
+]=]
 local BinaryHeap = {}
 BinaryHeap.ClassName = "BinaryHeap"
 BinaryHeap.__index = BinaryHeap
@@ -10,6 +14,25 @@ type ComparisonFunction<T> = Types.ComparisonFunction<T>
 type int = Types.int
 type NonNil = Types.NonNil
 
+--[=[
+	@within BinaryHeap
+	@prop ComparisonFunction ComparisonFunction<Comparable>?
+
+	The ComparisonFunction of the BinaryHeap.
+]=]
+
+--[=[
+	@within BinaryHeap
+	@prop Length int
+
+	The Length of the BinaryHeap.
+]=]
+
+--[=[
+	Creates a new BinaryHeap.
+	@param ComparisonFunction ComparisonFunction<Comparable>? -- The comparison function.
+	@return BinaryHeap<T>
+]=]
 function BinaryHeap.new(ComparisonFunction: ComparisonFunction<Comparable>?)
 	return setmetatable({
 		ComparisonFunction = ComparisonFunction;
@@ -57,11 +80,11 @@ function BinaryHeap:Heapify(Index)
 	self[Index] = Key
 end
 
---[[**
+--[=[
 	Pushes a new key to the heap.
-	@param [t:Comparable] Key The key you are pushing. Must be able to work with comparing methods like `<`.
-	@returns [t:int] The index of the pushed key in the heap.
-**--]]
+	@param Key Comparable -- The key you are pushing. Must be able to work with comparing methods like `<`.
+	@return int -- The index of the pushed key in the heap.
+]=]
 function BinaryHeap:Push(Key)
 	local Length = self.Length + 1
 	self.Length = Length
@@ -124,10 +147,10 @@ function BinaryHeap:Set(Index, Key)
 	end
 end
 
---[[**
+--[=[
 	Removes the minimum element (the root) from the heap and returns it.
-	@returns [t:Comparable?] The minimum element if it exists, otherwise nil.
-**--]]
+	@return Comparable? -- The minimum element if it exists, otherwise nil.
+]=]
 function BinaryHeap:Pop(): Comparable?
 	local Length = self.Length
 
@@ -174,11 +197,11 @@ function BinaryHeap:Pop(): Comparable?
 	return RootElement
 end
 
---[[**
+--[=[
 	Deletes the key at Index by shifting it to root (treating it as -infinity) and then popping it.
-	@param [t:int] Index The index of the key you want to delete.
-	@returns [t:BinaryHeap] Returns the same heap.
-**--]]
+	@param Index int -- The index of the key you want to delete.
+	@return BinaryHeap -- Returns the same heap.
+]=]
 function BinaryHeap:Delete(Index: int)
 	local Length = self.Length
 	if Length == 1 then
@@ -225,20 +248,20 @@ function BinaryHeap:Delete(Index: int)
 	return self
 end
 
---[[**
+--[=[
 	Returns the front value of the heap.
-	@returns [t:any] The first value.
-**--]]
+	@return any -- The first value.
+]=]
 function BinaryHeap:GetFront(): any
 	return self[1]
 end
 
 BinaryHeap.Front = BinaryHeap.GetFront
 
---[[**
+--[=[
 	Determines if the heap is empty.
-	@returns [t:boolean] True iff the heap is empty.
-**--]]
+	@return boolean - True iff the heap is empty.
+]=]
 function BinaryHeap:IsEmpty(): boolean
 	return self[1] == nil
 end

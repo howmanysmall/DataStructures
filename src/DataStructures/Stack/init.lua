@@ -1,5 +1,9 @@
 local Types = require(script.Parent.Types)
 
+--[=[
+	A Stack is a LIFO (Last In First Out) data structure.
+	@class Stack
+]=]
 local Stack = {}
 Stack.ClassName = "Stack"
 Stack.__index = Stack
@@ -8,28 +12,36 @@ type Array<Value> = Types.Array<Value>
 type int = Types.int
 type NonNil = Types.NonNil
 
---[[**
+--[=[
+	@within Stack
+	@prop Length int
+	The length of the Stack.
+]=]
+
+--[=[
 	Creates an empty `Stack`.
-	@returns [t:Stack]
-**--]]
+	@return Stack<T>
+]=]
 function Stack.new()
 	return setmetatable({Length = 0}, Stack)
 end
 
---[[**
+--[=[
 	Determines whether the passed value is a Stack.
-	@param [t:any] Value The value to check.
-	@returns [t:boolean] Whether or not the passed value is a Stack.
-**--]]
+	@param Value any -- The value to check.
+	@return boolean -- Whether or not the passed value is a Stack.
+]=]
 function Stack.Is(Value)
 	return type(Value) == "table" and getmetatable(Value) == Stack
 end
 
---[[**
+--[=[
 	Pushes the passed value to the end of the Stack.
-	@param [t:NonNil] Value The value you are pushing.
-	@returns [t:int] The passed value's location.
-**--]]
+	@error InvalidValue -- Thrown when the value is nil.
+
+	@param Value T -- The value you are pushing.
+	@return int -- The passed value's location.
+]=]
 function Stack:Push(Value: NonNil): int
 	if Value == nil then
 		error("Argument #2 to 'Stack:Push' missing or nil", 2)
@@ -41,10 +53,10 @@ function Stack:Push(Value: NonNil): int
 	return Length
 end
 
---[[**
+--[=[
 	Removes the last value from the Stack.
-	@returns [t:any?] The last value from the Stack, if it exists.
-**--]]
+	@return T? -- The last value from the Stack, if it exists.
+]=]
 function Stack:Pop(): any?
 	local Length: number = self.Length
 	if Length > 0 then
@@ -57,18 +69,18 @@ function Stack:Pop(): any?
 	return nil
 end
 
---[[**
+--[=[
 	Gets the last value of the Stack.
-	@returns [t:any] The last value.
-**--]]
+	@return T? -- The last value.
+]=]
 function Stack:GetTop(): any
 	return self[self.Length]
 end
 
---[[**
+--[=[
 	Gets the first value of the Stack.
-	@returns [t:any] The first value.
-**--]]
+	@return T? -- The first value.
+]=]
 function Stack:GetBottom(): any
 	return self[1]
 end
@@ -76,18 +88,20 @@ end
 Stack.Bottom = Stack.GetBottom
 Stack.Top = Stack.GetTop
 
---[[**
+--[=[
 	Determines if the Stack is empty.
-	@returns [t:boolean] Whether or not the Stack is empty.
-**--]]
+	@return boolean -- Whether or not the Stack is empty.
+]=]
 function Stack:IsEmpty(): boolean
 	return self.Length == 0
 end
 
---[[**
+--[=[
 	Returns an iterator that can be used to iterate through the Stack. This is just an alias for `ipairs`, which you can use instead. This only exists for consistency reasons.
-	@returns [t:StackIterator] The iterator, which is used in a for loop.
-**--]]
+	@function Iterator
+	@within Stack
+	@return StackIterator -- The iterator, which is used in a for loop.
+]=]
 Stack.Iterator = ipairs
 
 function Stack:__tostring(): string

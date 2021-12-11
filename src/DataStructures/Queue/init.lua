@@ -1,5 +1,10 @@
 local Types = require(script.Parent.Types)
 
+--[=[
+	A Queue is a data structure that follows the first-in, first-out (FIFO).
+
+	@class Queue
+]=]
 local Queue = {}
 Queue.ClassName = "Queue"
 Queue.__index = Queue
@@ -8,10 +13,22 @@ type Array<Value> = Types.Array<Value>
 type int = Types.int
 type NonNil = Types.NonNil
 
---[[**
+--[=[
+	@within Queue
+	@prop First int
+	The index of the first element in the queue.
+]=]
+
+--[=[
+	@within Queue
+	@prop Length int
+	The length of the queue.
+]=]
+
+--[=[
 	Creates an empty `Queue`.
-	@returns [t:Queue]
-**--]]
+	@return Queue<T>
+]=]
 function Queue.new()
 	return setmetatable({
 		First = 1;
@@ -19,20 +36,22 @@ function Queue.new()
 	}, Queue)
 end
 
---[[**
+--[=[
 	Determines whether the passed value is a Queue.
-	@param [t:any] Value The value to check.
-	@returns [t:boolean] Whether or not the passed value is a Queue.
-**--]]
+	@param Value any -- The value to check.
+	@return boolean -- Whether or not the passed value is a Queue.
+]=]
 function Queue.Is(Value)
 	return type(Value) == "table" and getmetatable(Value) == Queue
 end
 
---[[**
+--[=[
 	Pushes the passed value to the end of the Queue.
-	@param [t:NonNil] Value The value you are pushing.
-	@returns [t:int] The passed value's location.
-**--]]
+	@error InvalidValue -- Thrown when the value is nil.
+
+	@param Value T -- The value you are pushing.
+	@return int -- The passed value's location.
+]=]
 function Queue:Push(Value: NonNil): int
 	if Value == nil then
 		error("Argument #2 to 'Queue:Push' missing or nil", 2)
@@ -46,10 +65,10 @@ function Queue:Push(Value: NonNil): int
 	return Length
 end
 
---[[**
+--[=[
 	Removes the first value from the Queue.
-	@returns [t:any?] The first value from the Queue, if it exists.
-**--]]
+	@return T? -- The first value from the Queue, if it exists.
+]=]
 function Queue:Pop(): any?
 	local Length = self.Length
 	if Length > 0 then
@@ -66,18 +85,18 @@ function Queue:Pop(): any?
 	return nil
 end
 
---[[**
+--[=[
 	Gets the front value of the Queue.
-	@returns [t:any] The first value.
-**--]]
+	@return T -- The first value.
+]=]
 function Queue:GetFront(): any
 	return self[self.First]
 end
 
---[[**
+--[=[
 	Gets the last value of the Queue.
-	@returns [t:any] The last value.
-**--]]
+	@return T -- The last value.
+]=]
 function Queue:GetBack(): any
 	return self[self.Length]
 end
@@ -85,10 +104,10 @@ end
 Queue.Back = Queue.GetBack
 Queue.Front = Queue.GetFront
 
---[[**
+--[=[
 	Determines if the Queue is empty.
-	@returns [t:boolean] Whether or not the Queue is empty.
-**--]]
+	@return boolean -- Whether or not the Queue is empty.
+]=]
 function Queue:IsEmpty(): boolean
 	return self.Length == 0
 end
@@ -106,10 +125,10 @@ local function QueueIterator(self: Queue, Position: number?)
 	end
 end
 
---[[**
+--[=[
 	Returns an iterator that can be used to iterate through the Queue.
-	@returns [t:QueueIterator] The iterator, which is used in a for loop.
-**--]]
+	@return QueueIterator -- The iterator, which is used in a for loop.
+]=]
 function Queue:Iterator()
 	return QueueIterator, self
 end

@@ -1,7 +1,11 @@
 -- This could be made a bit faster for pushing by using a LinkedList.
-
 local Types = require(script.Parent.Types)
 
+--[=[
+	A circular buffer is a data structure that stores a fixed number of elements, removing ones when you reach the maximum capacity.
+
+	@class CircularBuffer
+]=]
 local CircularBuffer = {}
 CircularBuffer.ClassName = "CircularBuffer"
 CircularBuffer.__index = CircularBuffer
@@ -10,11 +14,24 @@ type Array<Value> = Types.Array<Value>
 type int = Types.int
 type NonNil = Types.NonNil
 
---[[**
+--[=[
+	@within CircularBuffer
+	@prop Capacity int
+
+	The capacity of the CircularBuffer.
+]=]
+
+--[=[
+	@within CircularBuffer
+	@prop Data Array<T>
+	The data of the CircularBuffer.
+]=]
+
+--[=[
 	Creates a new CircularBuffer.
-	@param [t:int] MaxCapacity The maximum size of the CircularBuffer before it starts removing values.
-	@returns [t:CircularBUffer] Returns a new CircularBuffer.
-**--]]
+	@param MaxCapacity int -- The maximum size of the CircularBuffer before it starts removing values.
+	@return CircularBuffer<T> -- Returns a new CircularBuffer.
+]=]
 function CircularBuffer.new(MaxCapacity: int)
 	assert(type(MaxCapacity) == "number", "MaxCapacity must be a number, instead got a " .. typeof(MaxCapacity))
 	assert(MaxCapacity > 0, "MaxCapacity must be greater than 0.")
@@ -30,66 +47,71 @@ function CircularBuffer.Is(Value)
 	return type(Value) == "table" and getmetatable(Value) == CircularBuffer
 end
 
---[[**
+--[=[
 	Clears the CircularBuffer.
-	@returns [t:CircularBuffer] Returns self.
-**--]]
+	@return CircularBuffer<T> -- Returns self.
+]=]
 function CircularBuffer:Clear()
 	table.clear(self.Data)
 	return self
 end
 
---[[**
+--[=[
 	Gets the capacity of the CircularBuffer.
-	@returns [t:int] The maximum capacity of the CircularBuffer.
-**--]]
+	@return int -- The maximum capacity of the CircularBuffer.
+]=]
 function CircularBuffer:GetCapacity()
 	return self.Capacity
 end
 
---[[**
+--[=[
 	Gets the capacity of the CircularBuffer.
-	@returns [t:int] The maximum capacity of the CircularBuffer.
-**--]]
+	@return int -- The maximum capacity of the CircularBuffer.
+]=]
 function CircularBuffer:GetMaxCapacity()
 	return self.Capacity
 end
 
---[[**
+--[=[
 	Returns whether or not the CircularBuffer is empty.
-	@returns [t:boolean] Whether or not the CircularBuffer is empty.
-**--]]
+	@return boolean -- Whether or not the CircularBuffer is empty.
+]=]
 function CircularBuffer:IsEmpty()
 	return #self.Data == 0
 end
 
---[[**
+--[=[
 	Returns whether or not the CircularBuffer is full.
-	@returns [t:boolean] Whether or not the CircularBuffer is full.
-**--]]
+	@return boolean -- Whether or not the CircularBuffer is full.
+]=]
 function CircularBuffer:IsFull()
 	return #self.Data == self.Capacity
 end
 
---[[**
+--[=[
 	Pushes the passed data to the front of the CircularBuffer.
-	@param [t:NonNil] NewData The data you are pushing.
-	@returns [t:any?] Returns the removed data, if there was any.
-**--]]
+	@error InvalidData -- Thrown when NewData is null.
+
+	@param NewData NonNil -- The data you are pushing.
+	@return any? -- Returns the removed data, if there was any.
+]=]
 function CircularBuffer:Push(NewData: NonNil)
 	assert(NewData ~= nil, "NewData cannot be nil.")
-
 	local Data = self.Data
 	table.insert(Data, 1, NewData)
 	return table.remove(Data, self.Index)
 end
 
---[[**
+--[=[
 	Replaces the index in the CircularBuffer with the passed data. This function errors if there is no index to replace.
-	@param [t:int] Index The index you are replacing.
-	@param [t:NonNil] NewData The data you are replacing with.
-	@returns [t:any] The replaced data.
-**--]]
+	@error InvalidData -- Thrown when NewData is null.
+	@error InvalidIndex -- Thrown when Index is not a number.
+	@error IndexTooLarge -- Thrown when Index is greater than the CircularBuffer's capacity.
+
+	@param Index int -- The index you are replacing.
+	@param NewData NonNil -- The data you are replacing with.
+	@return any -- The replaced data.
+]=]
 function CircularBuffer:Replace(Index: int, NewData: NonNil)
 	assert(NewData ~= nil, "NewData cannot be nil.")
 	assert(type(Index) == "number", "Index must be an integer, instead got a " .. typeof(Index))
@@ -105,12 +127,16 @@ function CircularBuffer:Replace(Index: int, NewData: NonNil)
 	return OldData
 end
 
---[[**
+--[=[
 	Inserts the data at the index in the CircularBuffer.
-	@param [t:int] Index The index you are replacing.
-	@param [t:NonNil] NewData The data you are replacing with.
-	@returns [t:any] The replaced data.
-**--]]
+	@error InvalidData -- Thrown when NewData is null.
+	@error InvalidIndex -- Thrown when Index is not a number.
+	@error IndexTooLarge -- Thrown when Index is greater than the CircularBuffer's capacity.
+
+	@param Index int -- The index you are replacing.
+	@param NewData NonNil -- The data you are replacing with.
+	@return any? -- The replaced data.
+]=]
 function CircularBuffer:Insert(Index: int, NewData: NonNil)
 	assert(NewData ~= nil, "NewData cannot be nil.")
 	assert(type(Index) == "number", "Index must be an integer, instead got a " .. typeof(Index))
@@ -121,20 +147,22 @@ function CircularBuffer:Insert(Index: int, NewData: NonNil)
 	return table.remove(Data, self.Index)
 end
 
---[[**
+--[=[
 	Returns the value at the given index.
-	@param [t:int?] Index The index you are getting. Defaults to 1.
-	@returns [t:any] The value at the given index.
-**--]]
+	@error InvalidIndex -- Thrown when Index is not a number or nil.
+
+	@param Index int? -- The index you are getting. Defaults to `1`.
+	@return any? -- The value at the given index.
+]=]
 function CircularBuffer:PeekAt(Index: int?)
 	assert(Index == nil or type(Index) == "number", "Index must be an integer?, instead got a " .. typeof(Index))
 	return self.Data[if Index then Index else 1]
 end
 
---[[**
-	Returns an iterator for iterating over the CircularBuffer.
-	@returns [t:Iterator] The ipairs iterator.
-**--]]
+--[=[
+	Returns an iterator for iterating over the CircularBuffer. Just a wrapper for `ipairs(self.Data)`.
+	@return Iterator -- The ipairs iterator.
+]=]
 function CircularBuffer:Iterator()
 	return ipairs(self.Data)
 end
