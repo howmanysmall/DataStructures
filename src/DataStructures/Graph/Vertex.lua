@@ -1,4 +1,5 @@
 --[=[
+	A Vertex class used for the Graph class.
 	@class Vertex
 ]=]
 local Vertex = {}
