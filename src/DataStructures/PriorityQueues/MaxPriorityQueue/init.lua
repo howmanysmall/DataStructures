@@ -25,6 +25,12 @@ export type HeapEntry = {
 ]=]
 
 --[=[
+	@within MaxPriorityQueue
+	@prop Heap Array<T>
+	The heap data of the MaxPriorityQueue.
+]=]
+
+--[=[
 	Creates a new `MaxPriorityQueue`.
 	@return MaxPriorityQueue<T>
 ]=]
@@ -89,9 +95,9 @@ end
 
 --[=[
 	Add an element to the `MaxPriorityQueue` with an associated priority.
-	@error InvalidValue -- Thrown when the value is nil.
+	@error "InvalidValue" -- Thrown when the value is nil.
 
-	@param Value NonNil -- The value of the element.
+	@param Value T -- The value of the element.
 	@param Priority number -- The priority of the element.
 	@return int -- The inserted position.
 ]=]
@@ -120,10 +126,10 @@ MaxPriorityQueue.Insert = MaxPriorityQueue.InsertWithPriority
 
 --[=[
 	Changes the priority of the given value in the `MaxPriorityQueue`.
-	@error InvalidValue -- Thrown when the value is nil.
-	@error CouldNotFind -- Thrown when the value couldn't be found.
+	@error "InvalidValue" -- Thrown when the value is nil.
+	@error "CouldNotFind" -- Thrown when the value couldn't be found.
 
-	@param Value NonNil -- The value you are updating the priority of.
+	@param Value T -- The value you are updating the priority of.
 	@param NewPriority number -- The new priority of the value.
 	@return int? -- The new position of the HeapEntry if it was found. This function will error if it couldn't find the value.
 ]=]
@@ -172,7 +178,7 @@ end
 --[=[
 	Remove the element from the `MaxPriorityQueue` that has the highest priority, and return it.
 	@param OnlyValue boolean? -- Whether or not to return only the value or the entire entry.
-	@return T | HeapEntry -- The removed element.
+	@return T | HeapEntry<T>? -- The removed element.
 ]=]
 function MaxPriorityQueue:PopElement(OnlyValue: boolean?): any | HeapEntry
 	local Heap: Array<HeapEntry> = self.Heap
@@ -190,7 +196,7 @@ MaxPriorityQueue.GetMaximumElement = MaxPriorityQueue.PopElement
 --[=[
 	Converts the entire `MaxPriorityQueue` to an array.
 	@param OnlyValues boolean? -- Whether or not the array is just the values or the priorities as well.
-	@return Array<T> | Array<HeapEntry> -- The `MaxPriorityQueue`'s array.
+	@return Array<T> | Array<HeapEntry<T>> -- The `MaxPriorityQueue`'s array.
 ]=]
 function MaxPriorityQueue:ToArray(OnlyValues: boolean?): Array<any> | Array<HeapEntry>
 	if OnlyValues then
@@ -213,6 +219,11 @@ end
 
 --[=[
 	Returns an iterator function for iterating over the `MaxPriorityQueue`.
+
+	:::warning Performance
+	If you care about performance, do not use this function. Just do `for Index, Value in ipairs(MaxPriorityQueue.Heap) do` directly.
+	:::
+
 	@param OnlyValues boolean? Whether or not the iterator returns just the values or the priorities as well.
 	@return IteratorFunction -- The iterator function. Usage is `for Index, Value in MaxPriorityQueue:Iterator(OnlyValues) do`.
 ]=]
@@ -270,9 +281,9 @@ end
 
 --[=[
 	Determines if the `MaxPriorityQueue` contains the given value.
-	@error InvalidValue -- Thrown when the value is nil.
+	@error "InvalidValue" -- Thrown when the value is nil.
 
-	@param Value NonNil -- The value you are searching for.
+	@param Value T -- The value you are searching for.
 	@return boolean -- Whether or not the value was found.
 ]=]
 function MaxPriorityQueue:Contains(Value: NonNil): boolean
@@ -305,9 +316,9 @@ end
 
 --[=[
 	Removes the `HeapEntry` with the given value, if it exists.
-	@error InvalidValue -- Thrown when the value is nil.
+	@error "InvalidValue" -- Thrown when the value is nil.
 
-	@param Value NonNil -- The value you are removing from the `MaxPriorityQueue`.
+	@param Value T -- The value you are removing from the `MaxPriorityQueue`.
 ]=]
 function MaxPriorityQueue:RemoveValue(Value: NonNil)
 	if Value == nil then
@@ -325,7 +336,7 @@ end
 
 function MaxPriorityQueue:__tostring()
 	local Array = table.create(self.Length)
-	for Index, Value in self:Iterator(false) do
+	for Index, Value in ipairs(self.Heap) do
 		Array[Index] = string.format("\t{Priority = %s, Value = %s};", tostring(Value.Priority), tostring(Value.Value))
 	end
 

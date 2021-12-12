@@ -37,7 +37,7 @@ end
 
 --[=[
 	Pushes the passed value to the end of the Stack.
-	@error InvalidValue -- Thrown when the value is nil.
+	@error "InvalidValue" -- Thrown when the value is nil.
 
 	@param Value T -- The value you are pushing.
 	@return int -- The passed value's location.
@@ -98,19 +98,25 @@ end
 
 --[=[
 	Returns an iterator that can be used to iterate through the Stack. This is just an alias for `ipairs`, which you can use instead. This only exists for consistency reasons.
-	@function Iterator
-	@within Stack
+
+	:::warning Performance
+	If you care about performance, do not use this function. Just do `for Index, Value in ipairs(Stack) do` directly.
+	:::
+
 	@return StackIterator -- The iterator, which is used in a for loop.
 ]=]
-Stack.Iterator = ipairs
+function Stack:Iterator()
+	return ipairs(self)
+end
 
-function Stack:__tostring(): string
-	local StackArray = table.create(self.Length)
-	for Index, Value in ipairs(self) do
+function Stack:__tostring()
+	local Length = self.Length
+	local StackArray = table.move(self, 1, Length, 1, table.create(Length))
+	for Index, Value in ipairs(StackArray) do
 		StackArray[Index] = tostring(Value)
 	end
 
-	return "Stack<[" .. table.concat(StackArray, ", ") .. "]>"
+	return string.format("Stack<[%s]>", table.concat(StackArray, ", "))
 end
 
 export type Stack = typeof(Stack.new())

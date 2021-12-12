@@ -91,10 +91,10 @@ end
 
 --[=[
 	Adds the element `Value` to the end of the list. This operation should compute in O(1) time and O(1) memory.
-	@error InvalidValue -- Thrown when the value passed is nil.
+	@error "InvalidValue" -- Thrown when the value passed is nil.
 
 	@param Value T -- The value you are appending.
-	@return ListNode -- The appended node.
+	@return ListNode<T> -- The appended node.
 ]=]
 function LinkedList:Push(Value: any): ListNode
 	if Value == nil then
@@ -120,7 +120,7 @@ end
 
 --[=[
 	Adds the elements from `List` to the end of the list. This operation should compute in O(1) time and O(1) memory.
-	@error InvalidList -- Thrown when the List passed is not a LinkedList.
+	@error "InvalidList" -- Thrown when the List passed is not a LinkedList.
 
 	@param List LinkedList<T> -- The `LinkedList` you are appending from.
 ]=]
@@ -136,10 +136,10 @@ end
 
 --[=[
 	Adds the element `Value` to the start of the list. This operation should compute in O(1) time and O(1) memory.
-	@error InvalidValue -- Thrown when the value passed is nil.
+	@error "InvalidValue" -- Thrown when the value passed is nil.
 
 	@param Value T -- The value you are prepending.
-	@return ListNode -- The prepended node.
+	@return ListNode<T> -- The prepended node.
 ]=]
 function LinkedList:PushFront(Value: any)
 	if Value == nil then
@@ -166,7 +166,7 @@ end
 
 --[=[
 	Adds the elements from `List` to the start of the list. This operation should compute in O(1) time and O(1) memory.
-	@error InvalidList -- Thrown when the List passed is not a LinkedList.
+	@error "InvalidList" -- Thrown when the List passed is not a LinkedList.
 
 	@param List LinkedList<T> -- The `LinkedList` you are prepending from.
 ]=]
@@ -182,7 +182,7 @@ end
 
 --[=[
 	Removes the first element and returns it, or `nil` if the list is empty. This operation should compute in O(1) time.
-	@return ListNode? -- The popped node, if there was one.
+	@return ListNode<T>? -- The popped node, if there was one.
 ]=]
 function LinkedList:Pop(): ListNode?
 	if self.Length == 0 then
@@ -200,7 +200,7 @@ end
 
 --[=[
 	Removes the last element and returns it, or `nil` if the list is empty. This operation should compute in O(1) time.
-	@return ListNode? -- The popped node, if there was one.
+	@return ListNode<T>? -- The popped node, if there was one.
 ]=]
 function LinkedList:PopBack(): ListNode?
 	if self.Length == 0 then
@@ -241,7 +241,7 @@ end
 
 --[=[
 	Returns `true` if the `LinkedList` contains an element equal to the given value.
-	@param Value ListNode | any -- The value you are searching for.
+	@param Value ListNode<T> | T -- The value you are searching for.
 	@return boolean
 ]=]
 function LinkedList:Contains(Value: ListNode | any): boolean
@@ -313,7 +313,7 @@ end
 
 --[=[
 	Removes the element at the given index from the `LinkedList`. This operation should compute in O(n) time.
-	@error InvalidIndex -- Thrown when the index is out of bounds.
+	@error "InvalidIndex" -- Thrown when the index is out of bounds.
 
 	@param Index int -- The index of the node you want to remove.
 	@return LinkedList<T>
@@ -351,7 +351,7 @@ end
 
 --[=[
 	Removes any element with the given value from the `LinkedList`. This operation should compute in O(n) time.
-	@param Value any -- The value you want to remove from the `LinkedList`.
+	@param Value T -- The value you want to remove from the `LinkedList`.
 	@return LinkedList<T>
 ]=]
 function LinkedList:RemoveValue(Value: any)
@@ -381,7 +381,7 @@ end
 
 --[=[
 	Removes the given `ListNode` from the `LinkedList`. This operation should compute in O(n) time.
-	@param Node ListNode -- The node you want to remove from the `LinkedList`.
+	@param Node ListNode<T> -- The node you want to remove from the `LinkedList`.
 	@return LinkedList<T>
 ]=]
 function LinkedList:RemoveNode(Node: ListNode)

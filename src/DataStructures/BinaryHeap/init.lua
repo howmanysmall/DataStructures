@@ -62,7 +62,13 @@ function BinaryHeap:Heapify(Index)
 		local Index1 = Smallest + 1
 		local Value1 = self[Index1]
 
-		if Value1 and (ComparisonFunction and ComparisonFunction(Value1, Value0) or not ComparisonFunction and Value1 < Value0) then
+		if
+			Value1
+			and (
+				ComparisonFunction and ComparisonFunction(Value1, Value0)
+				or not ComparisonFunction and Value1 < Value0
+			)
+		then
 			Value0 = Value1
 			Smallest = Index1
 		end
@@ -110,7 +116,10 @@ function BinaryHeap:Set(Index, Key)
 		local Middle = math.floor(Index / 2)
 		local Value = self[Middle]
 
-		while Value and (ComparisonFunction and ComparisonFunction(Key, Value) or not ComparisonFunction and Key < Value) do
+		while
+			Value
+			and (ComparisonFunction and ComparisonFunction(Key, Value) or not ComparisonFunction and Key < Value)
+		do
 			self[Index] = Value
 			Index = Middle
 			Middle = math.floor(Index / 2)
@@ -128,7 +137,13 @@ function BinaryHeap:Set(Index, Key)
 			local Index1 = Smallest + 1
 			local Value1 = self[Index1]
 
-			if Value1 and (ComparisonFunction and ComparisonFunction(Value1, Value0) or not ComparisonFunction and Value1 < Value0) then
+			if
+				Value1
+				and (
+					ComparisonFunction and ComparisonFunction(Value1, Value0)
+					or not ComparisonFunction and Value1 < Value0
+				)
+			then
 				Value0 = Value1
 				Smallest = Index1
 			end
@@ -178,7 +193,13 @@ function BinaryHeap:Pop(): Comparable?
 		local Index1 = Smallest + 1
 		local Value1 = self[Index1]
 
-		if Value1 and (ComparisonFunction and ComparisonFunction(Value1, Value0) or not ComparisonFunction and Value1 < Value0) then
+		if
+			Value1
+			and (
+				ComparisonFunction and ComparisonFunction(Value1, Value0)
+				or not ComparisonFunction and Value1 < Value0
+			)
+		then
 			Value0 = Value1
 			Smallest = Index1
 		end
@@ -200,7 +221,7 @@ end
 --[=[
 	Deletes the key at Index by shifting it to root (treating it as -infinity) and then popping it.
 	@param Index int -- The index of the key you want to delete.
-	@return BinaryHeap -- Returns the same heap.
+	@return BinaryHeap<T> -- Returns the same heap.
 ]=]
 function BinaryHeap:Delete(Index: int)
 	local Length = self.Length
@@ -229,7 +250,13 @@ function BinaryHeap:Delete(Index: int)
 		local Index1 = Smallest + 1
 		local Value1 = self[Index1]
 
-		if Value1 and (ComparisonFunction and ComparisonFunction(Value1, Value0) or not ComparisonFunction and Value1 < Value0) then
+		if
+			Value1
+			and (
+				ComparisonFunction and ComparisonFunction(Value1, Value0)
+				or not ComparisonFunction and Value1 < Value0
+			)
+		then
 			Value0 = Value1
 			Smallest = Index1
 		end
@@ -250,7 +277,7 @@ end
 
 --[=[
 	Returns the front value of the heap.
-	@return any -- The first value.
+	@return T -- The first value.
 ]=]
 function BinaryHeap:GetFront(): any
 	return self[1]

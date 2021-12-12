@@ -53,13 +53,30 @@
 
 	"Doc": {
 		"body": [
-			"--[[**",
-			"\t${1:Function description.}",
-			"\t@returns [t:${2:any}] ${3:Return description.}",
-			"**--]]",
+			"--[=[",
+			"\t${1:FunctionDescription}",
+			"",
+			"\t```lua",
+			"\t```",
+			"",
+			"\t@param ${2:ParameterName} ${3:ParameterType} -- ${4:ParameterDescription}",
+			"\t@return ${5:ReturnType} -- ${6:ReturnDescription}",
+			"]=]",
 		],
 
 		"description": "Creates a new doc comment.",
 		"prefix": ["doc", "doccomment", "**"],
 	},
+
+	// "Doc": {
+	// 	"body": [
+	// 		"--[[**",
+	// 		"\t${1:Function description.}",
+	// 		"\t@returns [t:${2:any}] ${3:Return description.}",
+	// 		"**--]]",
+	// 	],
+
+	// 	"description": "Creates a new doc comment.",
+	// 	"prefix": ["doc", "doccomment", "**"],
+	// },
 }

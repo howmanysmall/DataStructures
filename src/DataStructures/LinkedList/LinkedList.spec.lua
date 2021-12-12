@@ -26,10 +26,10 @@ return function()
 		end)
 
 		it("should allow an array to be passed", function()
-			local List = LinkedList.new {1, 2, 3, 4}
+			local List = LinkedList.new({1, 2, 3, 4})
 			expect(TypeOf(List)).to.equal("LinkedList")
 			expect(List.Length).to.equal(4)
-			expect(tostring(List)).to.equal("[1, 2, 3, 4]")
+			expect(tostring(List)).to.equal("LinkedList<[1, 2, 3, 4]>")
 		end)
 
 		it("should throw if anything but an array or nil is passed", function()
@@ -45,10 +45,10 @@ return function()
 		end)
 
 		it("should push to the end of the list", function()
-			local List = LinkedList.new {1, 2, 3}
+			local List = LinkedList.new({1, 2, 3})
 			List:Push(4)
 			expect(List.Length).to.equal(4)
-			expect(tostring(List)).to.equal("[1, 2, 3, 4]")
+			expect(tostring(List)).to.equal("LinkedList<[1, 2, 3, 4]>")
 		end)
 
 		it("should throw if nil is passed", function()
@@ -66,10 +66,10 @@ return function()
 		end)
 
 		it("should push a LinkedList to the end of the list", function()
-			local List = LinkedList.new {1, 2}
-			List:Append(LinkedList.new {3, 4})
+			local List = LinkedList.new({1, 2})
+			List:Append(LinkedList.new({3, 4}))
 			expect(List.Length).to.equal(4)
-			expect(tostring(List)).to.equal("[1, 2, 3, 4]")
+			expect(tostring(List)).to.equal("LinkedList<[1, 2, 3, 4]>")
 		end)
 	end)
 
@@ -79,10 +79,10 @@ return function()
 		end)
 
 		it("should push to the front of the list", function()
-			local List = LinkedList.new {2, 3, 4}
+			local List = LinkedList.new({2, 3, 4})
 			List:PushFront(1)
 			expect(List.Length).to.equal(4)
-			expect(tostring(List)).to.equal("[1, 2, 3, 4]")
+			expect(tostring(List)).to.equal("LinkedList<[1, 2, 3, 4]>")
 		end)
 
 		it("should throw if nil is passed", function()
@@ -100,36 +100,36 @@ return function()
 		end)
 
 		it("should push a LinkedList to the start of the list", function()
-			local List = LinkedList.new {3, 4}
-			List:Prepend(LinkedList.new {1, 2})
+			local List = LinkedList.new({3, 4})
+			List:Prepend(LinkedList.new({1, 2}))
 			expect(List.Length).to.equal(4)
-			expect(tostring(List)).to.equal("[1, 2, 3, 4]")
+			expect(tostring(List)).to.equal("LinkedList<[1, 2, 3, 4]>")
 		end)
 	end)
 
 	describe("LinkedList:Pop", function()
 		it("should return a ListNode", function()
-			expect(TypeOf(LinkedList.new {1, 2, 3}:Pop())).to.equal("ListNode")
+			expect(TypeOf(LinkedList.new({1, 2, 3}):Pop())).to.equal("ListNode")
 		end)
 
 		it("should remove the first value", function()
-			local List = LinkedList.new {1, 2, 3, 4}
+			local List = LinkedList.new({1, 2, 3, 4})
 			expect(List:Pop().Value).to.equal(1)
 			expect(List.Length).to.equal(3)
-			expect(tostring(List)).to.equal("[2, 3, 4]")
+			expect(tostring(List)).to.equal("LinkedList<[2, 3, 4]>")
 		end)
 	end)
 
 	describe("LinkedList:PopBack", function()
 		it("should return a ListNode", function()
-			expect(TypeOf(LinkedList.new {1, 2, 3}:PopBack())).to.equal("ListNode")
+			expect(TypeOf(LinkedList.new({1, 2, 3}):PopBack())).to.equal("ListNode")
 		end)
 
 		it("should remove the last value", function()
-			local List = LinkedList.new {1, 2, 3, 4}
+			local List = LinkedList.new({1, 2, 3, 4})
 			expect(List:PopBack().Value).to.equal(4)
 			expect(List.Length).to.equal(3)
-			expect(tostring(List)).to.equal("[1, 2, 3]")
+			expect(tostring(List)).to.equal("LinkedList<[1, 2, 3]>")
 		end)
 	end)
 
@@ -153,7 +153,7 @@ return function()
 			local List = LinkedList.new(table.create(4, 1)):Clear()
 			expect(List:IsEmpty()).to.equal(true)
 			expect(List.Length).to.equal(0)
-			expect(tostring(List)).to.equal("[]")
+			expect(tostring(List)).to.equal("LinkedList<[]>")
 		end)
 	end)
 end

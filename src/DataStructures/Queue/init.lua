@@ -47,7 +47,7 @@ end
 
 --[=[
 	Pushes the passed value to the end of the Queue.
-	@error InvalidValue -- Thrown when the value is nil.
+	@error "InvalidValue" -- Thrown when the value is nil.
 
 	@param Value T -- The value you are pushing.
 	@return int -- The passed value's location.
@@ -87,7 +87,7 @@ end
 
 --[=[
 	Gets the front value of the Queue.
-	@return T -- The first value.
+	@return T? -- The first value.
 ]=]
 function Queue:GetFront(): any
 	return self[self.First]
@@ -95,7 +95,7 @@ end
 
 --[=[
 	Gets the last value of the Queue.
-	@return T -- The last value.
+	@return T? -- The last value.
 ]=]
 function Queue:GetBack(): any
 	return self[self.Length]

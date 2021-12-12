@@ -84,8 +84,8 @@ end
 
 --[=[
 	Marks the ArrayList as read-only. Returns a clone of the ArrayList.
-	@error InvalidArgument -- Thrown when the List is nil.
-	@error NotArrayList -- Thrown when the List isn't an ArrayList.
+	@error "InvalidArgument" -- Thrown when the List is nil.
+	@error "NotArrayList" -- Thrown when the List isn't an ArrayList.
 
 	@param List ArrayList<T> -- The ArrayList to make read-only.
 	@return ArrayList<T>
@@ -106,8 +106,8 @@ end
 
 --[=[
 	Marks the ArrayList as a fixed size. Returns a clone of the ArrayList.
-	@error InvalidArgument -- Thrown when the List is nil.
-	@error NotArrayList -- Thrown when the List isn't an ArrayList.
+	@error "InvalidArgument" -- Thrown when the List is nil.
+	@error "NotArrayList" -- Thrown when the List isn't an ArrayList.
 
 	@param List ArrayList<T> -- The ArrayList to mark as fixed size.
 	@return ArrayList<T>
@@ -128,9 +128,9 @@ end
 
 --[=[
 	Adds an object to the end of the ArrayList.
-	@error IsFixedSize -- Thrown when the ArrayList is fixed size.
-	@error IsReadOnly -- Thrown when the ArrayList is read-only.
-	@error InvalidArgument -- Thrown when the value is nil.
+	@error "IsFixedSize" -- Thrown when the ArrayList is fixed size.
+	@error "IsReadOnly" -- Thrown when the ArrayList is read-only.
+	@error "InvalidArgument" -- Thrown when the value is nil.
 
 	@param Value NonNil -- The value to be added to the end of the ArrayList. The value cannot be nil.
 	@return int -- The ArrayList index at which the value has been added.
@@ -168,8 +168,8 @@ end
 
 --[=[
 	Clears the ArrayList.
-	@error IsFixedSize -- Thrown when the ArrayList is fixed size.
-	@error IsReadOnly -- Thrown when the ArrayList is read-only.
+	@error "IsFixedSize" -- Thrown when the ArrayList is fixed size.
+	@error "IsReadOnly" -- Thrown when the ArrayList is read-only.
 ]=]
 function ArrayList:Clear()
 	if self.IsFixedSize then
@@ -188,7 +188,7 @@ end
 
 --[=[
 	Determines if the ArrayList contains the given value.
-	@error InvalidArgument -- Thrown when the value is nil.
+	@error "InvalidArgument" -- Thrown when the value is nil.
 
 	@param Value NonNil -- The value to check.
 	@return boolean
@@ -203,7 +203,7 @@ end
 
 --[=[
 	Locates the index of the given value in the ArrayList.
-	@error InvalidArgument -- Thrown when the value is nil.
+	@error "InvalidArgument" -- Thrown when the value is nil.
 
 	@param Value NonNil -- The value to search for.
 	@return int? -- The index of the value.
@@ -218,9 +218,9 @@ end
 
 --[=[
 	Inserts the given value into the ArrayList at the given index.
-	@error IsFixedSize -- Thrown when the ArrayList is fixed size.
-	@error IsReadOnly -- Thrown when the ArrayList is read-only.
-	@error InvalidArgument -- Thrown when either the value or the index is incorrect.
+	@error "IsFixedSize" -- Thrown when the ArrayList is fixed size.
+	@error "IsReadOnly" -- Thrown when the ArrayList is read-only.
+	@error "InvalidArgument" -- Thrown when either the value or the index is incorrect.
 
 	@param Index int -- The index to insert at.
 	@param Value NonNil -- The value to be added to the end of the ArrayList. The value cannot be nil.
