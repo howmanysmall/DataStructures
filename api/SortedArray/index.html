@@ -1,0 +1,1020 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="generator" content="Docusaurus v2.0.0-beta.9">
+<title data-react-helmet="true">SortedArray | DataStructures</title><meta data-react-helmet="true" property="og:title" content="SortedArray | DataStructures"><meta data-react-helmet="true" name="twitter:card" content="summary_large_image"><meta data-react-helmet="true" name="description" content="A class to create sorted arrays. Must contain objects comparable to
+one another (that can use the `&lt;` and `==` operators). Numbers and
+strings support these operators by default.
+
+```lua
+local SortedArray = require(&quot;SortedArray&quot;)
+local Array1 = SortedArray.new({1, 2, 3}) -- Gets sorted.
+local Array2 = SortedArray.new()
+```"><meta data-react-helmet="true" property="og:description" content="A class to create sorted arrays. Must contain objects comparable to
+one another (that can use the `&lt;` and `==` operators). Numbers and
+strings support these operators by default.
+
+```lua
+local SortedArray = require(&quot;SortedArray&quot;)
+local Array1 = SortedArray.new({1, 2, 3}) -- Gets sorted.
+local Array2 = SortedArray.new()
+```"><meta data-react-helmet="true" property="og:url" content="https://howmanysmall.github.io/DataStructures/api/SortedArray"><meta data-react-helmet="true" name="docusaurus_locale" content="en"><meta data-react-helmet="true" name="docusaurus_tag" content="default"><link data-react-helmet="true" rel="canonical" href="https://howmanysmall.github.io/DataStructures/api/SortedArray"><link data-react-helmet="true" rel="alternate" href="https://howmanysmall.github.io/DataStructures/api/SortedArray" hreflang="en"><link data-react-helmet="true" rel="alternate" href="https://howmanysmall.github.io/DataStructures/api/SortedArray" hreflang="x-default"><link rel="stylesheet" href="/DataStructures/assets/css/styles.af7d0217.css">
+<link rel="preload" href="/DataStructures/assets/js/runtime~main.39af511f.js" as="script">
+<link rel="preload" href="/DataStructures/assets/js/main.e81fd5e2.js" as="script">
+</head>
+<body>
+<script>!function(){function e(e){document.documentElement.setAttribute("data-theme",e)}var t=function(){var e=null;try{e=localStorage.getItem("theme")}catch(e){}return e}();null!==t?e(t):window.matchMedia("(prefers-color-scheme: dark)").matches?e("dark"):(window.matchMedia("(prefers-color-scheme: light)").matches,e("light"))}()</script><div id="__docusaurus">
+<div><a href="#" class="skipToContent_1oUP">Skip to main content</a></div><nav class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Navigation bar toggle" class="navbar__toggle clean-btn" type="button" tabindex="0"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/DataStructures/"><b class="navbar__title">DataStructures</b></a><a class="navbar__item navbar__link" href="/DataStructures/docs/intro">Docs</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/DataStructures/api/">API</a></div><div class="navbar__items navbar__items--right"><a href="https://discord.gg/mhtGUS8" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link"><span>Discord<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_3J9K"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></span></a><a href="https://github.com/howmanysmall/DataStructures" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link"><span>GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_3J9K"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></span></a><div class="toggle_71bT toggle_3Zt9 toggleDisabled_3cF-"><div class="toggleTrack_32Fl" role="button" tabindex="-1"><div class="toggleTrackCheck_3lV7"><span class="toggleIcon_O4iE">🌜</span></div><div class="toggleTrackX_S2yS"><span class="toggleIcon_O4iE">🌞</span></div><div class="toggleTrackThumb_xI_Z"></div></div><input type="checkbox" class="toggleScreenReader_28Tw" aria-label="Switch between dark and light mode"></div><div class="navbar__search"><span aria-label="expand searchbar" role="button" class="search-icon" tabindex="0"></span><input type="search" id="search_input_react" placeholder="Press S to Search..." aria-label="Search" class="navbar__search-input search-bar"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div class="main-wrapper docPageContainer_2Kz0"><div class="docPage_1bdk"><div class="docSidebarContainer_1ykS"><div class="sidebar_15mo"><nav class="menu thin-scrollbar menu_Bmed"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/DataStructures/api/ArrayList">​Array​List</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/DataStructures/api/BinaryHeap">​Binary​Heap</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/DataStructures/api/CircularBuffer">​Circular​Buffer</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/DataStructures/api/LinkedList">​Linked​List</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/DataStructures/api/ListNode">​List​Node</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/DataStructures/api/MaxPriorityQueue">​Max​Priority​Queue</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/DataStructures/api/MinPriorityQueue">​Min​Priority​Queue</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/DataStructures/api/Queue">​Queue</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/DataStructures/api/SortedArray">​Sorted​Array</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/DataStructures/api/Stack">​Stack</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/DataStructures/api/Vertex">​Vertex</a></li></ul></nav><button type="button" title="Collapse sidebar" aria-label="Collapse sidebar" class="button button--secondary button--outline collapseSidebarButton_1CGd"><svg width="20" height="20" aria-hidden="true" class="collapseSidebarButtonIcon_3E-R"><g fill="#7a7a7a"><path d="M9.992 10.023c0 .2-.062.399-.172.547l-4.996 7.492a.982.982 0 01-.828.454H1c-.55 0-1-.453-1-1 0-.2.059-.403.168-.551l4.629-6.942L.168 3.078A.939.939 0 010 2.528c0-.548.45-.997 1-.997h2.996c.352 0 .649.18.828.45L9.82 9.472c.11.148.172.347.172.55zm0 0"></path><path d="M19.98 10.023c0 .2-.058.399-.168.547l-4.996 7.492a.987.987 0 01-.828.454h-3c-.547 0-.996-.453-.996-1 0-.2.059-.403.168-.551l4.625-6.942-4.625-6.945a.939.939 0 01-.168-.55 1 1 0 01.996-.997h3c.348 0 .649.18.828.45l4.996 7.492c.11.148.168.347.168.55zm0 0"></path></g></svg></button></div></div><main class="docMainContainer_28N5"><div class="container padding-vert--lg"><div class="row"><div class="col docItemCol_3WPG"><div class="docItemContainer_3XDu"><article><div class="member_qHIL markdown"><div class="tocCollapsible_1PrD theme-doc-toc-mobile tocMobile_3ryM"><button type="button" class="clean-btn tocCollapsibleButton_2O1e">On this page</button></div><header><h1 class="docTitle_1ddc" style="text-decoration:none"><span style="display:inline-block">Sorted</span><span style="display:inline-block">Array</span></h1><div class="luaClassTags_2Zrs"></div><div>
+<p>
+  A class to create sorted arrays. Must contain objects comparable to
+  one another (that can use the <code>&#x3C;</code> and <code>==</code> operators). Numbers and
+  strings support these operators by default.
+</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> SortedArray <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"SortedArray"</span><span class="token punctuation">)</span>
+<span class="token keyword">local</span> Array1 <span class="token operator">=</span> SortedArray<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token comment">-- Gets sorted.</span>
+<span class="token keyword">local</span> Array2 <span class="token operator">=</span> SortedArray<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+</div></header><h2 class="anchor anchorWithStickyNavbar_31ik" id="functions">Functions<a aria-hidden="true" class="hash-link" href="#functions" title="Direct link to heading">​</a></h2><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="new"><code style="text-decoration:none">new</code><a aria-hidden="true" class="hash-link" href="#new" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/SortedArray/init.lua#L48"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>SortedArray<!-- -->.</code><code class="green_3LnD">new</code><code>(</code><div class="inset_2cJr"><div><code>BaseArray<!-- -->: </code><code class="blue_2Afy">Array</code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><code class="blue_2Afy">?</code><code>,</code><span class="inlineDescription_17uy">-- <span>
+<p>An array of data which will be sorted upon instantiation. If this is omitted, an empty array is used.</p>
+</span></span></div><div><code>Comparison<!-- -->: </code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><code class="green_3LnD">(</code><code class="purple__nFc">(</code><div class="inset_2cJr"><code>A<!-- -->: </code><code class="blue_2Afy">T</code><code class="purple__nFc">,</code></div><div class="inset_2cJr"><code>B<!-- -->: </code><code class="blue_2Afy">T</code></div><code class="purple__nFc">)</code><code class="purple__nFc"> → </code><code class="blue_2Afy">boolean</code><code class="green_3LnD">)</code><code class="blue_2Afy">?</code><span class="inlineDescription_17uy">-- <span>
+<p>An optional comparison function which is used to customize the element sorting, which will be given two elements <code>A</code> and <code>B</code> from the array as parameters. The function should return a boolean value specifying whether the first argument should be before the second argument in the sequence. If no comparison function is passed, the Lua-default <code>A &#x3C; B</code> sorting is used.</p>
+</span></span></div></div><code>) → </code><code class="blue_2Afy"><a style="text-decoration:underline;color:inherit" href="/DataStructures/api/SortedArray">SortedArray</a></code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code></div><div>
+<p>Instantiates and returns a new SortedArray, with optional parameters.</p>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="ForEach"><code style="text-decoration:none">ForEach</code><a aria-hidden="true" class="hash-link" href="#ForEach" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/SortedArray/init.lua#L112"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>SortedArray<!-- -->:</code><code class="green_3LnD">ForEach</code><code>(</code><div class="inset_2cJr"><div><code>Function<!-- -->: </code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><code class="green_3LnD">(</code><div class="inset_2cJr"><code>Value<!-- -->: </code><code class="blue_2Afy">T</code><code class="green_3LnD">,</code></div><div class="inset_2cJr"><code>Index<!-- -->: </code><code class="blue_2Afy">int</code><code class="green_3LnD">,</code></div><div class="inset_2cJr"><code>self<!-- -->: </code><code class="blue_2Afy"><a style="text-decoration:underline;color:inherit" href="/DataStructures/api/SortedArray">SortedArray</a></code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code></div><code class="green_3LnD">)</code><code class="green_3LnD"> → </code><code class="green_3LnD">(</code><code class="green_3LnD">)</code><span class="inlineDescription_17uy">-- <span>
+<p>The function you are running.</p>
+</span></span></div></div><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Runs the given function on every element in the array.</p>
+<pre class="language-lua"><code class="language-lua">SortedArray<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token function">ForEach</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>Value<span class="token punctuation">)</span>
+	<span class="token function">print</span><span class="token punctuation">(</span>Value<span class="token punctuation">)</span>
+<span class="token keyword">end</span><span class="token punctuation">)</span> <span class="token comment">-- prints 1, 2, and 3</span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="Map"><code style="text-decoration:none">Map</code><a aria-hidden="true" class="hash-link" href="#Map" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/SortedArray/init.lua#L130"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>SortedArray<!-- -->:</code><code class="green_3LnD">Map</code><code>(</code><div class="inset_2cJr"><div><code>Predicate<!-- -->: </code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><code class="green_3LnD">(</code><div class="inset_2cJr"><code>Value<!-- -->: </code><code class="blue_2Afy">T</code><code class="green_3LnD">,</code></div><div class="inset_2cJr"><code>Index<!-- -->: </code><code class="blue_2Afy">int</code><code class="green_3LnD">,</code></div><div class="inset_2cJr"><code>self<!-- -->: </code><code class="blue_2Afy"><a style="text-decoration:underline;color:inherit" href="/DataStructures/api/SortedArray">SortedArray</a></code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code></div><code class="green_3LnD">)</code><code class="green_3LnD"> → </code><code class="blue_2Afy">T?</code><span class="inlineDescription_17uy">-- <span>
+<p>The function you are running.</p>
+</span></span></div></div><code>) → </code><code class="blue_2Afy">Array</code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><span class="inlineDescription_17uy">-- <span>
+<p>The mapped array.</p>
+</span></span></div><div>
+<p>Maps the SortedArray to a new array using the given predicate.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token function">print</span><span class="token punctuation">(</span>SortedArray<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token function">Map</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>Value<span class="token punctuation">)</span>
+	<span class="token keyword">return</span> Value <span class="token operator">*</span> <span class="token number">2</span>
+<span class="token keyword">end</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">-- {2, 4, 6}</span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="MapToSortedArray"><code style="text-decoration:none">MapToSortedArray</code><a aria-hidden="true" class="hash-link" href="#MapToSortedArray" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/SortedArray/init.lua#L151"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>SortedArray<!-- -->:</code><code class="green_3LnD">MapToSortedArray</code><code>(</code><div class="inset_2cJr"><div><code>Predicate<!-- -->: </code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><code class="green_3LnD">(</code><div class="inset_2cJr"><code>Value<!-- -->: </code><code class="blue_2Afy">T</code><code class="green_3LnD">,</code></div><div class="inset_2cJr"><code>Index<!-- -->: </code><code class="blue_2Afy">int</code><code class="green_3LnD">,</code></div><div class="inset_2cJr"><code>self<!-- -->: </code><code class="blue_2Afy"><a style="text-decoration:underline;color:inherit" href="/DataStructures/api/SortedArray">SortedArray</a></code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code></div><code class="green_3LnD">)</code><code class="green_3LnD"> → </code><code class="blue_2Afy">T?</code><span class="inlineDescription_17uy">-- <span>
+<p>The function you are running.</p>
+</span></span></div></div><code>) → </code><code class="blue_2Afy"><a style="text-decoration:underline;color:inherit" href="/DataStructures/api/SortedArray">SortedArray</a></code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><span class="inlineDescription_17uy">-- <span>
+<p>The mapped array.</p>
+</span></span></div><div>
+<p>Maps the SortedArray to a new SortedArray using the given predicate.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token function">print</span><span class="token punctuation">(</span>SortedArray<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token function">MapToSortedArray</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>Value<span class="token punctuation">)</span>
+	<span class="token keyword">return</span> Value <span class="token operator">*</span> <span class="token number">2</span>
+<span class="token keyword">end</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">-- SortedArray&#x3C;[2, 4, 6]></span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="Some"><code style="text-decoration:none">Some</code><a aria-hidden="true" class="hash-link" href="#Some" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/SortedArray/init.lua#L179"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>SortedArray<!-- -->:</code><code class="green_3LnD">Some</code><code>(</code><div class="inset_2cJr"><div><code>Predicate<!-- -->: </code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><code class="green_3LnD">(</code><div class="inset_2cJr"><code>Value<!-- -->: </code><code class="blue_2Afy">T</code><code class="green_3LnD">,</code></div><div class="inset_2cJr"><code>Index<!-- -->: </code><code class="blue_2Afy">int</code><code class="green_3LnD">,</code></div><div class="inset_2cJr"><code>self<!-- -->: </code><code class="blue_2Afy"><a style="text-decoration:underline;color:inherit" href="/DataStructures/api/SortedArray">SortedArray</a></code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code></div><code class="green_3LnD">)</code><code class="green_3LnD"> → </code><code class="blue_2Afy">boolean?</code><span class="inlineDescription_17uy">-- <span>
+<p>The function you are running.</p>
+</span></span></div></div><code>) → </code><code class="blue_2Afy">boolean</code><span class="inlineDescription_17uy">-- <span>
+<p>Whether or not the predicate was satisfied.</p>
+</span></span></div><div>
+<p>Runs every the given predicate on every element in the array to check if some value in the array satisfies the predicate.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token function">print</span><span class="token punctuation">(</span>SortedArray<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token function">Some</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>Value<span class="token punctuation">)</span>
+	<span class="token keyword">return</span> Value <span class="token operator">==</span> <span class="token number">4</span>
+<span class="token keyword">end</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">-- true</span>
+
+<span class="token function">print</span><span class="token punctuation">(</span>SortedArray<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token function">Some</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>Value<span class="token punctuation">)</span>
+	<span class="token keyword">return</span> Value <span class="token operator">==</span> <span class="token number">3</span>
+<span class="token keyword">end</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">-- false</span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="Every"><code style="text-decoration:none">Every</code><a aria-hidden="true" class="hash-link" href="#Every" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/SortedArray/init.lua#L205"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>SortedArray<!-- -->:</code><code class="green_3LnD">Every</code><code>(</code><div class="inset_2cJr"><div><code>Predicate<!-- -->: </code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><code class="green_3LnD">(</code><div class="inset_2cJr"><code>Value<!-- -->: </code><code class="blue_2Afy">T</code><code class="green_3LnD">,</code></div><div class="inset_2cJr"><code>Index<!-- -->: </code><code class="blue_2Afy">int</code><code class="green_3LnD">,</code></div><div class="inset_2cJr"><code>self<!-- -->: </code><code class="blue_2Afy"><a style="text-decoration:underline;color:inherit" href="/DataStructures/api/SortedArray">SortedArray</a></code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code></div><code class="green_3LnD">)</code><code class="green_3LnD"> → </code><code class="blue_2Afy">boolean?</code><span class="inlineDescription_17uy">-- <span>
+<p>The function you are running.</p>
+</span></span></div></div><code>) → </code><code class="blue_2Afy">boolean</code><span class="inlineDescription_17uy">-- <span>
+<p>Whether or not the predicate was satisfied.</p>
+</span></span></div><div>
+<p>Runs every the given predicate on every element in the array to check if every value in the array satisfies the predicate.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token function">print</span><span class="token punctuation">(</span>SortedArray<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token function">Every</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>Value<span class="token punctuation">)</span>
+	<span class="token keyword">return</span> Value <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span>
+<span class="token keyword">end</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">-- true</span>
+
+<span class="token function">print</span><span class="token punctuation">(</span>SortedArray<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token function">Every</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>Value<span class="token punctuation">)</span>
+	<span class="token keyword">return</span> Value <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span>
+<span class="token keyword">end</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">-- false</span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="Reduce"><code style="text-decoration:none">Reduce</code><a aria-hidden="true" class="hash-link" href="#Reduce" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/SortedArray/init.lua#L233"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>SortedArray<!-- -->:</code><code class="green_3LnD">Reduce</code><code>(</code><div class="inset_2cJr"><div><code>Predicate<!-- -->: </code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><code class="green_3LnD">(</code><div class="inset_2cJr"><code>Accumulator<!-- -->: </code><code class="blue_2Afy">T</code><code class="green_3LnD">,</code></div><div class="inset_2cJr"><code>Value<!-- -->: </code><code class="blue_2Afy">T</code><code class="green_3LnD">,</code></div><div class="inset_2cJr"><code>Index<!-- -->: </code><code class="blue_2Afy">int</code><code class="green_3LnD">,</code></div><div class="inset_2cJr"><code>self<!-- -->: </code><code class="blue_2Afy"><a style="text-decoration:underline;color:inherit" href="/DataStructures/api/SortedArray">SortedArray</a></code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code></div><code class="green_3LnD">)</code><code class="green_3LnD"> → </code><code class="blue_2Afy">T</code><code>,</code><span class="inlineDescription_17uy">-- <span>
+<p>The function you are running.</p>
+</span></span></div><div><code>InitialValue<!-- -->: </code><code class="blue_2Afy">T?</code><span class="inlineDescription_17uy">-- <span>
+<p>The initial value of the accumulator. Defaults to the first value in the SortedArray.</p>
+</span></span></div></div><code>) → </code><code class="blue_2Afy">T</code><span class="inlineDescription_17uy">-- <span>
+<p>The final value of the accumulator.</p>
+</span></span></div><div>
+<p>
+  The Reduce method executes a user-supplied "reducer" callback function on each element of the array, in order, passing in the return value
+  from the calculation on the preceding element. The final result of running the reducer across all elements of the array is a single value.
+</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> Array <span class="token operator">=</span> SortedArray<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">local</span> <span class="token keyword">function</span> <span class="token function">Reducer</span><span class="token punctuation">(</span>PreviousValue<span class="token punctuation">,</span> CurrentValue<span class="token punctuation">)</span>
+	<span class="token keyword">return</span> PreviousValue <span class="token operator">+</span> CurrentValue
+<span class="token keyword">end</span>
+
+<span class="token function">print</span><span class="token punctuation">(</span>Array<span class="token punctuation">:</span><span class="token function">Reduce</span><span class="token punctuation">(</span>Reducer<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">-- 10</span>
+<span class="token function">print</span><span class="token punctuation">(</span>Array<span class="token punctuation">:</span><span class="token function">Reduce</span><span class="token punctuation">(</span>Reducer<span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">-- 15</span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="ReduceRight"><code style="text-decoration:none">ReduceRight</code><a aria-hidden="true" class="hash-link" href="#ReduceRight" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/SortedArray/init.lua#L273"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>SortedArray<!-- -->:</code><code class="green_3LnD">ReduceRight</code><code>(</code><div class="inset_2cJr"><div><code>Predicate<!-- -->: </code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><code class="green_3LnD">(</code><div class="inset_2cJr"><code>Accumulator<!-- -->: </code><code class="blue_2Afy">T</code><code class="green_3LnD">,</code></div><div class="inset_2cJr"><code>Value<!-- -->: </code><code class="blue_2Afy">T</code><code class="green_3LnD">,</code></div><div class="inset_2cJr"><code>Index<!-- -->: </code><code class="blue_2Afy">int</code><code class="green_3LnD">,</code></div><div class="inset_2cJr"><code>self<!-- -->: </code><code class="blue_2Afy"><a style="text-decoration:underline;color:inherit" href="/DataStructures/api/SortedArray">SortedArray</a></code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code></div><code class="green_3LnD">)</code><code class="green_3LnD"> → </code><code class="blue_2Afy">T</code><code>,</code><span class="inlineDescription_17uy">-- <span>
+<p>The function you are running.</p>
+</span></span></div><div><code>InitialValue<!-- -->: </code><code class="blue_2Afy">T?</code><span class="inlineDescription_17uy">-- <span>
+<p>The initial value of the accumulator. Defaults to the first value in the SortedArray.</p>
+</span></span></div></div><code>) → </code><code class="blue_2Afy">T</code><span class="inlineDescription_17uy">-- <span>
+<p>The final value of the accumulator.</p>
+</span></span></div><div>
+<p>The ReduceRight method applies a function against an accumulator and each value of the array (from right-to-left) to reduce it to a single value.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> Array <span class="token operator">=</span> SortedArray<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">,</span> <span class="token number">45</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">local</span> <span class="token keyword">function</span> <span class="token function">Reducer</span><span class="token punctuation">(</span>PreviousValue<span class="token punctuation">,</span> CurrentValue<span class="token punctuation">)</span>
+	<span class="token keyword">return</span> PreviousValue <span class="token operator">-</span> CurrentValue
+<span class="token keyword">end</span>
+
+<span class="token function">print</span><span class="token punctuation">(</span>Array<span class="token punctuation">:</span><span class="token function">ReduceRight</span><span class="token punctuation">(</span>Reducer<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">-- prints 23</span>
+<span class="token function">print</span><span class="token punctuation">(</span>Array<span class="token punctuation">:</span><span class="token function">ReduceRight</span><span class="token punctuation">(</span>Reducer<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">-- prints -175</span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="Filter"><code style="text-decoration:none">Filter</code><a aria-hidden="true" class="hash-link" href="#Filter" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/SortedArray/init.lua#L324"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>SortedArray<!-- -->:</code><code class="green_3LnD">Filter</code><code>(</code><div class="inset_2cJr"><div><code>Predicate<!-- -->: </code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><code class="green_3LnD">(</code><div class="inset_2cJr"><code>Value<!-- -->: </code><code class="blue_2Afy">T</code><code class="green_3LnD">,</code></div><div class="inset_2cJr"><code>Index<!-- -->: </code><code class="blue_2Afy">int</code><code class="green_3LnD">,</code></div><div class="inset_2cJr"><code>self<!-- -->: </code><code class="blue_2Afy"><a style="text-decoration:underline;color:inherit" href="/DataStructures/api/SortedArray">SortedArray</a></code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code></div><code class="green_3LnD">)</code><code class="green_3LnD"> → </code><code class="blue_2Afy">boolean?</code><span class="inlineDescription_17uy">-- <span>
+<p>The function you are running.</p>
+</span></span></div></div><code>) → </code><code class="blue_2Afy">Array</code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><span class="inlineDescription_17uy">-- <span>
+<p>The filtered array.</p>
+</span></span></div><div>
+<p>The Filter method creates a new array with all elements that pass the test implemented by the provided function.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> EvenArray <span class="token operator">=</span> SortedArray<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token function">Filter</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>Value<span class="token punctuation">)</span>
+	<span class="token keyword">return</span> Value <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span>
+<span class="token keyword">end</span><span class="token punctuation">)</span>
+
+<span class="token function">print</span><span class="token punctuation">(</span>EvenArray<span class="token punctuation">)</span> <span class="token comment">-- {2, 4, 6, 8, 10}</span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="FilterToSortedArray"><code style="text-decoration:none">FilterToSortedArray</code><a aria-hidden="true" class="hash-link" href="#FilterToSortedArray" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/SortedArray/init.lua#L352"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>SortedArray<!-- -->:</code><code class="green_3LnD">FilterToSortedArray</code><code>(</code><div class="inset_2cJr"><div><code>Predicate<!-- -->: </code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><code class="green_3LnD">(</code><div class="inset_2cJr"><code>Value<!-- -->: </code><code class="blue_2Afy">T</code><code class="green_3LnD">,</code></div><div class="inset_2cJr"><code>Index<!-- -->: </code><code class="blue_2Afy">int</code><code class="green_3LnD">,</code></div><div class="inset_2cJr"><code>self<!-- -->: </code><code class="blue_2Afy"><a style="text-decoration:underline;color:inherit" href="/DataStructures/api/SortedArray">SortedArray</a></code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code></div><code class="green_3LnD">)</code><code class="green_3LnD"> → </code><code class="blue_2Afy">boolean?</code><span class="inlineDescription_17uy">-- <span>
+<p>The function you are running.</p>
+</span></span></div></div><code>) → </code><code class="blue_2Afy"><a style="text-decoration:underline;color:inherit" href="/DataStructures/api/SortedArray">SortedArray</a></code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><span class="inlineDescription_17uy">-- <span>
+<p>The filtered array.</p>
+</span></span></div><div>
+<p>The FilterToSortedArray method creates a new SortedArray with all elements that pass the test implemented by the provided function.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> EvenArray <span class="token operator">=</span> SortedArray<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token function">FilterToSortedArray</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>Value<span class="token punctuation">)</span>
+	<span class="token keyword">return</span> Value <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span>
+<span class="token keyword">end</span><span class="token punctuation">)</span>
+
+<span class="token function">print</span><span class="token punctuation">(</span>EvenArray<span class="token punctuation">)</span> <span class="token comment">-- SortedArray&#x3C;[2, 4, 6, 8, 10]></span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="Slice"><code style="text-decoration:none">Slice</code><a aria-hidden="true" class="hash-link" href="#Slice" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/SortedArray/init.lua#L397"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>SortedArray<!-- -->:</code><code class="green_3LnD">Slice</code><code>(</code><div class="inset_2cJr"><div><code>StartIndex<!-- -->: </code><code class="blue_2Afy">int?</code><code>,</code><span class="inlineDescription_17uy">-- <span>
+<p>The zero-based index at which to start extraction. A negative index can be used, indicating an offset from the end of the sequence. <code>Slice(-2)</code> extracts the last two elements in the sequence. If this is not provided, it'll default to <code>0</code>. If it is greater than the index range of the sequence, an empty array is returned.</p>
+</span></span></div><div><code>EndIndex<!-- -->: </code><code class="blue_2Afy">int?</code><span class="inlineDescription_17uy">-- <span>
+<p>Zero-based index before which to end extraction. <code>Slice</code> extracts up to but not including <code>EndIndex</code>. For example, <code>Slice(1, 4)</code> extracts the second element through the fourth element (elements indexed 1, 2, and 3). A negative index can be used, indicating an offset from the end of the sequence. <code>Slice(2, -1)</code> extracts the third element through the second-to-last element in the sequence. If <code>EndIndex</code> is omitted, <code>Slice</code> extracts through the end of the sequence (<code>#self</code>). If <code>EndIndex</code> is greater than the length of the sequence, slice extracts through to the end of the sequence (<code>#self</code>).</p>
+</span></span></div></div><code>) → </code><code class="blue_2Afy">Array</code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><span class="inlineDescription_17uy">-- <span>
+<p>The sliced array.</p>
+</span></span></div><div>
+<p>
+  The <code>Slice()</code> method returns a shallow copy of a portion of an array into a new SortedArray object selected from <code>StartIndex</code> to <code>EndIndex</code>
+  (<code>EndIndex</code> not included) where <code>StartIndex</code> and <code>EndIndex</code> represent the index of items in that array. The original array will not be modified.
+</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> Array <span class="token operator">=</span> SortedArray<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">"Ant"</span><span class="token punctuation">,</span> <span class="token string">"Bison"</span><span class="token punctuation">,</span> <span class="token string">"Camel"</span><span class="token punctuation">,</span> <span class="token string">"Duck"</span><span class="token punctuation">,</span> <span class="token string">"Elephant"</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span>Array<span class="token punctuation">:</span><span class="token function">Slice</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">-- {Camel, Duck, Elephant}</span>
+<span class="token function">print</span><span class="token punctuation">(</span>Array<span class="token punctuation">:</span><span class="token function">Slice</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">-- {Camel, Duck}</span>
+<span class="token function">print</span><span class="token punctuation">(</span>Array<span class="token punctuation">:</span><span class="token function">Slice</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">-- {Bison, Camel, Duck, Elephant}</span>
+<span class="token function">print</span><span class="token punctuation">(</span>Array<span class="token punctuation">:</span><span class="token function">Slice</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">-- {Duck, Elephant}</span>
+<span class="token function">print</span><span class="token punctuation">(</span>Array<span class="token punctuation">:</span><span class="token function">Slice</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">-- {Camel, Duck}</span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="SliceToSortedArray"><code style="text-decoration:none">SliceToSortedArray</code><a aria-hidden="true" class="hash-link" href="#SliceToSortedArray" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/SortedArray/init.lua#L436"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>SortedArray<!-- -->:</code><code class="green_3LnD">SliceToSortedArray</code><code>(</code><div class="inset_2cJr"><div><code>StartIndex<!-- -->: </code><code class="blue_2Afy">int?</code><code>,</code><span class="inlineDescription_17uy">-- <span>
+<p>The zero-based index at which to start extraction. A negative index can be used, indicating an offset from the end of the sequence. <code>Slice(-2)</code> extracts the last two elements in the sequence. If this is not provided, it'll default to <code>0</code>. If it is greater than the index range of the sequence, an empty array is returned.</p>
+</span></span></div><div><code>EndIndex<!-- -->: </code><code class="blue_2Afy">int?</code><span class="inlineDescription_17uy">-- <span>
+<p>Zero-based index before which to end extraction. <code>Slice</code> extracts up to but not including <code>EndIndex</code>. For example, <code>Slice(1, 4)</code> extracts the second element through the fourth element (elements indexed 1, 2, and 3). A negative index can be used, indicating an offset from the end of the sequence. <code>Slice(2, -1)</code> extracts the third element through the second-to-last element in the sequence. If <code>EndIndex</code> is omitted, <code>Slice</code> extracts through the end of the sequence (<code>#self</code>). If <code>EndIndex</code> is greater than the length of the sequence, slice extracts through to the end of the sequence (<code>#self</code>).</p>
+</span></span></div></div><code>) → </code><code class="blue_2Afy"><a style="text-decoration:underline;color:inherit" href="/DataStructures/api/SortedArray">SortedArray</a></code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><span class="inlineDescription_17uy">-- <span>
+<p>The sliced array.</p>
+</span></span></div><div>
+<p>
+  The <code>Slice()</code> method returns a shallow copy of a portion of an array into a new SortedArray object selected from <code>StartIndex</code> to <code>EndIndex</code>
+  (<code>EndIndex</code> not included) where <code>StartIndex</code> and <code>EndIndex</code> represent the index of items in that array. The original array will not be modified.
+</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> Array <span class="token operator">=</span> SortedArray<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">"Ant"</span><span class="token punctuation">,</span> <span class="token string">"Bison"</span><span class="token punctuation">,</span> <span class="token string">"Camel"</span><span class="token punctuation">,</span> <span class="token string">"Duck"</span><span class="token punctuation">,</span> <span class="token string">"Elephant"</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span>Array<span class="token punctuation">:</span><span class="token function">SliceToSortedArray</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">-- SortedArray&#x3C;[Camel, Duck, Elephant]></span>
+<span class="token function">print</span><span class="token punctuation">(</span>Array<span class="token punctuation">:</span><span class="token function">SliceToSortedArray</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">-- SortedArray&#x3C;[Camel, Duck]></span>
+<span class="token function">print</span><span class="token punctuation">(</span>Array<span class="token punctuation">:</span><span class="token function">SliceToSortedArray</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">-- SortedArray&#x3C;[Bison, Camel, Duck, Elephant]></span>
+<span class="token function">print</span><span class="token punctuation">(</span>Array<span class="token punctuation">:</span><span class="token function">SliceToSortedArray</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">-- SortedArray&#x3C;[Duck, Elephant]></span>
+<span class="token function">print</span><span class="token punctuation">(</span>Array<span class="token punctuation">:</span><span class="token function">SliceToSortedArray</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">-- SortedArray&#x3C;[Camel, Duck]></span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="MapFilter"><code style="text-decoration:none">MapFilter</code><a aria-hidden="true" class="hash-link" href="#MapFilter" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/SortedArray/init.lua#L472"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>SortedArray<!-- -->:</code><code class="green_3LnD">MapFilter</code><code>(</code><div class="inset_2cJr"><div><code>Predicate<!-- -->: </code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><code class="green_3LnD">(</code><div class="inset_2cJr"><code>Value<!-- -->: </code><code class="blue_2Afy">T</code><code class="green_3LnD">,</code></div><div class="inset_2cJr"><code>Index<!-- -->: </code><code class="blue_2Afy">int</code><code class="green_3LnD">,</code></div><div class="inset_2cJr"><code>self<!-- -->: </code><code class="blue_2Afy"><a style="text-decoration:underline;color:inherit" href="/DataStructures/api/SortedArray">SortedArray</a></code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code></div><code class="green_3LnD">)</code><code class="green_3LnD"> → </code><code class="blue_2Afy">T?</code><span class="inlineDescription_17uy">-- <span>
+<p>The function to map and filter with.</p>
+</span></span></div></div><code>) → </code><code class="blue_2Afy">Array</code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><span class="inlineDescription_17uy">-- <span>
+<p>The mapped and filtered array.</p>
+</span></span></div><div>
+<p>A combination function of <code>Filter</code> and <code>Map</code>. If the predicate function returns nil, the value will not be included in the new list. Any other result will add the result value to the new list.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> Array <span class="token operator">=</span> SortedArray<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token function">MapFilter</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>Value<span class="token punctuation">)</span>
+	<span class="token keyword">return</span> <span class="token keyword">if</span> Value <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token keyword">then</span> <span class="token keyword">if</span> Value <span class="token operator">%</span> <span class="token number">3</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token keyword">then</span> <span class="token keyword">nil</span> <span class="token keyword">else</span> Value <span class="token keyword">else</span> <span class="token keyword">nil</span>
+<span class="token keyword">end</span><span class="token punctuation">)</span>
+
+<span class="token function">print</span><span class="token punctuation">(</span>Array<span class="token punctuation">)</span> <span class="token comment">-- {2, 4, 8, 10}</span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="MapFilterToSortedArray"><code style="text-decoration:none">MapFilterToSortedArray</code><a aria-hidden="true" class="hash-link" href="#MapFilterToSortedArray" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/SortedArray/init.lua#L501"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>SortedArray<!-- -->:</code><code class="green_3LnD">MapFilterToSortedArray</code><code>(</code><div class="inset_2cJr"><div><code>Predicate<!-- -->: </code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><code class="green_3LnD">(</code><div class="inset_2cJr"><code>Value<!-- -->: </code><code class="blue_2Afy">T</code><code class="green_3LnD">,</code></div><div class="inset_2cJr"><code>Index<!-- -->: </code><code class="blue_2Afy">int</code><code class="green_3LnD">,</code></div><div class="inset_2cJr"><code>self<!-- -->: </code><code class="blue_2Afy"><a style="text-decoration:underline;color:inherit" href="/DataStructures/api/SortedArray">SortedArray</a></code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code></div><code class="green_3LnD">)</code><code class="green_3LnD"> → </code><code class="blue_2Afy">T?</code><span class="inlineDescription_17uy">-- <span>
+<p>The function to map and filter with.</p>
+</span></span></div></div><code>) → </code><code class="blue_2Afy"><a style="text-decoration:underline;color:inherit" href="/DataStructures/api/SortedArray">SortedArray</a></code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><span class="inlineDescription_17uy">-- <span>
+<p>The mapped and filtered array.</p>
+</span></span></div><div>
+<p>A combination function of <code>Filter</code> and <code>Map</code>. If the predicate function returns nil, the value will not be included in the new list. Any other result will add the result value to the new list.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> Array <span class="token operator">=</span> SortedArray<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token function">MapFilterToSortedArray</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>Value<span class="token punctuation">)</span>
+	<span class="token keyword">return</span> <span class="token keyword">if</span> Value <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token keyword">then</span> <span class="token keyword">if</span> Value <span class="token operator">%</span> <span class="token number">3</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token keyword">then</span> <span class="token keyword">nil</span> <span class="token keyword">else</span> Value <span class="token keyword">else</span> <span class="token keyword">nil</span>
+<span class="token keyword">end</span><span class="token punctuation">)</span>
+
+<span class="token function">print</span><span class="token punctuation">(</span>Array<span class="token punctuation">)</span> <span class="token comment">-- SortedArray&#x3C;[2, 4, 8, 10]></span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="Insert"><code style="text-decoration:none">Insert</code><a aria-hidden="true" class="hash-link" href="#Insert" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/SortedArray/init.lua#L522"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>SortedArray<!-- -->:</code><code class="green_3LnD">Insert</code><code>(</code><div class="inset_2cJr"><div><code>Value<!-- -->: </code><code class="blue_2Afy">T</code><span class="inlineDescription_17uy">-- <span>
+<p>The value you are inserting.</p>
+</span></span></div></div><code>) → </code><code class="blue_2Afy">int</code><span class="inlineDescription_17uy">-- <span>
+<p>The index the value was inserted at.</p>
+</span></span></div><div>
+<p>Inserts an element in the proper place which would preserve the array's orderedness. Returns the index the element was inserted.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> Array <span class="token operator">=</span> SortedArray<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span>Array<span class="token punctuation">:</span><span class="token function">Insert</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">-- 2</span>
+<span class="token function">print</span><span class="token punctuation">(</span>Array<span class="token punctuation">:</span><span class="token function">Insert</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">-- 5</span>
+<span class="token function">print</span><span class="token punctuation">(</span>Array<span class="token punctuation">:</span><span class="token function">Insert</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">-- 4</span>
+<span class="token function">print</span><span class="token punctuation">(</span>Array<span class="token punctuation">)</span> <span class="token comment">-- SortedArray&#x3C;[1, 2, 3, 4, 5, 6]></span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="Find"><code style="text-decoration:none">Find</code><a aria-hidden="true" class="hash-link" href="#Find" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/SortedArray/init.lua#L555"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>SortedArray<!-- -->:</code><code class="green_3LnD">Find</code><code>(</code><div class="inset_2cJr"><div><code>Value<!-- -->: </code><code class="blue_2Afy">T</code><code>,</code><span class="inlineDescription_17uy">-- <span>
+<p>The element to find or something that will be matched by the <code>Eq</code> function.</p>
+</span></span></div><div><code>Eq<!-- -->: </code><code class="green_3LnD">(</code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><code class="purple__nFc">(</code><div class="inset_2cJr"><code>Value<!-- -->: </code><code class="blue_2Afy">T</code><code class="purple__nFc">,</code></div><div class="inset_2cJr"><code>Other<!-- -->: </code><code class="blue_2Afy">T</code></div><code class="purple__nFc">)</code><code class="purple__nFc"> → </code><code class="blue_2Afy">boolean</code><code class="green_3LnD">)</code><code class="blue_2Afy">?</code><code>,</code><span class="inlineDescription_17uy">-- <span>
+<p>An optional function which checks for equality between the passed-in element and the other elements in the SortedArray.</p>
+</span></span></div><div><code>Lt<!-- -->: </code><code class="green_3LnD">(</code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><code class="purple__nFc">(</code><div class="inset_2cJr"><code>Value<!-- -->: </code><code class="blue_2Afy">T</code><code class="purple__nFc">,</code></div><div class="inset_2cJr"><code>Other<!-- -->: </code><code class="blue_2Afy">T</code></div><code class="purple__nFc">)</code><code class="purple__nFc"> → </code><code class="blue_2Afy">boolean</code><code class="green_3LnD">)</code><code class="blue_2Afy">?</code><code>,</code><span class="inlineDescription_17uy">-- <span>
+<p>An optional less-than comparison function, which falls back on the comparison passed in from <code>SortedArray.new</code>.</p>
+</span></span></div><div><code>Low<!-- -->: </code><code class="blue_2Afy">int?</code><code>,</code><span class="inlineDescription_17uy">-- <span>
+<p>The lowest index to search. Defaults to 1.</p>
+</span></span></div><div><code>High<!-- -->: </code><code class="blue_2Afy">int?</code><span class="inlineDescription_17uy">-- <span>
+<p>The high index to search. Defaults to the length of the SortedArray.</p>
+</span></span></div></div><code>) → </code><code class="blue_2Afy">int?</code><span class="inlineDescription_17uy">-- <span>
+<p>The numerical index of the element which was found, else nil.</p>
+</span></span></div><div>
+<p>Finds an Element in a SortedArray and returns its position (or nil if non-existant).</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> Array <span class="token operator">=</span> SortedArray<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span>Array<span class="token punctuation">:</span><span class="token function">Find</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">-- 3</span>
+<span class="token function">print</span><span class="token punctuation">(</span>Array<span class="token punctuation">:</span><span class="token function">Find</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">-- nil</span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="Copy"><code style="text-decoration:none">Copy</code><a aria-hidden="true" class="hash-link" href="#Copy" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/SortedArray/init.lua#L572"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>SortedArray<!-- -->:</code><code class="green_3LnD">Copy</code><code>(</code><code>) → </code><code class="blue_2Afy">Array</code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><span class="inlineDescription_17uy">-- <span>
+<p>The shallow copied array.</p>
+</span></span></div><div>
+<p>Makes a shallow copy of the SortedArray.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token function">print</span><span class="token punctuation">(</span>SortedArray<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token function">Copy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">-- {1, 2, 3, 4, 5}</span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="Clone"><code style="text-decoration:none">Clone</code><a aria-hidden="true" class="hash-link" href="#Clone" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/SortedArray/init.lua#L586"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>SortedArray<!-- -->:</code><code class="green_3LnD">Clone</code><code>(</code><code>) → </code><code class="blue_2Afy"><a style="text-decoration:underline;color:inherit" href="/DataStructures/api/SortedArray">SortedArray</a></code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><span class="inlineDescription_17uy">-- <span>
+<p>The shallow copied array.</p>
+</span></span></div><div>
+<p>Makes a shallow copy of the SortedArray and returns a new SortedArray.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token function">print</span><span class="token punctuation">(</span>SortedArray<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token function">Clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">-- SortedArray&#x3C;[1, 2, 3, 4, 5]></span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="RemoveElement"><code style="text-decoration:none">RemoveElement</code><a aria-hidden="true" class="hash-link" href="#RemoveElement" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/SortedArray/init.lua#L608"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>SortedArray<!-- -->:</code><code class="green_3LnD">RemoveElement</code><code>(</code><div class="inset_2cJr"><div><code>Signature<!-- -->: </code><code class="blue_2Afy">T</code><code>,</code><span class="inlineDescription_17uy">-- <span>
+<p>The value you want to remove.</p>
+</span></span></div><div><code>Eq<!-- -->: </code><code class="green_3LnD">(</code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><code class="purple__nFc">(</code><div class="inset_2cJr"><code>Value<!-- -->: </code><code class="blue_2Afy">T</code><code class="purple__nFc">,</code></div><div class="inset_2cJr"><code>Other<!-- -->: </code><code class="blue_2Afy">T</code></div><code class="purple__nFc">)</code><code class="purple__nFc"> → </code><code class="blue_2Afy">boolean</code><code class="green_3LnD">)</code><code class="blue_2Afy">?</code><code>,</code><span class="inlineDescription_17uy">-- <span>
+<p>An optional function which checks for equality between the passed-in element and the other elements in the SortedArray.</p>
+</span></span></div><div><code>Lt<!-- -->: </code><code class="green_3LnD">(</code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><code class="purple__nFc">(</code><div class="inset_2cJr"><code>Value<!-- -->: </code><code class="blue_2Afy">T</code><code class="purple__nFc">,</code></div><div class="inset_2cJr"><code>Other<!-- -->: </code><code class="blue_2Afy">T</code></div><code class="purple__nFc">)</code><code class="purple__nFc"> → </code><code class="blue_2Afy">boolean</code><code class="green_3LnD">)</code><code class="blue_2Afy">?</code><span class="inlineDescription_17uy">-- <span>
+<p>An optional less-than comparison function, which falls back on the comparison passed in from <code>SortedArray.new</code>.</p>
+</span></span></div></div><code>) → </code><code class="blue_2Afy">T?</code><span class="inlineDescription_17uy">-- <span>
+<p>The removed value.</p>
+</span></span></div><div>
+<p>Searches the array via <code>SortedArray:Find(Signature, Eq, Lt)</code>. If found, it removes the value and returns the value, otherwise returns nil. Only removes a single occurence.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> Array <span class="token operator">=</span> SortedArray<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token function">print</span><span class="token punctuation">(</span>Array<span class="token punctuation">:</span><span class="token function">RemoveElement</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">-- 3</span>
+<span class="token function">print</span><span class="token punctuation">(</span>Array<span class="token punctuation">:</span><span class="token function">RemoveElement</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">-- nil</span>
+</code></pre>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="Sort"><code style="text-decoration:none">Sort</code><a aria-hidden="true" class="hash-link" href="#Sort" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/SortedArray/init.lua#L617"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>SortedArray<!-- -->:</code><code class="green_3LnD">Sort</code><code>(</code><code>) → </code><code class="blue_2Afy"><a style="text-decoration:underline;color:inherit" href="/DataStructures/api/SortedArray">SortedArray</a></code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><span class="inlineDescription_17uy">-- <span>
+<p>Returns self.</p>
+</span></span></div><div>
+<p>Does <code>table.sort(self, self.Comparison)</code> and returns the SortedArray.</p>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="SortIndex"><code style="text-decoration:none">SortIndex</code><a aria-hidden="true" class="hash-link" href="#SortIndex" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/SortedArray/init.lua#L627"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>SortedArray<!-- -->:</code><code class="green_3LnD">SortIndex</code><code>(</code><div class="inset_2cJr"><div><code>Index<!-- -->: </code><code class="blue_2Afy">int</code><span class="inlineDescription_17uy">-- <span>
+<p>The index to resort.</p>
+</span></span></div></div><code>) → </code><code class="blue_2Afy">int</code><span class="inlineDescription_17uy">-- <span>
+<p>The new position.</p>
+</span></span></div><div>
+<p>Removes the value at Index and re-inserts it. This is useful for when a value may have updated in a way that could change it's position in a SortedArray. Returns Index.</p>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="SortElement"><code style="text-decoration:none">SortElement</code><a aria-hidden="true" class="hash-link" href="#SortElement" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/SortedArray/init.lua#L642"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>SortedArray<!-- -->:</code><code class="green_3LnD">SortElement</code><code>(</code><div class="inset_2cJr"><div><code>Signature<!-- -->: </code><code class="blue_2Afy">T</code><code>,</code><span class="inlineDescription_17uy">-- <span>
+<p>The value you want to re-sort.</p>
+</span></span></div><div><code>Eq<!-- -->: </code><code class="green_3LnD">(</code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><code class="purple__nFc">(</code><div class="inset_2cJr"><code>Value<!-- -->: </code><code class="blue_2Afy">T</code><code class="purple__nFc">,</code></div><div class="inset_2cJr"><code>Other<!-- -->: </code><code class="blue_2Afy">T</code></div><code class="purple__nFc">)</code><code class="purple__nFc"> → </code><code class="blue_2Afy">boolean</code><code class="green_3LnD">)</code><code class="blue_2Afy">?</code><code>,</code><span class="inlineDescription_17uy">-- <span>
+<p>An optional function which checks for equality between the passed-in element and the other elements in the SortedArray.</p>
+</span></span></div><div><code>Lt<!-- -->: </code><code class="green_3LnD">(</code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><code class="purple__nFc">(</code><div class="inset_2cJr"><code>Value<!-- -->: </code><code class="blue_2Afy">T</code><code class="purple__nFc">,</code></div><div class="inset_2cJr"><code>Other<!-- -->: </code><code class="blue_2Afy">T</code></div><code class="purple__nFc">)</code><code class="purple__nFc"> → </code><code class="blue_2Afy">boolean</code><code class="green_3LnD">)</code><code class="blue_2Afy">?</code><span class="inlineDescription_17uy">-- <span>
+<p>An optional less-than comparison function, which falls back on the comparison passed in from <code>SortedArray.new</code>.</p>
+</span></span></div></div><code>) → </code><code class="blue_2Afy">int</code><span class="inlineDescription_17uy">-- <span>
+<p>The new position.</p>
+</span></span></div><div>
+<p>Calls <code>RemoveElement(Signature, Eq, Lt)</code> and re-inserts the value. This is useful for when a value may have updated in a way that could change its position in a SortedArray. Returns Index.</p>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="Iterator"><code style="text-decoration:none">Iterator</code><a aria-hidden="true" class="hash-link" href="#Iterator" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/SortedArray/init.lua#L657"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>SortedArray<!-- -->:</code><code class="green_3LnD">Iterator</code><code>(</code><code>) → </code><code class="blue_2Afy">IteratorFunction</code><span class="inlineDescription_17uy">-- <span>
+<p>The <code>ipairs</code> iterator.</p>
+</span></span></div><div>
+<div class="admonition admonition-warning alert alert--danger">
+  <div class="admonition-heading">
+    <h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16">
+          <path d="M5.05.31c.81 2.17.41 3.38-.52 4.31C3.55 5.67 1.98 6.45.9 7.98c-1.45 2.05-1.7 6.53 3.53 7.7-2.2-1.16-2.67-4.52-.3-6.61-.61 2.03.53 3.33 1.94 2.86 1.39-.47 2.3.53 2.27 1.67-.02.78-.31 1.44-1.13 1.81 3.42-.59 4.78-3.42 4.78-5.56 0-2.84-2.53-3.22-1.25-5.61-1.52.13-2.03 1.13-1.89 2.75.09 1.08-1.02 1.8-1.86 1.33-.67-.41-.66-1.19-.06-1.78C8.18 5.31 8.68 2.45 5.05.32L5.03.3l.02.01z"></path>
+        </svg></span>Performance</h5>
+  </div>
+  <div class="admonition-content">
+    <p>If you care about performance, do not use this function. Just do <code>for Index, Value in ipairs(SortedArray) do</code> directly.</p>
+  </div>
+</div>
+<p>This returns an iterator for the SortedArray. This only exists for consistency reasons.</p>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="Concat"><code style="text-decoration:none">Concat</code><a aria-hidden="true" class="hash-link" href="#Concat" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/SortedArray/init.lua#L669"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>SortedArray<!-- -->:</code><code class="green_3LnD">Concat</code><code>(</code><div class="inset_2cJr"><div><code>Separator<!-- -->: </code><code class="blue_2Afy">string?</code><code>,</code><span class="inlineDescription_17uy">-- <span>
+<p>The separator of the entries.</p>
+</span></span></div><div><code>StartIndex<!-- -->: </code><code class="blue_2Afy">int?</code><code>,</code><span class="inlineDescription_17uy">-- <span>
+<p>The index to start concatenating from.</p>
+</span></span></div><div><code>EndIndex<!-- -->: </code><code class="blue_2Afy">int?</code><span class="inlineDescription_17uy">-- <span>
+<p>The index to end concatenating at.</p>
+</span></span></div></div><code>) → </code><code class="blue_2Afy">string</code><span class="inlineDescription_17uy">-- <span>
+<p>The stringify SortedArray.</p>
+</span></span></div><div>
+<p>Calls <code>table.concat</code> on the SortedArray.</p>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="RemoveIndex"><code style="text-decoration:none">RemoveIndex</code><a aria-hidden="true" class="hash-link" href="#RemoveIndex" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/SortedArray/init.lua#L678"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>SortedArray<!-- -->:</code><code class="green_3LnD">RemoveIndex</code><code>(</code><div class="inset_2cJr"><div><code>Index<!-- -->: </code><code class="blue_2Afy">int?</code><span class="inlineDescription_17uy">-- <span>
+<p>The index to remove.</p>
+</span></span></div></div><code>) → </code><code class="blue_2Afy">T?</code><span class="inlineDescription_17uy">-- <span>
+<p>The removed value.</p>
+</span></span></div><div>
+<p>Calls <code>table.remove</code> on the SortedArray.</p>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="Unpack"><code style="text-decoration:none">Unpack</code><a aria-hidden="true" class="hash-link" href="#Unpack" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/SortedArray/init.lua#L688"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>SortedArray<!-- -->:</code><code class="green_3LnD">Unpack</code><code>(</code><div class="inset_2cJr"><div><code>StartIndex<!-- -->: </code><code class="blue_2Afy">int?</code><code>,</code><span class="inlineDescription_17uy">-- <span>
+<p>The index to start unpacking at.</p>
+</span></span></div><div><code>EndIndex<!-- -->: </code><code class="blue_2Afy">int?</code><span class="inlineDescription_17uy">-- <span>
+<p>The index to end unpacking at.</p>
+</span></span></div></div><code>) → </code><code class="blue_2Afy">...T</code><span class="inlineDescription_17uy">-- <span>
+<p>The unpacked array.</p>
+</span></span></div><div>
+<p>Calls <code>table.unpack</code> on the SortedArray.</p>
+</div><div class="divider_3z1R"></div><h3 class="anchor anchorWithStickyNavbar_31ik" id="GetIntersection"><code style="text-decoration:none">GetIntersection</code><a aria-hidden="true" class="hash-link" href="#GetIntersection" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_1UH0"><a class="sourceButton_2aE5" href="https://github.com/howmanysmall/DataStructures/blob/main/src/DataStructures/SortedArray/init.lua#L701"><div class="sourceButtonText_monK">&lt;/&gt;</div></a></div><div class="memberString_P8-X"><code>SortedArray<!-- -->:</code><code class="green_3LnD">GetIntersection</code><code>(</code><div class="inset_2cJr"><div><code>SortedArray2<!-- -->: </code><code class="blue_2Afy"><a style="text-decoration:underline;color:inherit" href="/DataStructures/api/SortedArray">SortedArray</a></code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><code>,</code><span class="inlineDescription_17uy">-- <span>
+<p>The SortedArray to get the intersection with.</p>
+</span></span></div><div><code>Eq<!-- -->: </code><code class="green_3LnD">(</code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><code class="purple__nFc">(</code><div class="inset_2cJr"><code>Value<!-- -->: </code><code class="blue_2Afy">T</code><code class="purple__nFc">,</code></div><div class="inset_2cJr"><code>Other<!-- -->: </code><code class="blue_2Afy">T</code></div><code class="purple__nFc">)</code><code class="purple__nFc"> → </code><code class="blue_2Afy">boolean</code><code class="green_3LnD">)</code><code class="blue_2Afy">?</code><code>,</code><span class="inlineDescription_17uy">-- <span>
+<p>An optional function which checks for equality between the passed-in element and the other elements in the SortedArray.</p>
+</span></span></div><div><code>Lt<!-- -->: </code><code class="green_3LnD">(</code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><code class="purple__nFc">(</code><div class="inset_2cJr"><code>Value<!-- -->: </code><code class="blue_2Afy">T</code><code class="purple__nFc">,</code></div><div class="inset_2cJr"><code>Other<!-- -->: </code><code class="blue_2Afy">T</code></div><code class="purple__nFc">)</code><code class="purple__nFc"> → </code><code class="blue_2Afy">boolean</code><code class="green_3LnD">)</code><code class="blue_2Afy">?</code><span class="inlineDescription_17uy">-- <span>
+<p>An optional less-than comparison function, which falls back on the comparison passed in from <code>SortedArray.new</code>.</p>
+</span></span></div></div><code>) → </code><code class="blue_2Afy"><a style="text-decoration:underline;color:inherit" href="/DataStructures/api/SortedArray">SortedArray</a></code><code class="op_1JtD">&lt;</code><code class="blue_2Afy">T</code><code class="op_1JtD">&gt;</code><span class="inlineDescription_17uy">-- <span>
+<p>A SortedArray with the common values between self and SortedArray2.</p>
+</span></span></div><div>
+<p>Returns a SortedArray of Commonalities between self and another SortedArray. If applicable, the returned SortedArray will inherit the Comparison function from self.</p>
+</div><h3>Errors</h3><table class="errorTable_25fH"><thead><tr><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>&quot;InvalidSortedArray&quot;</td><td>Thrown when SortedArray2 is not a SortedArray.</td></tr></tbody></table></div></article></div><details><summary>Show raw api</summary><pre style="max-width:100%;white-space:pre-wrap">{
+    &quot;functions&quot;: [
+        {
+            &quot;name&quot;: &quot;new&quot;,
+            &quot;desc&quot;: &quot;Instantiates and returns a new SortedArray, with optional parameters.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;BaseArray&quot;,
+                    &quot;desc&quot;: &quot;An array of data which will be sorted upon instantiation. If this is omitted, an empty array is used.&quot;,
+                    &quot;lua_type&quot;: &quot;Array&lt;T&gt;?&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;Comparison&quot;,
+                    &quot;desc&quot;: &quot;An optional comparison function which is used to customize the element sorting, which will be given two elements `A` and `B` from the array as parameters. The function should return a boolean value specifying whether the first argument should be before the second argument in the sequence. If no comparison function is passed, the Lua-default `A &lt; B` sorting is used.&quot;,
+                    &quot;lua_type&quot;: &quot;&lt;T&gt;((A: T, B: T) -&gt; boolean)?&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;SortedArray&lt;T&gt;&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 48,
+                &quot;path&quot;: &quot;src/DataStructures/SortedArray/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;ForEach&quot;,
+            &quot;desc&quot;: &quot;Runs the given function on every element in the array.\n\n```lua\nSortedArray.new({1, 2, 3}):ForEach(function(Value)\n\tprint(Value)\nend) -- prints 1, 2, and 3\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Function&quot;,
+                    &quot;desc&quot;: &quot;The function you are running.&quot;,
+                    &quot;lua_type&quot;: &quot;&lt;T&gt;(Value: T, Index: int, self: SortedArray&lt;T&gt;) -&gt; ()&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 112,
+                &quot;path&quot;: &quot;src/DataStructures/SortedArray/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Map&quot;,
+            &quot;desc&quot;: &quot;Maps the SortedArray to a new array using the given predicate.\n\n```lua\nprint(SortedArray.new({1, 2, 3}):Map(function(Value)\n\treturn Value * 2\nend)) -- {2, 4, 6}\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Predicate&quot;,
+                    &quot;desc&quot;: &quot;The function you are running.&quot;,
+                    &quot;lua_type&quot;: &quot;&lt;T&gt;(Value: T, Index: int, self: SortedArray&lt;T&gt;) -&gt; T?&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The mapped array.&quot;,
+                    &quot;lua_type&quot;: &quot;Array&lt;T&gt;&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 130,
+                &quot;path&quot;: &quot;src/DataStructures/SortedArray/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;MapToSortedArray&quot;,
+            &quot;desc&quot;: &quot;Maps the SortedArray to a new SortedArray using the given predicate.\n\n```lua\nprint(SortedArray.new({1, 2, 3}):MapToSortedArray(function(Value)\n\treturn Value * 2\nend)) -- SortedArray&lt;[2, 4, 6]&gt;\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Predicate&quot;,
+                    &quot;desc&quot;: &quot;The function you are running.&quot;,
+                    &quot;lua_type&quot;: &quot;&lt;T&gt;(Value: T, Index: int, self: SortedArray&lt;T&gt;) -&gt; T?&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The mapped array.&quot;,
+                    &quot;lua_type&quot;: &quot;SortedArray&lt;T&gt;&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 151,
+                &quot;path&quot;: &quot;src/DataStructures/SortedArray/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Some&quot;,
+            &quot;desc&quot;: &quot;Runs every the given predicate on every element in the array to check if some value in the array satisfies the predicate.\n\n```lua\nprint(SortedArray.new({2, 4, 6, 8}):Some(function(Value)\n\treturn Value == 4\nend)) -- true\n\nprint(SortedArray.new({1, 2, 4, 6, 8}):Some(function(Value)\n\treturn Value == 3\nend)) -- false\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Predicate&quot;,
+                    &quot;desc&quot;: &quot;The function you are running.&quot;,
+                    &quot;lua_type&quot;: &quot;&lt;T&gt;(Value: T, Index: int, self: SortedArray&lt;T&gt;) -&gt; boolean?&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;Whether or not the predicate was satisfied.&quot;,
+                    &quot;lua_type&quot;: &quot;boolean&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 179,
+                &quot;path&quot;: &quot;src/DataStructures/SortedArray/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Every&quot;,
+            &quot;desc&quot;: &quot;Runs every the given predicate on every element in the array to check if every value in the array satisfies the predicate.\n\n```lua\nprint(SortedArray.new({2, 4, 6, 8}):Every(function(Value)\n\treturn Value % 2 == 0\nend)) -- true\n\nprint(SortedArray.new({1, 2, 4, 6, 8}):Every(function(Value)\n\treturn Value % 2 == 0\nend)) -- false\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Predicate&quot;,
+                    &quot;desc&quot;: &quot;The function you are running.&quot;,
+                    &quot;lua_type&quot;: &quot;&lt;T&gt;(Value: T, Index: int, self: SortedArray&lt;T&gt;) -&gt; boolean?&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;Whether or not the predicate was satisfied.&quot;,
+                    &quot;lua_type&quot;: &quot;boolean&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 205,
+                &quot;path&quot;: &quot;src/DataStructures/SortedArray/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Reduce&quot;,
+            &quot;desc&quot;: &quot;The Reduce method executes a user-supplied \&quot;reducer\&quot; callback function on each element of the array, in order, passing in the return value\nfrom the calculation on the preceding element. The final result of running the reducer across all elements of the array is a single value.\n\n```lua\nlocal Array = SortedArray.new({1, 2, 3, 4})\nlocal function Reducer(PreviousValue, CurrentValue)\n\treturn PreviousValue + CurrentValue\nend\n\nprint(Array:Reduce(Reducer)) -- 10\nprint(Array:Reduce(Reducer, 5)) -- 15\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Predicate&quot;,
+                    &quot;desc&quot;: &quot;The function you are running.&quot;,
+                    &quot;lua_type&quot;: &quot;&lt;T&gt;(Accumulator: T, Value: T, Index: int, self: SortedArray&lt;T&gt;) -&gt; T&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;InitialValue&quot;,
+                    &quot;desc&quot;: &quot;The initial value of the accumulator. Defaults to the first value in the SortedArray.&quot;,
+                    &quot;lua_type&quot;: &quot;T?&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The final value of the accumulator.&quot;,
+                    &quot;lua_type&quot;: &quot;T&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 233,
+                &quot;path&quot;: &quot;src/DataStructures/SortedArray/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;ReduceRight&quot;,
+            &quot;desc&quot;: &quot;The ReduceRight method applies a function against an accumulator and each value of the array (from right-to-left) to reduce it to a single value.\n\n```lua\nlocal Array = SortedArray.new({2, 30, 45, 100})\nlocal function Reducer(PreviousValue, CurrentValue)\n\treturn PreviousValue - CurrentValue\nend\n\nprint(Array:ReduceRight(Reducer)) -- prints 23\nprint(Array:ReduceRight(Reducer, 2)) -- prints -175\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Predicate&quot;,
+                    &quot;desc&quot;: &quot;The function you are running.&quot;,
+                    &quot;lua_type&quot;: &quot;&lt;T&gt;(Accumulator: T, Value: T, Index: int, self: SortedArray&lt;T&gt;) -&gt; T&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;InitialValue&quot;,
+                    &quot;desc&quot;: &quot;The initial value of the accumulator. Defaults to the first value in the SortedArray.&quot;,
+                    &quot;lua_type&quot;: &quot;T?&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The final value of the accumulator.&quot;,
+                    &quot;lua_type&quot;: &quot;T&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 273,
+                &quot;path&quot;: &quot;src/DataStructures/SortedArray/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Filter&quot;,
+            &quot;desc&quot;: &quot;The Filter method creates a new array with all elements that pass the test implemented by the provided function.\n\n```lua\nlocal EvenArray = SortedArray.new({1, 2, 3, 4, 5, 6, 7, 8, 9, 10}):Filter(function(Value)\n\treturn Value % 2 == 0\nend)\n\nprint(EvenArray) -- {2, 4, 6, 8, 10}\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Predicate&quot;,
+                    &quot;desc&quot;: &quot;The function you are running.&quot;,
+                    &quot;lua_type&quot;: &quot;&lt;T&gt;(Value: T, Index: int, self: SortedArray&lt;T&gt;) -&gt; boolean?&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The filtered array.&quot;,
+                    &quot;lua_type&quot;: &quot;Array&lt;T&gt;&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 324,
+                &quot;path&quot;: &quot;src/DataStructures/SortedArray/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;FilterToSortedArray&quot;,
+            &quot;desc&quot;: &quot;The FilterToSortedArray method creates a new SortedArray with all elements that pass the test implemented by the provided function.\n\n```lua\nlocal EvenArray = SortedArray.new({1, 2, 3, 4, 5, 6, 7, 8, 9, 10}):FilterToSortedArray(function(Value)\n\treturn Value % 2 == 0\nend)\n\nprint(EvenArray) -- SortedArray&lt;[2, 4, 6, 8, 10]&gt;\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Predicate&quot;,
+                    &quot;desc&quot;: &quot;The function you are running.&quot;,
+                    &quot;lua_type&quot;: &quot;&lt;T&gt;(Value: T, Index: int, self: SortedArray&lt;T&gt;) -&gt; boolean?&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The filtered array.&quot;,
+                    &quot;lua_type&quot;: &quot;SortedArray&lt;T&gt;&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 352,
+                &quot;path&quot;: &quot;src/DataStructures/SortedArray/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Slice&quot;,
+            &quot;desc&quot;: &quot;The `Slice()` method returns a shallow copy of a portion of an array into a new SortedArray object selected from `StartIndex` to `EndIndex`\n(`EndIndex` not included) where `StartIndex` and `EndIndex` represent the index of items in that array. The original array will not be modified.\n\n```lua\nlocal Array = SortedArray.new({\&quot;Ant\&quot;, \&quot;Bison\&quot;, \&quot;Camel\&quot;, \&quot;Duck\&quot;, \&quot;Elephant\&quot;})\nprint(Array:Slice(2)) -- {Camel, Duck, Elephant}\nprint(Array:Slice(2, 4)) -- {Camel, Duck}\nprint(Array:Slice(1, 5)) -- {Bison, Camel, Duck, Elephant}\nprint(Array:Slice(-2)) -- {Duck, Elephant}\nprint(Array:Slice(2, -1)) -- {Camel, Duck}\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;StartIndex&quot;,
+                    &quot;desc&quot;: &quot;The zero-based index at which to start extraction. A negative index can be used, indicating an offset from the end of the sequence. `Slice(-2)` extracts the last two elements in the sequence. If this is not provided, it&#x27;ll default to `0`. If it is greater than the index range of the sequence, an empty array is returned.&quot;,
+                    &quot;lua_type&quot;: &quot;int?&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;EndIndex&quot;,
+                    &quot;desc&quot;: &quot;Zero-based index before which to end extraction. `Slice` extracts up to but not including `EndIndex`. For example, `Slice(1, 4)` extracts the second element through the fourth element (elements indexed 1, 2, and 3). A negative index can be used, indicating an offset from the end of the sequence. `Slice(2, -1)` extracts the third element through the second-to-last element in the sequence. If `EndIndex` is omitted, `Slice` extracts through the end of the sequence (`#self`). If `EndIndex` is greater than the length of the sequence, slice extracts through to the end of the sequence (`#self`).&quot;,
+                    &quot;lua_type&quot;: &quot;int?&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The sliced array.&quot;,
+                    &quot;lua_type&quot;: &quot;Array&lt;T&gt;&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 397,
+                &quot;path&quot;: &quot;src/DataStructures/SortedArray/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;SliceToSortedArray&quot;,
+            &quot;desc&quot;: &quot;The `Slice()` method returns a shallow copy of a portion of an array into a new SortedArray object selected from `StartIndex` to `EndIndex`\n(`EndIndex` not included) where `StartIndex` and `EndIndex` represent the index of items in that array. The original array will not be modified.\n\n```lua\nlocal Array = SortedArray.new({\&quot;Ant\&quot;, \&quot;Bison\&quot;, \&quot;Camel\&quot;, \&quot;Duck\&quot;, \&quot;Elephant\&quot;})\nprint(Array:SliceToSortedArray(2)) -- SortedArray&lt;[Camel, Duck, Elephant]&gt;\nprint(Array:SliceToSortedArray(2, 4)) -- SortedArray&lt;[Camel, Duck]&gt;\nprint(Array:SliceToSortedArray(1, 5)) -- SortedArray&lt;[Bison, Camel, Duck, Elephant]&gt;\nprint(Array:SliceToSortedArray(-2)) -- SortedArray&lt;[Duck, Elephant]&gt;\nprint(Array:SliceToSortedArray(2, -1)) -- SortedArray&lt;[Camel, Duck]&gt;\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;StartIndex&quot;,
+                    &quot;desc&quot;: &quot;The zero-based index at which to start extraction. A negative index can be used, indicating an offset from the end of the sequence. `Slice(-2)` extracts the last two elements in the sequence. If this is not provided, it&#x27;ll default to `0`. If it is greater than the index range of the sequence, an empty array is returned.&quot;,
+                    &quot;lua_type&quot;: &quot;int?&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;EndIndex&quot;,
+                    &quot;desc&quot;: &quot;Zero-based index before which to end extraction. `Slice` extracts up to but not including `EndIndex`. For example, `Slice(1, 4)` extracts the second element through the fourth element (elements indexed 1, 2, and 3). A negative index can be used, indicating an offset from the end of the sequence. `Slice(2, -1)` extracts the third element through the second-to-last element in the sequence. If `EndIndex` is omitted, `Slice` extracts through the end of the sequence (`#self`). If `EndIndex` is greater than the length of the sequence, slice extracts through to the end of the sequence (`#self`).&quot;,
+                    &quot;lua_type&quot;: &quot;int?&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The sliced array.&quot;,
+                    &quot;lua_type&quot;: &quot;SortedArray&lt;T&gt;&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 436,
+                &quot;path&quot;: &quot;src/DataStructures/SortedArray/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;MapFilter&quot;,
+            &quot;desc&quot;: &quot;A combination function of `Filter` and `Map`. If the predicate function returns nil, the value will not be included in the new list. Any other result will add the result value to the new list.\n\n```lua\nlocal Array = SortedArray.new({1, 2, 3, 4, 5, 6, 7, 8, 9, 10}):MapFilter(function(Value)\n\treturn if Value % 2 == 0 then if Value % 3 == 0 then nil else Value else nil\nend)\n\nprint(Array) -- {2, 4, 8, 10}\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Predicate&quot;,
+                    &quot;desc&quot;: &quot;The function to map and filter with.&quot;,
+                    &quot;lua_type&quot;: &quot;&lt;T&gt;(Value: T, Index: int, self: SortedArray&lt;T&gt;) -&gt; T?&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The mapped and filtered array.&quot;,
+                    &quot;lua_type&quot;: &quot;Array&lt;T&gt;&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 472,
+                &quot;path&quot;: &quot;src/DataStructures/SortedArray/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;MapFilterToSortedArray&quot;,
+            &quot;desc&quot;: &quot;A combination function of `Filter` and `Map`. If the predicate function returns nil, the value will not be included in the new list. Any other result will add the result value to the new list.\n\n```lua\nlocal Array = SortedArray.new({1, 2, 3, 4, 5, 6, 7, 8, 9, 10}):MapFilterToSortedArray(function(Value)\n\treturn if Value % 2 == 0 then if Value % 3 == 0 then nil else Value else nil\nend)\n\nprint(Array) -- SortedArray&lt;[2, 4, 8, 10]&gt;\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Predicate&quot;,
+                    &quot;desc&quot;: &quot;The function to map and filter with.&quot;,
+                    &quot;lua_type&quot;: &quot;&lt;T&gt;(Value: T, Index: int, self: SortedArray&lt;T&gt;) -&gt; T?&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The mapped and filtered array.&quot;,
+                    &quot;lua_type&quot;: &quot;SortedArray&lt;T&gt;&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 501,
+                &quot;path&quot;: &quot;src/DataStructures/SortedArray/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Insert&quot;,
+            &quot;desc&quot;: &quot;Inserts an element in the proper place which would preserve the array&#x27;s orderedness. Returns the index the element was inserted.\n\n```lua\nlocal Array = SortedArray.new({1, 3, 5})\nprint(Array:Insert(2)) -- 2\nprint(Array:Insert(6)) -- 5\nprint(Array:Insert(4)) -- 4\nprint(Array) -- SortedArray&lt;[1, 2, 3, 4, 5, 6]&gt;\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Value&quot;,
+                    &quot;desc&quot;: &quot;The value you are inserting.&quot;,
+                    &quot;lua_type&quot;: &quot;T&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The index the value was inserted at.&quot;,
+                    &quot;lua_type&quot;: &quot;int&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 522,
+                &quot;path&quot;: &quot;src/DataStructures/SortedArray/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Find&quot;,
+            &quot;desc&quot;: &quot;Finds an Element in a SortedArray and returns its position (or nil if non-existant).\n\n```lua\nlocal Array = SortedArray.new({1, 2, 3, 4, 5})\nprint(Array:Find(3)) -- 3\nprint(Array:Find(6)) -- nil\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Value&quot;,
+                    &quot;desc&quot;: &quot;The element to find or something that will be matched by the `Eq` function.&quot;,
+                    &quot;lua_type&quot;: &quot;T&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;Eq&quot;,
+                    &quot;desc&quot;: &quot;An optional function which checks for equality between the passed-in element and the other elements in the SortedArray.&quot;,
+                    &quot;lua_type&quot;: &quot;(&lt;T&gt;(Value: T, Other: T) -&gt; boolean)?&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;Lt&quot;,
+                    &quot;desc&quot;: &quot;An optional less-than comparison function, which falls back on the comparison passed in from `SortedArray.new`.&quot;,
+                    &quot;lua_type&quot;: &quot;(&lt;T&gt;(Value: T, Other: T) -&gt; boolean)?&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;Low&quot;,
+                    &quot;desc&quot;: &quot;The lowest index to search. Defaults to 1.&quot;,
+                    &quot;lua_type&quot;: &quot;int?&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;High&quot;,
+                    &quot;desc&quot;: &quot;The high index to search. Defaults to the length of the SortedArray.&quot;,
+                    &quot;lua_type&quot;: &quot;int?&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The numerical index of the element which was found, else nil.&quot;,
+                    &quot;lua_type&quot;: &quot;int?&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 555,
+                &quot;path&quot;: &quot;src/DataStructures/SortedArray/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Copy&quot;,
+            &quot;desc&quot;: &quot;Makes a shallow copy of the SortedArray.\n\n```lua\nprint(SortedArray.new({1, 2, 3, 4, 5}):Copy()) -- {1, 2, 3, 4, 5}\n```&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The shallow copied array.&quot;,
+                    &quot;lua_type&quot;: &quot;Array&lt;T&gt;&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 572,
+                &quot;path&quot;: &quot;src/DataStructures/SortedArray/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Clone&quot;,
+            &quot;desc&quot;: &quot;Makes a shallow copy of the SortedArray and returns a new SortedArray.\n\n```lua\nprint(SortedArray.new({1, 2, 3, 4, 5}):Clone()) -- SortedArray&lt;[1, 2, 3, 4, 5]&gt;\n```&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The shallow copied array.&quot;,
+                    &quot;lua_type&quot;: &quot;SortedArray&lt;T&gt;&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 586,
+                &quot;path&quot;: &quot;src/DataStructures/SortedArray/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;RemoveElement&quot;,
+            &quot;desc&quot;: &quot;Searches the array via `SortedArray:Find(Signature, Eq, Lt)`. If found, it removes the value and returns the value, otherwise returns nil. Only removes a single occurence.\n\n```lua\nlocal Array = SortedArray.new({1, 2, 3, 4, 5})\nprint(Array:RemoveElement(3)) -- 3\nprint(Array:RemoveElement(6)) -- nil\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Signature&quot;,
+                    &quot;desc&quot;: &quot;The value you want to remove.&quot;,
+                    &quot;lua_type&quot;: &quot;T&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;Eq&quot;,
+                    &quot;desc&quot;: &quot;An optional function which checks for equality between the passed-in element and the other elements in the SortedArray.&quot;,
+                    &quot;lua_type&quot;: &quot;(&lt;T&gt;(Value: T, Other: T) -&gt; boolean)?&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;Lt&quot;,
+                    &quot;desc&quot;: &quot;An optional less-than comparison function, which falls back on the comparison passed in from `SortedArray.new`.&quot;,
+                    &quot;lua_type&quot;: &quot;(&lt;T&gt;(Value: T, Other: T) -&gt; boolean)?&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The removed value.&quot;,
+                    &quot;lua_type&quot;: &quot;T?&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 608,
+                &quot;path&quot;: &quot;src/DataStructures/SortedArray/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Sort&quot;,
+            &quot;desc&quot;: &quot;Does `table.sort(self, self.Comparison)` and returns the SortedArray.&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;Returns self.&quot;,
+                    &quot;lua_type&quot;: &quot;SortedArray&lt;T&gt;&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 617,
+                &quot;path&quot;: &quot;src/DataStructures/SortedArray/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;SortIndex&quot;,
+            &quot;desc&quot;: &quot;Removes the value at Index and re-inserts it. This is useful for when a value may have updated in a way that could change it&#x27;s position in a SortedArray. Returns Index.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Index&quot;,
+                    &quot;desc&quot;: &quot;The index to resort.&quot;,
+                    &quot;lua_type&quot;: &quot;int&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The new position.&quot;,
+                    &quot;lua_type&quot;: &quot;int&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 627,
+                &quot;path&quot;: &quot;src/DataStructures/SortedArray/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;SortElement&quot;,
+            &quot;desc&quot;: &quot;Calls `RemoveElement(Signature, Eq, Lt)` and re-inserts the value. This is useful for when a value may have updated in a way that could change its position in a SortedArray. Returns Index.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Signature&quot;,
+                    &quot;desc&quot;: &quot;The value you want to re-sort.&quot;,
+                    &quot;lua_type&quot;: &quot;T&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;Eq&quot;,
+                    &quot;desc&quot;: &quot;An optional function which checks for equality between the passed-in element and the other elements in the SortedArray.&quot;,
+                    &quot;lua_type&quot;: &quot;(&lt;T&gt;(Value: T, Other: T) -&gt; boolean)?&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;Lt&quot;,
+                    &quot;desc&quot;: &quot;An optional less-than comparison function, which falls back on the comparison passed in from `SortedArray.new`.&quot;,
+                    &quot;lua_type&quot;: &quot;(&lt;T&gt;(Value: T, Other: T) -&gt; boolean)?&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The new position.&quot;,
+                    &quot;lua_type&quot;: &quot;int&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 642,
+                &quot;path&quot;: &quot;src/DataStructures/SortedArray/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Iterator&quot;,
+            &quot;desc&quot;: &quot;:::warning Performance\nIf you care about performance, do not use this function. Just do `for Index, Value in ipairs(SortedArray) do` directly.\n:::\n\nThis returns an iterator for the SortedArray. This only exists for consistency reasons.&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The `ipairs` iterator.&quot;,
+                    &quot;lua_type&quot;: &quot;IteratorFunction&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 657,
+                &quot;path&quot;: &quot;src/DataStructures/SortedArray/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Concat&quot;,
+            &quot;desc&quot;: &quot;Calls `table.concat` on the SortedArray.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Separator&quot;,
+                    &quot;desc&quot;: &quot;The separator of the entries.&quot;,
+                    &quot;lua_type&quot;: &quot;string?&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;StartIndex&quot;,
+                    &quot;desc&quot;: &quot;The index to start concatenating from.&quot;,
+                    &quot;lua_type&quot;: &quot;int?&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;EndIndex&quot;,
+                    &quot;desc&quot;: &quot;The index to end concatenating at.&quot;,
+                    &quot;lua_type&quot;: &quot;int?&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The stringify SortedArray.&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 669,
+                &quot;path&quot;: &quot;src/DataStructures/SortedArray/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;RemoveIndex&quot;,
+            &quot;desc&quot;: &quot;Calls `table.remove` on the SortedArray.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Index&quot;,
+                    &quot;desc&quot;: &quot;The index to remove.&quot;,
+                    &quot;lua_type&quot;: &quot;int?&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The removed value.&quot;,
+                    &quot;lua_type&quot;: &quot;T?&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 678,
+                &quot;path&quot;: &quot;src/DataStructures/SortedArray/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Unpack&quot;,
+            &quot;desc&quot;: &quot;Calls `table.unpack` on the SortedArray.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;StartIndex&quot;,
+                    &quot;desc&quot;: &quot;The index to start unpacking at.&quot;,
+                    &quot;lua_type&quot;: &quot;int?&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;EndIndex&quot;,
+                    &quot;desc&quot;: &quot;The index to end unpacking at.&quot;,
+                    &quot;lua_type&quot;: &quot;int?&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;The unpacked array.&quot;,
+                    &quot;lua_type&quot;: &quot;...T&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 688,
+                &quot;path&quot;: &quot;src/DataStructures/SortedArray/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;GetIntersection&quot;,
+            &quot;desc&quot;: &quot;Returns a SortedArray of Commonalities between self and another SortedArray. If applicable, the returned SortedArray will inherit the Comparison function from self.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;SortedArray2&quot;,
+                    &quot;desc&quot;: &quot;The SortedArray to get the intersection with.&quot;,
+                    &quot;lua_type&quot;: &quot;SortedArray&lt;T&gt;&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;Eq&quot;,
+                    &quot;desc&quot;: &quot;An optional function which checks for equality between the passed-in element and the other elements in the SortedArray.&quot;,
+                    &quot;lua_type&quot;: &quot;(&lt;T&gt;(Value: T, Other: T) -&gt; boolean)?&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;Lt&quot;,
+                    &quot;desc&quot;: &quot;An optional less-than comparison function, which falls back on the comparison passed in from `SortedArray.new`.&quot;,
+                    &quot;lua_type&quot;: &quot;(&lt;T&gt;(Value: T, Other: T) -&gt; boolean)?&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;A SortedArray with the common values between self and SortedArray2.&quot;,
+                    &quot;lua_type&quot;: &quot;SortedArray&lt;T&gt;&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;errors&quot;: [
+                {
+                    &quot;lua_type&quot;: &quot;\&quot;InvalidSortedArray\&quot;&quot;,
+                    &quot;desc&quot;: &quot;Thrown when SortedArray2 is not a SortedArray.&quot;
+                }
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 701,
+                &quot;path&quot;: &quot;src/DataStructures/SortedArray/init.lua&quot;
+            }
+        }
+    ],
+    &quot;properties&quot;: [],
+    &quot;types&quot;: [],
+    &quot;name&quot;: &quot;SortedArray&quot;,
+    &quot;desc&quot;: &quot;A class to create sorted arrays. Must contain objects comparable to\none another (that can use the `&lt;` and `==` operators). Numbers and\nstrings support these operators by default.\n\n```lua\nlocal SortedArray = require(\&quot;SortedArray\&quot;)\nlocal Array1 = SortedArray.new({1, 2, 3}) -- Gets sorted.\nlocal Array2 = SortedArray.new()\n```&quot;,
+    &quot;source&quot;: {
+        &quot;line&quot;: 17,
+        &quot;path&quot;: &quot;src/DataStructures/SortedArray/init.lua&quot;
+    }
+}</pre></details></div><div class="col col--3"><div class="tableOfContents_35-E thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#types" class="table-of-contents__link toc-highlight">Types</a></li><li><a href="#properties" class="table-of-contents__link toc-highlight">Properties</a></li><li><a href="#functions" class="table-of-contents__link toc-highlight">Functions</a><ul><li><a href="#Clone" class="table-of-contents__link toc-highlight">:Clone</a></li><li><a href="#Concat" class="table-of-contents__link toc-highlight">:Concat</a></li><li><a href="#Copy" class="table-of-contents__link toc-highlight">:Copy</a></li><li><a href="#Every" class="table-of-contents__link toc-highlight">:Every</a></li><li><a href="#Filter" class="table-of-contents__link toc-highlight">:Filter</a></li><li><a href="#FilterToSortedArray" class="table-of-contents__link toc-highlight">:FilterToSortedArray</a></li><li><a href="#Find" class="table-of-contents__link toc-highlight">:Find</a></li><li><a href="#ForEach" class="table-of-contents__link toc-highlight">:ForEach</a></li><li><a href="#GetIntersection" class="table-of-contents__link toc-highlight">:GetIntersection</a></li><li><a href="#Insert" class="table-of-contents__link toc-highlight">:Insert</a></li><li><a href="#Iterator" class="table-of-contents__link toc-highlight">:Iterator</a></li><li><a href="#Map" class="table-of-contents__link toc-highlight">:Map</a></li><li><a href="#MapFilter" class="table-of-contents__link toc-highlight">:MapFilter</a></li><li><a href="#MapFilterToSortedArray" class="table-of-contents__link toc-highlight">:MapFilterToSortedArray</a></li><li><a href="#MapToSortedArray" class="table-of-contents__link toc-highlight">:MapToSortedArray</a></li><li><a href="#Reduce" class="table-of-contents__link toc-highlight">:Reduce</a></li><li><a href="#ReduceRight" class="table-of-contents__link toc-highlight">:ReduceRight</a></li><li><a href="#RemoveElement" class="table-of-contents__link toc-highlight">:RemoveElement</a></li><li><a href="#RemoveIndex" class="table-of-contents__link toc-highlight">:RemoveIndex</a></li><li><a href="#Slice" class="table-of-contents__link toc-highlight">:Slice</a></li><li><a href="#SliceToSortedArray" class="table-of-contents__link toc-highlight">:SliceToSortedArray</a></li><li><a href="#Some" class="table-of-contents__link toc-highlight">:Some</a></li><li><a href="#Sort" class="table-of-contents__link toc-highlight">:Sort</a></li><li><a href="#SortElement" class="table-of-contents__link toc-highlight">:SortElement</a></li><li><a href="#SortIndex" class="table-of-contents__link toc-highlight">:SortIndex</a></li><li><a href="#Unpack" class="table-of-contents__link toc-highlight">:Unpack</a></li><li><a href="#new" class="table-of-contents__link toc-highlight">.new</a></li></ul></li></ul></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2021 howmanysmall. Built with Moonwave and Docusaurus.</div></div></div></footer></div>
+<script src="/DataStructures/assets/js/runtime~main.39af511f.js"></script>
+<script src="/DataStructures/assets/js/main.e81fd5e2.js"></script>
+</body>
+</html>
