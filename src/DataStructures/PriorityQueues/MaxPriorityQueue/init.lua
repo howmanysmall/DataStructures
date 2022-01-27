@@ -224,7 +224,7 @@ end
 	If you care about performance, do not use this function. Just do `for Index, Value in ipairs(MaxPriorityQueue.Heap) do` directly.
 	:::
 
-	@param OnlyValues boolean? Whether or not the iterator returns just the values or the priorities as well.
+	@param OnlyValues boolean? -- Whether or not the iterator returns just the values or the priorities as well.
 	@return IteratorFunction -- The iterator function. Usage is `for Index, Value in MaxPriorityQueue:Iterator(OnlyValues) do`.
 ]=]
 function MaxPriorityQueue:Iterator(OnlyValues: boolean?)
