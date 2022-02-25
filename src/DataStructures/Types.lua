@@ -17,6 +17,11 @@ local Types = {}
 function Types.TypeOf(Value)
 	local ValueType = typeof(Value)
 	if ValueType == "table" then
+		local Type = Value.__type
+		if Type then
+			return Type
+		end
+
 		local Metatable = getmetatable(Value)
 		if type(Metatable) == "table" then
 			local CustomType = Metatable.__type or Metatable.ClassName

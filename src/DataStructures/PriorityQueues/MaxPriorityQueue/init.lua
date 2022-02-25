@@ -26,8 +26,16 @@ export type HeapEntry = {
 
 --[=[
 	@within MaxPriorityQueue
-	@prop Heap Array<T>
+	@prop Heap Array<HeapEntry<T>>
 	The heap data of the MaxPriorityQueue.
+]=]
+
+--[=[
+	@interface HeapEntry
+	@within MaxPriorityQueue
+	.Priority number -- The priority of the entry.
+	.Value T -- The value of the entry.
+	This is the interface for the entries in the MaxPriorityQueue.
 ]=]
 
 --[=[
@@ -174,6 +182,22 @@ function MaxPriorityQueue:GetLastPriority(): number?
 
 	return self.Heap[Length].Priority
 end
+
+--[=[
+	Gets the value at the index.
+
+	:::warning Performance
+	If you want the maximum performance, ignore this function and index the `Heap` property directly.
+	:::
+
+	@param Index number -- The index of the value.
+	@return HeapEntry<T>? -- The value located at the given index.
+]=]
+function MaxPriorityQueue:Peek(Index: number): HeapEntry?
+	return self.Heap[Index]
+end
+
+MaxPriorityQueue.Get = MaxPriorityQueue.Peek
 
 --[=[
 	Remove the element from the `MaxPriorityQueue` that has the highest priority, and return it.

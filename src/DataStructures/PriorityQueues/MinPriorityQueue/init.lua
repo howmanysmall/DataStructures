@@ -26,8 +26,16 @@ export type HeapEntry = {
 
 --[=[
 	@within MinPriorityQueue
-	@prop Heap Array<T>
+	@prop Heap Array<HeapEntry<T>>
 	The heap data of the MinPriorityQueue.
+]=]
+
+--[=[
+	@interface HeapEntry
+	@within MinPriorityQueue
+	.Priority number -- The priority of the entry.
+	.Value T -- The value of the entry.
+	This is the interface for the entries in the MinPriorityQueue.
 ]=]
 
 --[=[
@@ -176,9 +184,25 @@ function MinPriorityQueue:GetLastPriority(): number?
 end
 
 --[=[
+	Gets the value at the index.
+
+	:::warning Performance
+	If you want the maximum performance, ignore this function and index the `Heap` property directly.
+	:::
+
+	@param Index number -- The index of the value.
+	@return HeapEntry<T>? -- The value located at the given index.
+]=]
+function MinPriorityQueue:Peek(Index: number): HeapEntry?
+	return self.Heap[Index]
+end
+
+MinPriorityQueue.Get = MinPriorityQueue.Peek
+
+--[=[
 	Remove the element from the `MinPriorityQueue` that has the highest priority, and return it.
 	@param OnlyValue boolean? -- Whether or not to return only the value or the entire entry.
-	@return T | HeapEntry? -- The removed element.
+	@return T | HeapEntry<T>? -- The removed element.
 ]=]
 function MinPriorityQueue:PopElement(OnlyValue: boolean?): any | HeapEntry
 	local Heap: Array<HeapEntry> = self.Heap
